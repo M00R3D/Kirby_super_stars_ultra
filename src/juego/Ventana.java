@@ -240,6 +240,16 @@ public class Ventana extends JFrame {
 	
 		
 		
+		///NIVEL 1
+		JPanel Nivel1 = new JPanel();
+		Nivel1.setBackground(Color.CYAN);
+		Nivel1.setBounds(0, 0, 404, 352);
+//		frame.getContentPane().add(Nivel1);
+		Nivel1.setLayout(null);
+	
+		
+	
+		
 		kirb1.addActionListener(new ActionListener() {
 
 			@Override
@@ -261,7 +271,46 @@ public class Ventana extends JFrame {
 				frame.repaint();
 			}});
 		
+		im6.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				frame.remove(Jugadores);
+				frame.repaint();
+				frame.add(Nivel1);		
+				frame.repaint();
+			}});
 		
+		im7.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				frame.remove(Jugadores);
+				frame.repaint();
+				frame.add(Nivel1);		
+				frame.repaint();
+			}});
+		
+
+		kirb2.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				frame.remove(Partidas);
+				frame.repaint();
+				frame.add(Jugadores);		
+				frame.repaint();
+			}});
+		
+		kirb3.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				frame.remove(Partidas);
+				frame.repaint();
+				frame.add(Jugadores);		
+				frame.repaint();
+			}});
 		
 		frame.addKeyListener(new KeyListener() {
 
@@ -319,7 +368,10 @@ public class Ventana extends JFrame {
 		};
 		timer.schedule(task, 10, 3000);
 	}
-	
+
 	
 	
 }
+	
+	
+
