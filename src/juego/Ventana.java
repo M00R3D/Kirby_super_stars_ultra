@@ -77,7 +77,7 @@ import javax.swing.BoxLayout;
 public class Ventana extends JFrame {
 	public JPanel panelActual;
 	private JFrame frame;
-
+	private int kirbyX=50,kirbyY=50;
 	/**
 	 * Launch the application.
 	 */
@@ -111,6 +111,7 @@ public class Ventana extends JFrame {
 		frame.getContentPane().setLayout(null);
 		
 
+		
 		// MENU DEL JUEGO
 
 		JPanel Menu = new JPanel();
@@ -241,12 +242,17 @@ public class Ventana extends JFrame {
 		
 		
 		///NIVEL 1
+		
+		ImageIcon imgKirbyBase = new ImageIcon("kirbyBase.png");
+
 		JPanel Nivel1 = new JPanel();
 		Nivel1.setBackground(Color.CYAN);
 		Nivel1.setBounds(0, 0, 404, 352);
 //		frame.getContentPane().add(Nivel1);
 		Nivel1.setLayout(null);
-	
+		JLabel labelKirby = new JLabel(imgKirbyBase);
+		labelKirby.setBounds(32,32,50,50);
+		Nivel1.add(labelKirby);
 		
 	
 		
@@ -325,17 +331,28 @@ public class Ventana extends JFrame {
 				// TODO Auto-generated method stub
 				if(panelActual==Inicio) 
 				{
-					System.out.println(e.getKeyCode());
+					System.out.println(e.getKeyCode()+""+e.getKeyChar());
 					if(e.getKeyCode()==10 ) 
 					{
 						frame.remove(Inicio);
 						frame.repaint();
 						frame.add(Partidas);
 					}
+		
 				}
-				
+					if(e.getKeyCode()== 87 || e.getKeyCode()==38){//W
+						kirbyY-=3;}
+						
+					if(e.getKeyCode()== 65 || e.getKeyCode()==37){//A
+						kirbyX-=3;
+					}
+					if(e.getKeyCode()== 83 || e.getKeyCode()==40){//S
+						kirbyY+=3;
+					}
+					if(e.getKeyCode()== 68 || e.getKeyCode()==39){//D
+						kirbyX+=3;
+					}
 			}
-			
 			@Override
 			public void keyReleased(KeyEvent e) {
 				// TODO Auto-generated method stub
@@ -344,6 +361,21 @@ public class Ventana extends JFrame {
 		
 		
 		
+		
+		Timer timerTicks = new Timer();
+		TimerTask repintar = new TimerTask() {
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+					labelKirby.setBounds(kirbyX, kirbyY, 32, 32);
+					System.out.println(kirbyX+""+kirbyY);
+					
+					if(kirbyY<312) {kirbyY++;}
+					
+					frame.repaint();
+			}
+		};
+		timerTicks.schedule(repintar, 10, 30);
 		
 		Timer timer = new Timer();
 		TimerTask task = new TimerTask() {
@@ -367,6 +399,8 @@ public class Ventana extends JFrame {
 			}
 		};
 		timer.schedule(task, 10, 3000);
+		
+
 	}
 
 	
@@ -374,4 +408,3 @@ public class Ventana extends JFrame {
 }
 	
 	
-
