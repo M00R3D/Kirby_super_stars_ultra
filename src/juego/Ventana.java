@@ -77,7 +77,8 @@ public class Ventana extends JFrame {
 	public JPanel panelActual;
 	private JFrame frame;
 	private int kirbyX=50,kirbyY=50,kirbySpd=4,kirbyWalkAnim=0,kirbyWalkAnimMax=5;
-	private boolean derecha=false,izquierda=false,arriba=false;
+	private String kirbyLado="derecha";
+	private boolean derecha=false,izquierda=false,arriba=false,k=false;
 	/**
 	 * Launch the application.
 	 */
@@ -162,10 +163,16 @@ public class Ventana extends JFrame {
 		///NIVEL 1
 		//Creamos un panel y añadimos a kirby ademas una prueba para las colisiones
 		ImageIcon imgKirbyBase = new ImageIcon("kirbyStand.gif");
+		ImageIcon imgKirbyBaseLeft = new ImageIcon("kirbyStandLeft.gif");
+
 		ImageIcon imgKirbyWalkRight = new ImageIcon("kirbyWalk.gif");
 		ImageIcon imgKirbyWalkLeft = new ImageIcon("kirbyWalkLeft.gif");
 		ImageIcon imgKirbyFly = new ImageIcon("kirbyFly.gif");
-		ImageIcon imgKirbyFlyLeft = new ImageIcon("kirbyFlyLeft.gif");		
+		ImageIcon imgKirbyFlyLeft = new ImageIcon("kirbyFlyLeft.gif");
+		ImageIcon imgKirbyAbsorb = new ImageIcon("kirbyAbsorb.gif");		
+		ImageIcon imgKirbyAbsorbLeft = new ImageIcon("kirbyAbsorbLeft.gif");		
+
+		
 		ImageIcon piso1 = new ImageIcon("piso1.png");
 		JPanel Nivel1 = new JPanelPersonalizado("Nivel1");
 		Entidad EntKirby = new Entidad(imgKirbyBase,22,22,75,70);
@@ -244,6 +251,9 @@ public class Ventana extends JFrame {
 						kirbyX+=1;
 						derecha=true;
 					}else {derecha=false;}
+					if(e.getKeyCode()== 75 ){//
+						k=true;
+					}else {k=false;}
 			}
 			@Override
 			public void keyReleased(KeyEvent e) {
@@ -265,8 +275,10 @@ public class Ventana extends JFrame {
 //					if(kirbyY<312) {kirbyY+=2;}
 					
 					//Kirby hspd
-					if(derecha==true) {EntKirby.setHsp(EntKirby.getHspWalk());}
-					if(izquierda==true) {EntKirby.setHsp(EntKirby.getHspWalk()*(-1));}
+					if(derecha==true) {kirbyLado="derecha";
+						EntKirby.setHsp(EntKirby.getHspWalk());}
+					if(izquierda==true) {kirbyLado="izquierda";
+						EntKirby.setHsp(EntKirby.getHspWalk()*(-1));}
 					//Kirby hspd
 					derecha=false;izquierda=false;
 					//Kirby vspd
@@ -290,31 +302,48 @@ public class Ventana extends JFrame {
 					EntKirby.setBounds(EntKirby.getX()+EntKirby.getHsp(), EntKirby.getY()+EntKirby.getVsp(), EntKirby.getWidth(), EntKirby.getHeight());
 					
 					if(EntKirby.getHsp()>0) {EntKirby.setHsp(EntKirby.getHsp()-1);
-					EntKirby.setIcon(imgKirbyWalkRight);}
+					if(kirbyLado=="derecha") {
+						EntKirby.setIcon(imgKirbyWalkRight);}
+					if(kirbyLado=="izquierda") {
+						EntKirby.setIcon(imgKirbyWalkLeft);}
+					}
 					if(EntKirby.getVsp()>0) {EntKirby.setVsp(EntKirby.getVsp()-1);}
 					if(EntKirby.getHsp()<0) {EntKirby.setHsp(EntKirby.getHsp()+1);
-					EntKirby.setIcon(imgKirbyWalkLeft);}
+					if(kirbyLado=="derecha") {
+						EntKirby.setIcon(imgKirbyWalkRight);}
+					if(kirbyLado=="izquierda") {
+						EntKirby.setIcon(imgKirbyWalkLeft);}
+					}
 					if(EntKirby.getVsp()<0) {EntKirby.setVsp(EntKirby.getVsp()+1);}
 					if(EntKirby.getVsp()!=0) 
 					{
-						if(EntKirby.getHsp()<0) 
-						{
-							EntKirby.setIcon(imgKirbyFlyLeft);
-						}else if(EntKirby.getHsp()>=0) 
-						{
-							EntKirby.setIcon(imgKirbyFly);
-						}
+							if(kirbyLado=="derecha") {
+								EntKirby.setIcon(imgKirbyFly);}
+							if(kirbyLado=="izquierda") {
+								EntKirby.setIcon(imgKirbyFlyLeft);
+							}
 					}else
 						{
-						if(EntKirby.getHsp()==0) {EntKirby.setIcon(imgKirbyBase);}
+						if(k==true) 
+						{
+							if(kirbyLado=="derecha") {
+								EntKirby.setIcon(imgKirbyAbsorb);}
+							if(kirbyLado=="izquierda") {
+								EntKirby.setIcon(imgKirbyAbsorbLeft);
+							}
+						}else {
+							if(EntKirby.getHsp()==0) {
+								
+								if(kirbyLado=="derecha") {
+									EntKirby.setIcon(imgKirbyBase);}
+								if(kirbyLado=="izquierda") {
+									EntKirby.setIcon(imgKirbyBaseLeft);
+								}
+								
+								}
+							}
 						}
-						//					if(kirbyWalkAnim<kirbyWalkAnimMax) 
-//					{
-//						EntKirby.setIcon(imgKirbyWalk[kirbyWalkAnim]);
-//						kirbyWalkAnim++;
-//						frame.repaint();
-//						frame.revalidate();
-//					}else {kirbyWalkAnim=0;}
+					k=false;
 					frame.repaint();
 					frame.revalidate();
 					

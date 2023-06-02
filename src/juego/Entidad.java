@@ -9,7 +9,7 @@ public class Entidad extends JLabel {
 		this.setIcon(i);
 		this.setBounds(x,y,w,h);
 	}
-	public int gravedad=2,hsp=0,vsp=0,hspWalk=4,vspJump=-22,canJump=0;
+	public int gravedad=2,hsp=0,vsp=0,hspWalk=7,vspJump=-22,canJump=0;
 	
 	
 	public boolean colision(Entidad entidad) {
