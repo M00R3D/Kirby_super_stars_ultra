@@ -9,12 +9,25 @@ public class Entidad extends JLabel {
 		this.setIcon(i);
 		this.setBounds(x,y,w,h);
 	}
-	public int gravedad=1,hsp=0,vsp=0,hspWalk=3,vspJump=-6,canJump=0;
+	public int gravedad=3,hsp=0,vsp=0,hspWalk=4,vspJump=-12,canJump=0;
 	
 	
-	public boolean colisiona(Entidad otraEntidad) {
-        return this.getBounds().intersects(otraEntidad.getBounds());
-    }
+	public boolean colision(Entidad entidad) {
+	    int thisX = this.getX();
+	    int thisY = this.getY();
+	    int thisWidth = this.getWidth();
+	    int thisHeight = this.getHeight();
+
+	    int entidadX = entidad.getX();
+	    int entidadY = entidad.getY();
+	    int entidadWidth = entidad.getWidth();
+	    int entidadHeight = entidad.getHeight();
+
+	    boolean colisionX = thisX + thisWidth >= entidadX && entidadX + entidadWidth >= thisX;
+	    boolean colisionY = thisY + thisHeight >= entidadY && entidadY + entidadHeight >= thisY;
+
+	    return colisionX && colisionY;
+	}
 	//getters y setters
 	
 	public int getGravedad() {
