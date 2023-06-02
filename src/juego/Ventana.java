@@ -2,7 +2,6 @@ package juego;
 
 import java.awt.EventQueue;
 import java.awt.Image;
-
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -109,91 +108,36 @@ public class Ventana extends JFrame {
 		frame.setBounds(100, 100, 420, 391);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
-		
 
-		
 		// MENU DEL JUEGO
 
-		JPanel Menu = new JPanel();
-		Menu.setBounds(0, 0, 404, 352);
+		JPanel Menu = new JPanelPersonalizado("Menu");
 		frame.getContentPane().add(Menu);
-		Menu.setLayout(null);
-
-		ImageIcon img1 = new ImageIcon("Menu.png");
-		JLabel im1 = new JLabel(img1);
-		im1.setHorizontalAlignment(SwingConstants.LEFT);
-		im1.setBounds(0, 0, 404, 352);
-
-		Image esc1 = img1.getImage().getScaledInstance(im1.getWidth(), im1.getHeight(), Image.SCALE_SMOOTH);
-		Icon ices1 = new ImageIcon(esc1);
-		im1.setIcon(ices1);
-		Menu.add(im1);
-
-		
-
 		this.revalidate();
 		this.repaint();
 
 		// PULSA START
-		JPanel Inicio = new JPanel();
-		Inicio.setBounds(0, 0, 404, 352);
+		JPanel Inicio = new JPanelPersonalizado("Inicio");
 		frame.getContentPane().add(Inicio);
-		Inicio.setLayout(null);
-		
-		
-		ImageIcon img2 = new ImageIcon("Inicio.png");
-		JLabel im2 = new JLabel(img2);
-		im2.setHorizontalAlignment(SwingConstants.LEFT);
-		im2.setBounds(0, 0, 404, 352);
-
-		Image esc2 = img2.getImage().getScaledInstance(im2.getWidth(), im2.getHeight(), Image.SCALE_SMOOTH);
-		Icon ices2 = new ImageIcon(esc2);
-		im2.setIcon(ices2);
-		Inicio.add(im2);
 
 		/////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-		JPanel Partidas = new JPanel();
-		Partidas.setBackground(Color.CYAN);
-		Partidas.setBounds(0, 0, 404, 352);
-//		frame.getContentPane().add(Partidas);
-		Partidas.setLayout(null);
+		JPanel Partidas = new JPanelPersonalizado("Partidas");
+		
 
 		/// KIRBY 1
-
-		ImageIcon img3 = new ImageIcon("kirby 1.png");
-		JButton kirb1 = new JButton(img3);
-		kirb1.setSize(223, 42);
-		kirb1.setLocation(90, 87);
-
+		ImageIcon img3 = new ImageIcon("kirby 1.png");JButton kirb1 = new JButton(img3);kirb1.setSize(223, 42);kirb1.setLocation(90, 87);
 		Image esc3 = img3.getImage().getScaledInstance(kirb1.getWidth(), kirb1.getHeight(), Image.SCALE_SMOOTH);
-		Icon ices3 = new ImageIcon(esc3);
-		kirb1.setIcon(ices3);
-		
-		Partidas.add(kirb1);
-		
-		
+		Icon ices3 = new ImageIcon(esc3);kirb1.setIcon(ices3);Partidas.add(kirb1);
 		// KIRBY 2
-		ImageIcon img4 = new ImageIcon("kirby 2.png");
-		JButton kirb2 = new JButton(img4);
-		kirb2.setSize(223, 42);
-		kirb2.setLocation(90, 156);
-
+		ImageIcon img4 = new ImageIcon("kirby 2.png");JButton kirb2 = new JButton(img4);kirb2.setSize(223, 42);kirb2.setLocation(90, 156);
 		Image esc4 = img4.getImage().getScaledInstance(kirb2.getWidth(), kirb2.getHeight(), Image.SCALE_SMOOTH);
-		Icon ices4 = new ImageIcon(esc4);
-		kirb2.setIcon(ices4);
-		Partidas.add(kirb2);
-
+		Icon ices4 = new ImageIcon(esc4);kirb2.setIcon(ices4);Partidas.add(kirb2);
 		/// KIRBY 3
 		ImageIcon img5 = new ImageIcon("kirby 3.png");
-		JButton kirb3 = new JButton(img5);
-		kirb3.setSize(223, 42);
-		kirb3.setLocation(90, 228);
-
+		JButton kirb3 = new JButton(img5);kirb3.setSize(223, 42);kirb3.setLocation(90, 228);
 		Image esc5 = img5.getImage().getScaledInstance(kirb3.getWidth(), kirb3.getHeight(), Image.SCALE_SMOOTH);
-		Icon ices5 = new ImageIcon(esc5);
-		kirb3.setIcon(ices5);
-		Partidas.add(kirb3);
+		Icon ices5 = new ImageIcon(esc5);kirb3.setIcon(ices5);Partidas.add(kirb3);
 		/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 		// JUGADORES
@@ -238,84 +182,42 @@ public class Ventana extends JFrame {
 		Jugadores.add(btnRegresar);
 		
 		panelActual=Menu;
-	
-		
-		
 		///NIVEL 1
-		
 		ImageIcon imgKirbyBase = new ImageIcon("kirbyBase.png");
-
-		JPanel Nivel1 = new JPanel();
-		Nivel1.setBackground(Color.CYAN);
-		Nivel1.setBounds(0, 0, 404, 352);
-//		frame.getContentPane().add(Nivel1);
-		Nivel1.setLayout(null);
-		JLabel labelKirby = new JLabel(imgKirbyBase);
-		labelKirby.setBounds(32,32,50,50);
-		Nivel1.add(labelKirby);
-		
-	
-		
+		JPanel Nivel1 = new JPanelPersonalizado("Nivel1");
+		JLabel labelKirby = new JLabel(imgKirbyBase);labelKirby.setBounds(32,32,50,50);Nivel1.add(labelKirby);
 		kirb1.addActionListener(new ActionListener() {
-
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				frame.remove(Partidas);
-				frame.repaint();
-				frame.add(Jugadores);		
-				frame.repaint();
+				frame.remove(Partidas);frame.repaint();frame.add(Jugadores);		frame.repaint();
 			}});
 		kirb2.addActionListener(kirb1.getActionListeners()[0]);
 		kirb3.addActionListener(kirb1.getActionListeners()[0]);
 		btnRegresar.addActionListener(new ActionListener() {
-
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				frame.remove(Jugadores);
-				frame.repaint();
-				frame.add(Partidas);		
-				frame.repaint();
+frame.remove(Jugadores);frame.repaint();frame.add(Partidas);		frame.repaint();
 			}});
 		
 		im6.addActionListener(new ActionListener() {
-
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				frame.remove(Jugadores);
-				frame.repaint();
-				frame.add(Nivel1);		
-				frame.repaint();
+				frame.remove(Jugadores);frame.repaint();frame.add(Nivel1);		frame.repaint();
 			}});
-		
 		im7.addActionListener(new ActionListener() {
-
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				frame.remove(Jugadores);
-				frame.repaint();
-				frame.add(Nivel1);		
-				frame.repaint();
+				frame.remove(Jugadores);frame.repaint();frame.add(Nivel1);frame.repaint();
 			}});
-		
-
 		kirb2.addActionListener(new ActionListener() {
-
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				frame.remove(Partidas);
-				frame.repaint();
-				frame.add(Jugadores);		
-				frame.repaint();
+				frame.remove(Partidas);frame.repaint();frame.add(Jugadores);frame.repaint();
 			}});
-		
 		kirb3.addActionListener(new ActionListener() {
-
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				frame.remove(Partidas);
-				frame.repaint();
-				frame.add(Jugadores);		
-				frame.repaint();
+				frame.remove(Partidas);frame.repaint();frame.add(Jugadores);frame.repaint();
 			}});
 		
 		frame.addKeyListener(new KeyListener() {
