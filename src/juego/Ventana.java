@@ -77,6 +77,7 @@ public class Ventana extends JFrame {
 	public JPanel panelActual;
 	private JFrame frame;
 	private int kirbyX=50,kirbyY=50,kirbySpd=4;
+	private boolean derecha=false,izquierda=false,arriba=false;
 	/**
 	 * Launch the application.
 	 */
@@ -164,7 +165,10 @@ public class Ventana extends JFrame {
 		ImageIcon imgKirbyBase = new ImageIcon("kirbyBase.png");
 		JPanel Nivel1 = new JPanelPersonalizado("Nivel1");
 		Entidad EntKirby = new Entidad(imgKirbyBase,32,32,50,50);
+		Entidad prueba = new Entidad(imgKirbyBase,92,92,50,50);
+
 		Nivel1.add(EntKirby);
+		Nivel1.add(prueba);
 		kirb1.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -221,17 +225,20 @@ frame.remove(Jugadores);frame.repaint();frame.add(Partidas);		frame.repaint();
 		
 				}
 					if(e.getKeyCode()== 87 || e.getKeyCode()==38){//W
-						for(int a =0;a<9;a++) {kirbyY-=a;}
-					}
+						for(int a =0;a<9;a++) {kirbyY-=a;
+						arriba=true;}
+					}else{arriba=false;}
 					if(e.getKeyCode()== 65 || e.getKeyCode()==37){//A
 						kirbyX-=kirbySpd;
-					}
+						izquierda=true;
+					}else {izquierda=false;}
 					if(e.getKeyCode()== 83 || e.getKeyCode()==40){//S
 //						kirbyY+=kirbySpd;
 					}
 					if(e.getKeyCode()== 68 || e.getKeyCode()==39){//D
 						kirbyX+=kirbySpd;
-					}
+						derecha=true;
+					}else {derecha=false;}
 			}
 			@Override
 			public void keyReleased(KeyEvent e) {
@@ -251,6 +258,27 @@ frame.remove(Jugadores);frame.repaint();frame.add(Partidas);		frame.repaint();
 //					System.out.println(kirbyX+""+kirbyY);
 					
 					if(kirbyY<312) {kirbyY+=2;}
+					
+					//Kirby hspd
+					if(derecha==true) {EntKirby.setHsp(EntKirby.getHspWalk());}
+					else if(izquierda==true) {EntKirby.setHsp(EntKirby.getHspWalk()*(-1));}
+					//Kirby hspd
+					
+					//Kirby vspd
+					EntKirby.setVsp(EntKirby.getVsp()+EntKirby.getGravedad());
+					//Kirby vspd
+					
+					if(EntKirby.canJump-1 > 0 && arriba==true)  
+					{
+						EntKirby.setVsp(EntKirby.vspJump);
+						EntKirby.setCanJump(0);
+					}
+					
+					if(EntKirby.colisiona(prueba)) 
+					{
+						System.out.println("               colision               ");
+					}
+						
 					
 					frame.repaint();
 					frame.revalidate();

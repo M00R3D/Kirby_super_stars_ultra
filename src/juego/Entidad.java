@@ -10,6 +10,15 @@ public class Entidad extends JLabel {
 		this.setBounds(x,y,w,h);
 	}
 	public int gravedad=1,hsp=0,vsp=0,hspWalk=3,vspJump=-6,canJump=0;
+	
+	
+	public boolean colisiona(Entidad otraEntidad) {
+        return this.getBounds().intersects(otraEntidad.getBounds());
+    }
+	
+	
+	
+	
 	public int getGravedad() {
 		return gravedad;
 	}
@@ -46,9 +55,6 @@ public class Entidad extends JLabel {
 	public void setCanJump(int canJump) {
 		this.canJump = canJump;
 	}
-//	public void setBounds(int X, int Y, int width, int height) {
-//		this.setBounds(X, Y, width, height);
-//	}
 	
 
 }
