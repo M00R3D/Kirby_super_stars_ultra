@@ -77,7 +77,7 @@ import javax.swing.BoxLayout;
 public class Ventana extends JFrame {
 	public JPanel panelActual;
 	private JFrame frame;
-	private int kirbyX=50,kirbyY=50;
+	private int kirbyX=50,kirbyY=50,kirbySpd=4;
 	/**
 	 * Launch the application.
 	 */
@@ -341,16 +341,16 @@ public class Ventana extends JFrame {
 		
 				}
 					if(e.getKeyCode()== 87 || e.getKeyCode()==38){//W
-						kirbyY-=3;}
-						
+						for(int a =0;a<9;a++) {kirbyY-=a;}
+					}
 					if(e.getKeyCode()== 65 || e.getKeyCode()==37){//A
-						kirbyX-=3;
+						kirbyX-=kirbySpd;
 					}
 					if(e.getKeyCode()== 83 || e.getKeyCode()==40){//S
-						kirbyY+=3;
+//						kirbyY+=kirbySpd;
 					}
 					if(e.getKeyCode()== 68 || e.getKeyCode()==39){//D
-						kirbyX+=3;
+						kirbyX+=kirbySpd;
 					}
 			}
 			@Override
@@ -368,11 +368,12 @@ public class Ventana extends JFrame {
 			public void run() {
 				// TODO Auto-generated method stub
 					labelKirby.setBounds(kirbyX, kirbyY, 32, 32);
-					System.out.println(kirbyX+""+kirbyY);
+//					System.out.println(kirbyX+""+kirbyY);
 					
-					if(kirbyY<312) {kirbyY++;}
+					if(kirbyY<312) {kirbyY+=2;}
 					
 					frame.repaint();
+					frame.revalidate();
 			}
 		};
 		timerTicks.schedule(repintar, 10, 30);
