@@ -2,7 +2,7 @@ package juego;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
-
+//En esta clase Entidad creamos un sistema de gravedad
 public class Entidad extends JLabel {
 	public Entidad(ImageIcon i,int x,int y, int w, int h) 
 	{
@@ -15,9 +15,7 @@ public class Entidad extends JLabel {
 	public boolean colisiona(Entidad otraEntidad) {
         return this.getBounds().intersects(otraEntidad.getBounds());
     }
-	
-	
-	
+	//getters y setters
 	
 	public int getGravedad() {
 		return gravedad;

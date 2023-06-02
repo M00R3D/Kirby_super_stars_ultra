@@ -162,6 +162,7 @@ public class Ventana extends JFrame {
 		Icon ices8 = new ImageIcon(esc8);btnRegresar.setIcon(ices8);Jugadores.add(btnRegresar);
 		panelActual=Menu;
 		///NIVEL 1
+		//Creamos un panel y añadimos a kirby ademas una prueba para las colisiones
 		ImageIcon imgKirbyBase = new ImageIcon("kirbyBase.png");
 		JPanel Nivel1 = new JPanelPersonalizado("Nivel1");
 		Entidad EntKirby = new Entidad(imgKirbyBase,32,32,50,50);
@@ -169,6 +170,7 @@ public class Ventana extends JFrame {
 
 		Nivel1.add(EntKirby);
 		Nivel1.add(prueba);
+		//En este panel navegamos por el menu de guardado
 		kirb1.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -179,7 +181,7 @@ public class Ventana extends JFrame {
 		btnRegresar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-frame.remove(Jugadores);frame.repaint();frame.add(Partidas);		frame.repaint();
+				frame.remove(Jugadores);frame.repaint();frame.add(Partidas);		frame.repaint();
 			}});
 		im6.addActionListener(new ActionListener() {
 			@Override
@@ -209,7 +211,7 @@ frame.remove(Jugadores);frame.repaint();frame.add(Partidas);		frame.repaint();
 				// TODO Auto-generated method stub
 				
 			}
-
+			//W
 			@Override
 			public void keyPressed(KeyEvent e) {
 				// TODO Auto-generated method stub
@@ -284,7 +286,7 @@ frame.remove(Jugadores);frame.repaint();frame.add(Partidas);		frame.repaint();
 					frame.revalidate();
 			}
 		};
-		timerTicks.schedule(repintar, 10, 30);
+		timerTicks.schedule(repintar, 10, 700);
 		
 		Timer timer = new Timer();
 		TimerTask task = new TimerTask() {
