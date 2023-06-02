@@ -35,6 +35,12 @@ public class JPanelPersonalizado extends JPanel{
 //			frame.getContentPane().add(Partidas);
 			this.setLayout(null);
 			break;
+		case "Jugadores":
+			this.setBackground(Color.CYAN);
+			this.setBounds(0, 0, 404, 352);
+//			frame.getContentPane().add(Jugadores);
+			this.setLayout(null);
+			break;
 		case "Nivel1":
 			this.setBackground(Color.CYAN);
 			this.setBounds(0, 0, 404, 352);

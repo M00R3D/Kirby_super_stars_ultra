@@ -115,16 +115,11 @@ public class Ventana extends JFrame {
 		frame.getContentPane().add(Menu);
 		this.revalidate();
 		this.repaint();
-
 		// PULSA START
 		JPanel Inicio = new JPanelPersonalizado("Inicio");
 		frame.getContentPane().add(Inicio);
-
 		/////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
 		JPanel Partidas = new JPanelPersonalizado("Partidas");
-		
-
 		/// KIRBY 1
 		ImageIcon img3 = new ImageIcon("kirby 1.png");JButton kirb1 = new JButton(img3);kirb1.setSize(223, 42);kirb1.setLocation(90, 87);
 		Image esc3 = img3.getImage().getScaledInstance(kirb1.getWidth(), kirb1.getHeight(), Image.SCALE_SMOOTH);
@@ -139,53 +134,37 @@ public class Ventana extends JFrame {
 		Image esc5 = img5.getImage().getScaledInstance(kirb3.getWidth(), kirb3.getHeight(), Image.SCALE_SMOOTH);
 		Icon ices5 = new ImageIcon(esc5);kirb3.setIcon(ices5);Partidas.add(kirb3);
 		/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
 		// JUGADORES
-		JPanel Jugadores = new JPanel();
-		Jugadores.setBackground(Color.CYAN);
-		Jugadores.setBounds(0, 0, 404, 352);
-//		frame.getContentPane().add(Jugadores);
-		Jugadores.setLayout(null);
-
+		JPanel Jugadores = new JPanelPersonalizado("Jugadores");
 		// JUGADOR 1
 		ImageIcon img6 = new ImageIcon("Jugador 1.png");
 		JButton im6 = new JButton(img6);
 		im6.setSize(223, 42);
 		im6.setLocation(90, 87);
-
 		Image esc6 = img6.getImage().getScaledInstance(im6.getWidth(), im6.getHeight(), Image.SCALE_SMOOTH);
 		Icon ices6 = new ImageIcon(esc6);
 		im6.setIcon(ices6);
 		Jugadores.add(im6);
-
 		// JUGADOR 2
 		ImageIcon img7 = new ImageIcon("Jugador 2.png");
 		JButton im7 = new JButton(img7);
 		im7.setSize(223, 42);
 		im7.setLocation(90, 156);
-
 		Image esc7 = img7.getImage().getScaledInstance(im7.getWidth(), im7.getHeight(), Image.SCALE_SMOOTH);
 		Icon ices7 = new ImageIcon(esc7);
 		im7.setIcon(ices7);
 		Jugadores.add(im7);
-
 		// REGRESAR AL INICIO
-		
 		ImageIcon img8 = new ImageIcon("Regresar.png");
-		JButton btnRegresar = new JButton(img8);
-		btnRegresar.setSize(53, 42);
-		btnRegresar.setLocation(322, 273);
-
+		JButton btnRegresar = new JButton(img8);btnRegresar.setSize(53, 42);btnRegresar.setLocation(322, 273);
 		Image esc8 = img8.getImage().getScaledInstance(btnRegresar.getWidth(), btnRegresar.getHeight(), Image.SCALE_SMOOTH);
-		Icon ices8 = new ImageIcon(esc8);
-		btnRegresar.setIcon(ices8);
-		Jugadores.add(btnRegresar);
-		
+		Icon ices8 = new ImageIcon(esc8);btnRegresar.setIcon(ices8);Jugadores.add(btnRegresar);
 		panelActual=Menu;
 		///NIVEL 1
 		ImageIcon imgKirbyBase = new ImageIcon("kirbyBase.png");
 		JPanel Nivel1 = new JPanelPersonalizado("Nivel1");
-		JLabel labelKirby = new JLabel(imgKirbyBase);labelKirby.setBounds(32,32,50,50);Nivel1.add(labelKirby);
+		Entidad EntKirby = new Entidad(imgKirbyBase,32,32,50,50);
+		Nivel1.add(EntKirby);
 		kirb1.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -198,7 +177,6 @@ public class Ventana extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 frame.remove(Jugadores);frame.repaint();frame.add(Partidas);		frame.repaint();
 			}});
-		
 		im6.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -269,7 +247,7 @@ frame.remove(Jugadores);frame.repaint();frame.add(Partidas);		frame.repaint();
 			@Override
 			public void run() {
 				// TODO Auto-generated method stub
-					labelKirby.setBounds(kirbyX, kirbyY, 32, 32);
+					EntKirby.setBounds(kirbyX, kirbyY, 32, 32);
 //					System.out.println(kirbyX+""+kirbyY);
 					
 					if(kirbyY<312) {kirbyY+=2;}
