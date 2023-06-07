@@ -76,7 +76,7 @@ import javax.swing.BoxLayout;
 public class Ventana extends JFrame {
 	public JPanel panelActual;
 	private JFrame frame;
-	private int kirbyX=50,kirbyY=50,kirbySpd=4,kirbyWalkAnim=0,kirbyWalkAnimMax=5;
+	private int kirbyX=50,kirbyY=50;
 	private String kirbyLado="derecha";
 	private boolean derecha=false,izquierda=false,arriba=false,k=false;
 	/**
@@ -94,14 +94,12 @@ public class Ventana extends JFrame {
 			}
 		});
 	}
-
 	/**
 	 * Create the application.
 	 */
 	public Ventana() {
 		initialize();
 	}
-
 	/**
 	 * Initialize the contents of the frame.
 	 */
@@ -172,12 +170,10 @@ public class Ventana extends JFrame {
 		ImageIcon imgKirbyAbsorb = new ImageIcon("kirbyAbsorb.gif");		
 		ImageIcon imgKirbyAbsorbLeft = new ImageIcon("kirbyAbsorbLeft.gif");		
 
-		
 		ImageIcon piso1 = new ImageIcon("piso1.png");
 		JPanel Nivel1 = new JPanelPersonalizado("Nivel1");
 		Entidad EntKirby = new Entidad(imgKirbyBase,22,22,75,70);
 		Entidad prueba = new Entidad(piso1,0,320,322,32);
-
 		Nivel1.add(EntKirby);
 		Nivel1.add(prueba);
 		//En este panel navegamos por el menu de guardado
@@ -215,11 +211,8 @@ public class Ventana extends JFrame {
 			}});
 		frame.setFocusable(true);
 		frame.addKeyListener(new KeyListener() {
-
 			@Override
 			public void keyTyped(KeyEvent e) {
-				// TODO Auto-generated method stub
-				
 			}
 			//W
 			@Override
@@ -234,7 +227,6 @@ public class Ventana extends JFrame {
 						frame.repaint();
 						frame.add(Partidas);
 					}
-		
 				}
 					if(e.getKeyCode()== 87 || e.getKeyCode()==38){//W
 						for(int a =0;a<9;a++) {kirbyY-=1;
@@ -260,10 +252,6 @@ public class Ventana extends JFrame {
 				// TODO Auto-generated method stub
 				derecha=false;izquierda=false;arriba=false;k=false;
 			}});
-		
-		
-		
-		
 		Timer timerTicks = new Timer();
 		TimerTask repintar = new TimerTask() {
 			@Override
@@ -278,15 +266,11 @@ public class Ventana extends JFrame {
 					//salto
 					if(arriba==true)  {EntKirby.setVsp(EntKirby.vspJump);}
 					
-					
-					
 					if(EntKirby.colision(prueba)) 
 					{
-//						System.out.println("               colision               ");
 					}else //bajar el label de kirby sumandole la gravedad
 								{
 						EntKirby.setVsp(EntKirby.getVsp()+EntKirby.getGravedad());}
-					
 					//colisiones horizontales
 						if(new Entidad(imgKirbyBase,EntKirby.getX()+EntKirby.getHsp(),EntKirby.getY(),EntKirby.getWidth(),EntKirby.getHeight()).colision(prueba))
 {EntKirby.setHsp(0);}else {kirbyX+=EntKirby.getHsp();}
@@ -342,15 +326,12 @@ public class Ventana extends JFrame {
 			int tik = 0;
 			@Override
 			public void run() {
-				// TODO Auto-generated method stub
 				if (tik == 0) {
 					tik = 1;
 				} else {
-//					frame.getContentPane().remove(Menu);
 					frame.remove(Menu);
 					frame.repaint();
 					frame.add(Inicio);
-//					revalidate();
 					frame.repaint();
 					panelActual=Inicio;
 					timer.cancel();
@@ -362,7 +343,6 @@ public class Ventana extends JFrame {
 		TimerTask taskReducirVariables = new TimerTask() {
 			@Override
 			public void run() {
-				// TODO Auto-generated method stub
 				//reducir las velocidades a cualquier direccion de kirby con una velocidad menor a la que se repinta
 				if(EntKirby.getHsp()>0) {EntKirby.setHsp(EntKirby.getHsp()-1);}
 				if(EntKirby.getVsp()>0) {EntKirby.setVsp(EntKirby.getVsp()-1);}
