@@ -213,7 +213,7 @@ public class Ventana extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				frame.remove(Partidas);frame.repaint();frame.add(Jugadores);frame.repaint();
 			}});
-		
+		frame.setFocusable(true);
 		frame.addKeyListener(new KeyListener() {
 
 			@Override
@@ -239,18 +239,18 @@ public class Ventana extends JFrame {
 					if(e.getKeyCode()== 87 || e.getKeyCode()==38){//W
 						for(int a =0;a<9;a++) {kirbyY-=1;
 						arriba=true;}
-					}else{arriba=false;}
+					}//else{arriba=false;}
 					if(e.getKeyCode()== 65 || e.getKeyCode()==37){//A
 						kirbyX-=1;
 						izquierda=true;
-					}else {izquierda=false;}
+					}//else {izquierda=false;}
 					if(e.getKeyCode()== 83 || e.getKeyCode()==40){//S
 //						kirbyY+=kirbySpd;
 					}
 					if(e.getKeyCode()== 68 || e.getKeyCode()==39){//D
 						kirbyX+=1;
 						derecha=true;
-					}else {derecha=false;}
+					}//else {derecha=false;}
 					if(e.getKeyCode()== 75 ){//
 						k=true;
 					}else {k=false;}
@@ -258,7 +258,7 @@ public class Ventana extends JFrame {
 			@Override
 			public void keyReleased(KeyEvent e) {
 				// TODO Auto-generated method stub
-				
+				derecha=false;izquierda=false;arriba=false;k=false;
 			}});
 		
 		
@@ -268,53 +268,42 @@ public class Ventana extends JFrame {
 		TimerTask repintar = new TimerTask() {
 			@Override
 			public void run() {
-				// TODO Auto-generated method stub
+				//Reacomodar el label de kirby(entidad)
 					EntKirby.setBounds(kirbyX, kirbyY, EntKirby.getWidth(),EntKirby.getHeight());
-//					System.out.println(kirbyX+""+kirbyY);
-					
-//					if(kirbyY<312) {kirbyY+=2;}
-					
-					//Kirby hspd
+				//dependiendo del estado lado, se modifica la variable hsp de la entidad kirby
 					if(derecha==true) {kirbyLado="derecha";
 						EntKirby.setHsp(EntKirby.getHspWalk());}
 					if(izquierda==true) {kirbyLado="izquierda";
 						EntKirby.setHsp(EntKirby.getHspWalk()*(-1));}
-					//Kirby hspd
-					derecha=false;izquierda=false;
-					//Kirby vspd
-					//Kirby vspd
+					//salto
+					if(arriba==true)  {EntKirby.setVsp(EntKirby.vspJump);}
 					
-					if(arriba==true)  
-					{
-						EntKirby.setVsp(EntKirby.vspJump);
-//						EntKirby.setCanJump(0);
-					}
-					arriba=false;
+					
+					
 					if(EntKirby.colision(prueba)) 
 					{
-						System.out.println("               colision               ");
-					}else {EntKirby.setVsp(EntKirby.getVsp()+EntKirby.getGravedad());}
-					if(new Entidad(imgKirbyBase,EntKirby.getX()+EntKirby.getHsp(),EntKirby.getY(),EntKirby.getWidth(),EntKirby.getHeight()).colision(prueba))
+//						System.out.println("               colision               ");
+					}else //bajar el label de kirby sumandole la gravedad
+								{
+						EntKirby.setVsp(EntKirby.getVsp()+EntKirby.getGravedad());}
+					
+					//colisiones horizontales
+						if(new Entidad(imgKirbyBase,EntKirby.getX()+EntKirby.getHsp(),EntKirby.getY(),EntKirby.getWidth(),EntKirby.getHeight()).colision(prueba))
 {EntKirby.setHsp(0);}else {kirbyX+=EntKirby.getHsp();}
 					if(new Entidad(imgKirbyBase,EntKirby.getX(),EntKirby.getY()+EntKirby.getVsp(),EntKirby.getWidth(),EntKirby.getHeight()).colision(prueba))
 {EntKirby.setVsp(0);}	
 					else {kirbyY+=EntKirby.getVsp();}
 					EntKirby.setBounds(EntKirby.getX()+EntKirby.getHsp(), EntKirby.getY()+EntKirby.getVsp(), EntKirby.getWidth(), EntKirby.getHeight());
-					
-					if(EntKirby.getHsp()>0) {EntKirby.setHsp(EntKirby.getHsp()-1);
+					//reestablecer la imagen dependiendo del estado del lado de kirby(el lado al que esta volteando)
 					if(kirbyLado=="derecha") {
 						EntKirby.setIcon(imgKirbyWalkRight);}
 					if(kirbyLado=="izquierda") {
 						EntKirby.setIcon(imgKirbyWalkLeft);}
-					}
-					if(EntKirby.getVsp()>0) {EntKirby.setVsp(EntKirby.getVsp()-1);}
-					if(EntKirby.getHsp()<0) {EntKirby.setHsp(EntKirby.getHsp()+1);
-					if(kirbyLado=="derecha") {
+					//reestablecer el estado del lado de kirby(el lado al que esta volteando)
+			if(kirbyLado=="derecha") {
 						EntKirby.setIcon(imgKirbyWalkRight);}
 					if(kirbyLado=="izquierda") {
 						EntKirby.setIcon(imgKirbyWalkLeft);}
-					}
-					if(EntKirby.getVsp()<0) {EntKirby.setVsp(EntKirby.getVsp()+1);}
 					if(EntKirby.getVsp()!=0) 
 					{
 							if(kirbyLado=="derecha") {
@@ -322,10 +311,10 @@ public class Ventana extends JFrame {
 							if(kirbyLado=="izquierda") {
 								EntKirby.setIcon(imgKirbyFlyLeft);
 							}
-					}else
+					}else//(si esta quieto y en el piso)
 						{
 						if(k==true) 
-						{
+						{//absorcion derecha
 							if(kirbyLado=="derecha") {
 								EntKirby.setIcon(imgKirbyAbsorb);}
 							if(kirbyLado=="izquierda") {
@@ -333,7 +322,7 @@ public class Ventana extends JFrame {
 							}
 						}else {
 							if(EntKirby.getHsp()==0) {
-								
+								//absorcion izquierda
 								if(kirbyLado=="derecha") {
 									EntKirby.setIcon(imgKirbyBase);}
 								if(kirbyLado=="izquierda") {
@@ -343,18 +332,14 @@ public class Ventana extends JFrame {
 								}
 							}
 						}
-					k=false;
 					frame.repaint();
 					frame.revalidate();
-					
 			}
 		};
 		timerTicks.schedule(repintar, 10, 30);
-		
 		Timer timer = new Timer();
 		TimerTask task = new TimerTask() {
 			int tik = 0;
-
 			@Override
 			public void run() {
 				// TODO Auto-generated method stub
@@ -373,7 +358,19 @@ public class Ventana extends JFrame {
 			}
 		};
 		timer.schedule(task, 10, 3000);
-		
+		Timer timerVariables = new Timer();
+		TimerTask taskReducirVariables = new TimerTask() {
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				//reducir las velocidades a cualquier direccion de kirby con una velocidad menor a la que se repinta
+				if(EntKirby.getHsp()>0) {EntKirby.setHsp(EntKirby.getHsp()-1);}
+				if(EntKirby.getVsp()>0) {EntKirby.setVsp(EntKirby.getVsp()-1);}
+				if(EntKirby.getHsp()<0) {EntKirby.setHsp(EntKirby.getHsp()+1);}
+				if(EntKirby.getVsp()<0) {EntKirby.setVsp(EntKirby.getVsp()+1);}
+			}
+		};
+		timerVariables.schedule(taskReducirVariables, 10, 70);
 
 	}
 
