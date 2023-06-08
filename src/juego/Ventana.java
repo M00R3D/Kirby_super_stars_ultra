@@ -79,6 +79,7 @@ public class Ventana extends JFrame {
 	private int kirbyX=50,kirbyY=50;
 	private String kirbyLado="derecha";
 	private boolean derecha=false,izquierda=false,arriba=false,k=false;
+	private Entidad ArregloPiso[] = new Entidad[2];
 	/**
 	 * Launch the application.
 	 */
@@ -114,23 +115,15 @@ public class Ventana extends JFrame {
 		this.revalidate();
 		this.repaint();
 		// PULSA START
-		JPanel Inicio = new JPanelPersonalizado("Inicio");
-		frame.getContentPane().add(Inicio);
+		JPanel Inicio = new JPanelPersonalizado("Inicio");frame.getContentPane().add(Inicio);
 		/////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		JPanel Partidas = new JPanelPersonalizado("Partidas");
 		/// KIRBY 1
-		ImageIcon img3 = new ImageIcon("kirby 1.png");JButton kirb1 = new JButton(img3);kirb1.setSize(223, 42);kirb1.setLocation(90, 87);
-		Image esc3 = img3.getImage().getScaledInstance(kirb1.getWidth(), kirb1.getHeight(), Image.SCALE_SMOOTH);
-		Icon ices3 = new ImageIcon(esc3);kirb1.setIcon(ices3);Partidas.add(kirb1);
+		ImageIcon img3 = new ImageIcon("kirby 1.png");JButton kirb1 = new JButton(img3);kirb1.setSize(223, 42);kirb1.setLocation(90, 87);Image esc3 = img3.getImage().getScaledInstance(kirb1.getWidth(), kirb1.getHeight(), Image.SCALE_SMOOTH);Icon ices3 = new ImageIcon(esc3);kirb1.setIcon(ices3);Partidas.add(kirb1);
 		// KIRBY 2
-		ImageIcon img4 = new ImageIcon("kirby 2.png");JButton kirb2 = new JButton(img4);kirb2.setSize(223, 42);kirb2.setLocation(90, 156);
-		Image esc4 = img4.getImage().getScaledInstance(kirb2.getWidth(), kirb2.getHeight(), Image.SCALE_SMOOTH);
-		Icon ices4 = new ImageIcon(esc4);kirb2.setIcon(ices4);Partidas.add(kirb2);
+		ImageIcon img4 = new ImageIcon("kirby 2.png");JButton kirb2 = new JButton(img4);kirb2.setSize(223, 42);kirb2.setLocation(90, 156);Image esc4 = img4.getImage().getScaledInstance(kirb2.getWidth(), kirb2.getHeight(), Image.SCALE_SMOOTH);Icon ices4 = new ImageIcon(esc4);kirb2.setIcon(ices4);Partidas.add(kirb2);
 		/// KIRBY 3
-		ImageIcon img5 = new ImageIcon("kirby 3.png");
-		JButton kirb3 = new JButton(img5);kirb3.setSize(223, 42);kirb3.setLocation(90, 228);
-		Image esc5 = img5.getImage().getScaledInstance(kirb3.getWidth(), kirb3.getHeight(), Image.SCALE_SMOOTH);
-		Icon ices5 = new ImageIcon(esc5);kirb3.setIcon(ices5);Partidas.add(kirb3);
+		ImageIcon img5 = new ImageIcon("kirby 3.png");JButton kirb3 = new JButton(img5);kirb3.setSize(223, 42);kirb3.setLocation(90, 228);Image esc5 = img5.getImage().getScaledInstance(kirb3.getWidth(), kirb3.getHeight(), Image.SCALE_SMOOTH);Icon ices5 = new ImageIcon(esc5);kirb3.setIcon(ices5);Partidas.add(kirb3);
 		/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		// JUGADORES
 		JPanel Jugadores = new JPanelPersonalizado("Jugadores");
@@ -144,19 +137,9 @@ public class Ventana extends JFrame {
 		im6.setIcon(ices6);
 		Jugadores.add(im6);
 		// JUGADOR 2
-		ImageIcon img7 = new ImageIcon("Jugador 2.png");
-		JButton im7 = new JButton(img7);
-		im7.setSize(223, 42);
-		im7.setLocation(90, 156);
-		Image esc7 = img7.getImage().getScaledInstance(im7.getWidth(), im7.getHeight(), Image.SCALE_SMOOTH);
-		Icon ices7 = new ImageIcon(esc7);
-		im7.setIcon(ices7);
-		Jugadores.add(im7);
+		ImageIcon img7 = new ImageIcon("Jugador 2.png");JButton im7 = new JButton(img7);im7.setSize(223, 42);im7.setLocation(90, 156);Image esc7 = img7.getImage().getScaledInstance(im7.getWidth(), im7.getHeight(), Image.SCALE_SMOOTH);Icon ices7 = new ImageIcon(esc7);im7.setIcon(ices7);Jugadores.add(im7);
 		// REGRESAR AL INICIO
-		ImageIcon img8 = new ImageIcon("Regresar.png");
-		JButton btnRegresar = new JButton(img8);btnRegresar.setSize(53, 42);btnRegresar.setLocation(322, 273);
-		Image esc8 = img8.getImage().getScaledInstance(btnRegresar.getWidth(), btnRegresar.getHeight(), Image.SCALE_SMOOTH);
-		Icon ices8 = new ImageIcon(esc8);btnRegresar.setIcon(ices8);Jugadores.add(btnRegresar);
+		ImageIcon img8 = new ImageIcon("Regresar.png");JButton btnRegresar = new JButton(img8);btnRegresar.setSize(53, 42);btnRegresar.setLocation(322, 273);Image esc8 = img8.getImage().getScaledInstance(btnRegresar.getWidth(), btnRegresar.getHeight(), Image.SCALE_SMOOTH);Icon ices8 = new ImageIcon(esc8);btnRegresar.setIcon(ices8);Jugadores.add(btnRegresar);
 		panelActual=Menu;
 		///NIVEL 1
 		//Creamos un panel y añadimos a kirby ademas una prueba para las colisiones
@@ -174,41 +157,35 @@ public class Ventana extends JFrame {
 		JPanel Nivel1 = new JPanelPersonalizado("Nivel1");
 		Entidad EntKirby = new Entidad(imgKirbyBase,22,22,75,70);
 		Entidad prueba = new Entidad(piso1,0,320,322,32);
+		Entidad piso2 = new Entidad(piso1,40,260,322,32);
+		ArregloPiso[0] = prueba;
+		ArregloPiso[1] = piso2;
 		Nivel1.add(EntKirby);
-		Nivel1.add(prueba);
+		for (int a=0;a<ArregloPiso.length;a++) 
+		{
+			Nivel1.add(ArregloPiso[a]);
+		}
 		//En este panel navegamos por el menu de guardado
 		kirb1.addActionListener(new ActionListener() {
 			@Override
-			public void actionPerformed(ActionEvent e) {
-				frame.remove(Partidas);frame.repaint();frame.add(Jugadores);		frame.repaint();
-			}});
+			public void actionPerformed(ActionEvent e) {frame.remove(Partidas);frame.repaint();frame.add(Jugadores);		frame.repaint();}});
 		kirb2.addActionListener(kirb1.getActionListeners()[0]);
 		kirb3.addActionListener(kirb1.getActionListeners()[0]);
 		btnRegresar.addActionListener(new ActionListener() {
 			@Override
-			public void actionPerformed(ActionEvent e) {
-				frame.remove(Jugadores);frame.repaint();frame.add(Partidas);		frame.repaint();
-			}});
+			public void actionPerformed(ActionEvent e) {frame.remove(Jugadores);frame.repaint();frame.add(Partidas);		frame.repaint();}});
 		im6.addActionListener(new ActionListener() {
 			@Override
-			public void actionPerformed(ActionEvent e) {
-				frame.remove(Jugadores);frame.repaint();frame.add(Nivel1);		frame.repaint();
-			}});
+			public void actionPerformed(ActionEvent e) {frame.remove(Jugadores);frame.repaint();frame.add(Nivel1);		frame.repaint();}});
 		im7.addActionListener(new ActionListener() {
 			@Override
-			public void actionPerformed(ActionEvent e) {
-				frame.remove(Jugadores);frame.repaint();frame.add(Nivel1);frame.repaint();
-			}});
+			public void actionPerformed(ActionEvent e) {frame.remove(Jugadores);frame.repaint();frame.add(Nivel1);frame.repaint();}});
 		kirb2.addActionListener(new ActionListener() {
 			@Override
-			public void actionPerformed(ActionEvent e) {
-				frame.remove(Partidas);frame.repaint();frame.add(Jugadores);frame.repaint();
-			}});
+			public void actionPerformed(ActionEvent e) {frame.remove(Partidas);frame.repaint();frame.add(Jugadores);frame.repaint();}});
 		kirb3.addActionListener(new ActionListener() {
 			@Override
-			public void actionPerformed(ActionEvent e) {
-				frame.remove(Partidas);frame.repaint();frame.add(Jugadores);frame.repaint();
-			}});
+			public void actionPerformed(ActionEvent e) {frame.remove(Partidas);frame.repaint();frame.add(Jugadores);frame.repaint();}});
 		frame.setFocusable(true);
 		frame.addKeyListener(new KeyListener() {
 			@Override
@@ -229,18 +206,18 @@ public class Ventana extends JFrame {
 					}
 				}
 					if(e.getKeyCode()== 87 || e.getKeyCode()==38){//W
-						for(int a =0;a<9;a++) {kirbyY-=1;
+						for(int a =0;a<9;a++) {//kirbyY-=1;
 						arriba=true;}
 					}//else{arriba=false;}
 					if(e.getKeyCode()== 65 || e.getKeyCode()==37){//A
-						kirbyX-=1;
+						//kirbyX-=1;
 						izquierda=true;
 					}//else {izquierda=false;}
 					if(e.getKeyCode()== 83 || e.getKeyCode()==40){//S
 //						kirbyY+=kirbySpd;
 					}
 					if(e.getKeyCode()== 68 || e.getKeyCode()==39){//D
-						kirbyX+=1;
+						//kirbyX+=1;
 						derecha=true;
 					}//else {derecha=false;}
 					if(e.getKeyCode()== 75 ){//
@@ -255,6 +232,9 @@ public class Ventana extends JFrame {
 		Timer timerTicks = new Timer();
 		TimerTask repintar = new TimerTask() {
 			@Override
+			//Pendiente crear la variable de estado BOOLEANA de colision de kirby
+			//con cualquier objeto del arreglo ArregloPiso      y que esta active
+			//las fisicas o las desactive en lugar de estar ubicadas en los else
 			public void run() {
 				//Reacomodar el label de kirby(entidad)
 					EntKirby.setBounds(kirbyX, kirbyY, EntKirby.getWidth(),EntKirby.getHeight());
