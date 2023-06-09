@@ -388,10 +388,14 @@ public class Ventana extends JFrame {
 					
 					for(int a=0;a<Walls.length;a++) 
 					{
-							if(new Entidad(imgKirbyBase,EntKirby.getX()+EntKirby.getHsp(),EntKirby.getY(),EntKirby.getWidth(),EntKirby.getHeight()).colision(Walls[a]))
+							if(new Entidad(imgKirbyBase,EntKirby.getX()+EntKirby.getHsp(),EntKirby.getY(),EntKirby.getWidth(),EntKirby.getHeight()).colision(Walls[a])
+									||	new Entidad(imgKirbyBase,EntKirby.getX()+EntKirby.getHsp(),EntKirby.getY(),EntKirby.getWidth(),EntKirby.getHeight()).colision(bloqueEstrella))
 									{kirbyColisionHFlag=true;}
-							if(new Entidad(imgKirbyBase,EntKirby.getX(),EntKirby.getY()+EntKirby.getVsp(),EntKirby.getWidth(),EntKirby.getHeight()).colision(Walls[a]))
+							if(new Entidad(imgKirbyBase,EntKirby.getX(),EntKirby.getY()+EntKirby.getVsp(),EntKirby.getWidth(),EntKirby.getHeight()).colision(Walls[a])
+									||	 new Entidad(imgKirbyBase,EntKirby.getX(),EntKirby.getY()+EntKirby.getVsp(),EntKirby.getWidth(),EntKirby.getHeight()).colision(bloqueEstrella))
 									{kirbyColisionVFlag=true;}
+							
+							
 							if(new Entidad(imgBloqueEstrella,bloqueEstrella.getX()+bloqueEstrella.getHsp(),bloqueEstrella.getY(),bloqueEstrella.getWidth(),bloqueEstrella.getHeight()).colision(Walls[a]))
 								{bloqueHFlag=true;}
 							if(new Entidad(imgBloqueEstrella,bloqueEstrella.getX(),bloqueEstrella.getY()+bloqueEstrella.getVsp(),bloqueEstrella.getWidth(),bloqueEstrella.getHeight()).colision(Walls[a]))
