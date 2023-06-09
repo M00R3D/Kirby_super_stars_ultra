@@ -180,6 +180,13 @@ public class Ventana extends JFrame {
 		
 		
 		JPanel Nivel1 = new JPanelPersonalizado("Nivel1"); 	
+		
+		JLabel estadosLado = new JLabel("kirbyLado" +kirbyLado);
+		estadosLado.setBounds(40,40,150,150);
+		JLabel estadosColisionH = new JLabel("kirbyColisionH"+kirbyColisionH);
+		estadosColisionH.setBounds(40,80,150,150);
+		JLabel estadosColisionV = new JLabel("kirbyColisionV"+kirbyColisionV);
+		estadosColisionV.setBounds(40,120,150,150);
 		Entidad EntKirby = new Entidad(imgKirbyBase,22,22,65,60);
 		
 		
@@ -203,7 +210,9 @@ public class Ventana extends JFrame {
 		
 		JLabel fondo = new JLabel(imgFondo1_1_1);
 		fondo.setBounds(0,0,563,371);
-		
+		Nivel1.add(estadosColisionH);
+		Nivel1.add(estadosColisionV);
+		Nivel1.add(estadosLado);
 		Nivel1.add(EntKirby);
 		Nivel1.add(fondo);
 
@@ -300,6 +309,10 @@ public class Ventana extends JFrame {
 			public void run() {
 			boolean kirbyColisionHFlag=false;
 			boolean kirbyColisionVFlag=false;
+			
+			estadosLado.setText("kirbyLado"+kirbyLado);
+			estadosColisionH.setText("kirbyColisionH"+kirbyColisionH);
+			estadosColisionV.setText("kirbyColisionV"+kirbyColisionV);
 				//Reacomodar el label de kirby(entidad)
 					EntKirby.setBounds(kirbyX, kirbyY, EntKirby.getWidth(),EntKirby.getHeight());
 				//dependiendo del estado lado, se modifica la variable hsp de la entidad kirby
