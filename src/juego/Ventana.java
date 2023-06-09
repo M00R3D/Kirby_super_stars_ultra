@@ -172,17 +172,39 @@ public class Ventana extends JFrame {
 		ImageIcon imgKirbyAbsorbLeft = new ImageIcon("kirbyAbsorbLeft.gif");		
 
 		ImageIcon imgFondo1_1_1 = new ImageIcon("imgFondo1_1_1.png");
-		
+		ImageIcon imgFondo1_1_2 = new ImageIcon("imgFondo1_1_2.png");
+		ImageIcon imgFondo1_1_3 = new ImageIcon("imgFondo1_1_3.png");
 		ImageIcon piso1 = new ImageIcon("piso1.png");
+		ImageIcon piso2 = new ImageIcon("piso2.png");
+
+		
+		
 		JPanel Nivel1 = new JPanelPersonalizado("Nivel1"); 	
 		Entidad EntKirby = new Entidad(imgKirbyBase,22,22,75,70);
-		Entidad prueba = new Entidad(piso1,0,320,322,32);
+		
+		
+		Entidad prueba = new Entidad(piso1,0,300,322,32);
+		prueba.transformarWall();
+		Entidad prueba2 = new Entidad(piso1,310,258,322,64);
+		prueba2.transformarWall();
+		Entidad prueba3 = new Entidad(piso1,500,108,64,322);
+		prueba3.transformarWall();
+		//		Entidad prueba2 = new Entidad(piso2,200,220,60,132);
+		
+		Entidad Walls[] = new Entidad[3];
+		Walls[0]=prueba;
+		Walls[1]=prueba2;
+		Walls[2]=prueba3;
+		for(int a=0;a<Walls.length;a++) 
+		{
+			Nivel1.add(Walls[a]);
+		}
+		
 		
 		JLabel fondo = new JLabel(imgFondo1_1_1);
 		fondo.setBounds(0,0,563,371);
 		
 		Nivel1.add(EntKirby);
-		Nivel1.add(prueba);
 		Nivel1.add(fondo);
 
 		//En este panel navegamos por el menu de guardado
@@ -261,6 +283,13 @@ public class Ventana extends JFrame {
 				// TODO Auto-generated method stub
 				derecha=false;izquierda=false;arriba=false;k=false;
 			}});
+		
+		
+		
+		
+		
+		
+		
 		Timer timerTicks = new Timer();
 		TimerTask repintar = new TimerTask() {
 			@Override

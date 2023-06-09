@@ -1,5 +1,7 @@
 package juego;
 
+import java.awt.Color;
+
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 //En esta clase Entidad creamos un sistema de gravedad
@@ -28,6 +30,14 @@ public class Entidad extends JLabel {
 
 	    return colisionX && colisionY;
 	}
+	
+	public void transformarWall() 
+	{
+		this.setOpaque(true);this.setBackground(Color.pink);this.setIcon(null);
+	}
+	
+	
+	
 	//getters y setters
 	
 	public int getGravedad() {
