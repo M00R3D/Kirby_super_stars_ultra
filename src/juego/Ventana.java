@@ -164,7 +164,6 @@ public class Ventana extends JFrame {
 		//Creamos un panel y añadimos a kirby ademas una prueba para las colisiones
 		ImageIcon imgKirbyBase = new ImageIcon("kirbyStand.gif");
 		ImageIcon imgKirbyBaseLeft = new ImageIcon("kirbyStandLeft.gif");
-
 		ImageIcon imgKirbyWalkRight = new ImageIcon("kirbyWalk.gif");
 		ImageIcon imgKirbyWalkLeft = new ImageIcon("kirbyWalkLeft.gif");
 		ImageIcon imgKirbyFly = new ImageIcon("kirbyFly.gif");
@@ -172,12 +171,20 @@ public class Ventana extends JFrame {
 		ImageIcon imgKirbyAbsorb = new ImageIcon("kirbyAbsorb.gif");		
 		ImageIcon imgKirbyAbsorbLeft = new ImageIcon("kirbyAbsorbLeft.gif");		
 
+		ImageIcon imgFondo1_1_1 = new ImageIcon("imgFondo1_1_1.png");
+		
 		ImageIcon piso1 = new ImageIcon("piso1.png");
-		JPanel Nivel1 = new JPanelPersonalizado("Nivel1");
+		JPanel Nivel1 = new JPanelPersonalizado("Nivel1"); 	
 		Entidad EntKirby = new Entidad(imgKirbyBase,22,22,75,70);
 		Entidad prueba = new Entidad(piso1,0,320,322,32);
+		
+		JLabel fondo = new JLabel(imgFondo1_1_1);
+		fondo.setBounds(0,0,563,371);
+		
 		Nivel1.add(EntKirby);
 		Nivel1.add(prueba);
+		Nivel1.add(fondo);
+
 		//En este panel navegamos por el menu de guardado
 		kirb1.addActionListener(new ActionListener() {
 			@Override
@@ -194,12 +201,12 @@ public class Ventana extends JFrame {
 		im6.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				frame.remove(Jugadores);frame.repaint();frame.add(Nivel1);		frame.repaint();
+				frame.remove(Jugadores);frame.repaint();frame.add(Nivel1);frame.setBounds(100, 100, 563, 371);		frame.repaint();
 			}});
 		im7.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				frame.remove(Jugadores);frame.repaint();frame.add(Nivel1);frame.repaint();
+				frame.remove(Jugadores);frame.repaint();frame.add(Nivel1);frame.setBounds(100, 100, 563, 371);frame.repaint();
 			}});
 		kirb2.addActionListener(new ActionListener() {
 			@Override
@@ -209,7 +216,7 @@ public class Ventana extends JFrame {
 		kirb3.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				frame.remove(Partidas);frame.repaint();frame.add(Jugadores);frame.repaint();
+				frame.remove(Partidas);frame.repaint();frame.add(Jugadores);		frame.repaint();
 			}});
 		frame.setFocusable(true);
 		frame.addKeyListener(new KeyListener() {
