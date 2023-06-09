@@ -79,10 +79,13 @@ public class Ventana extends JFrame {
 	private int kirbyX=50,kirbyY=50;
 	private String kirbyLado="derecha";///estado de kirby(a donde esta mirando)
 	private Boolean kirbyColisionH=false,kirbyColisionV=false;///estado de kirby(colisiones vertical y horizontal)
+	private String estomagoKirby="vacio";
+	
 	////teclas
 	private boolean derecha=false,izquierda=false,arriba=false,k=false;
 	private boolean juegoPlay=true;
-	private int nivelParte=1,coolDownTransicion=0;
+	private int nivelParte=1,coolDownTransicion=0,coolDownSalto=0;;
+	
 	/**
 	 * Launch the application.
 	 */
@@ -178,6 +181,10 @@ public class Ventana extends JFrame {
 		ImageIcon imgFondo1_1_3 = new ImageIcon("imgFondo1_1_3.png");
 		ImageIcon piso1 = new ImageIcon("piso1.png");
 		ImageIcon piso2 = new ImageIcon("piso2.png");
+		ImageIcon imgAire = new ImageIcon("Aire.gif");
+		ImageIcon imgAireIzq = new ImageIcon("AireIzq.gif");
+		ImageIcon imgBloqueEstrella = new ImageIcon("bloqueEstrella.png");
+
 
 		
 		
@@ -185,6 +192,8 @@ public class Ventana extends JFrame {
 		
 		JLabel estadosLado = new JLabel("kirbyLado" +kirbyLado);
 		estadosLado.setBounds(40,40,150,150);
+		JLabel estadosEstomago = new JLabel("estomago:" +estomagoKirby);
+		estadosEstomago.setBounds(40,60,150,150);
 		JLabel estadosColisionH = new JLabel("kirbyColisionH"+kirbyColisionH);
 		estadosColisionH.setBounds(40,80,150,150);
 		JLabel estadosColisionV = new JLabel("kirbyColisionV"+kirbyColisionV);
@@ -233,6 +242,12 @@ public class Ventana extends JFrame {
 			Walls[a].setOpaque(false);
 		}
 		
+		Entidad Aires[] = new Entidad[2];
+		
+		Aires[0]=new Entidad(imgAire,20,20,40,19);
+		Aires[1]=new Entidad(imgAireIzq,20,20,40,19);
+		Entidad bloqueEstrella=new Entidad(imgBloqueEstrella,180,180,75,65);
+		
 		
 		Entidad transicionDerecha = new Entidad(piso1,562,40,64,352);
 		transicionDerecha.transformarWall();transicionDerecha.setBackground(Color.red);
@@ -244,16 +259,20 @@ public class Ventana extends JFrame {
 		Entidad fondo = new Entidad(imgFondo1_1_1, 0,0,563,371);
 		Entidad fondo2 = new Entidad(imgFondo1_1_2,542,0,563,371);
 		Entidad fondo3 = new Entidad(imgFondo1_1_3,542+542,0,563,371);
+		
+		Nivel1.add(Aires[0]);
+		Nivel1.add(Aires[1]);
+		Nivel1.add(bloqueEstrella);
 
 		Nivel1.add(estadosColisionH);
 		Nivel1.add(estadosColisionV);
 		Nivel1.add(estadosLado);
 		Nivel1.add(estadosNivelParte);
+		Nivel1.add(estadosEstomago);
 		Nivel1.add(EntKirby);
 		Nivel1.add(fondo);
 		Nivel1.add(fondo2);
 		Nivel1.add(fondo3);
-
 		//En este panel navegamos por el menu de guardado
 		kirb1.addActionListener(new ActionListener() {
 			@Override
@@ -331,16 +350,9 @@ public class Ventana extends JFrame {
 					k=false;
 				}
 			}});
-		
-		
-		
 		Timer timerTicks = new Timer();
 		TimerTask repintar = new TimerTask() {
 			@Override
-			
-			//Pendiente: modificar el timer para que en lugar de que se sumen las velocidades en los else
-			//se sumen dependiendo si esta activada una maquina de estados (kirbyColisionH== false)  y o (kirbyColisionY== false)
-			//añadir un  
 			public void run() {
 			boolean kirbyColisionHFlag=false;
 			boolean kirbyColisionVFlag=false;
@@ -349,6 +361,7 @@ public class Ventana extends JFrame {
 			estadosColisionH.setText("kirbyColisionH"+kirbyColisionH);
 			estadosColisionV.setText("kirbyColisionV"+kirbyColisionV);
 			estadosNivelParte.setText("NivelParte"+nivelParte);
+			estadosEstomago.setText("estomago:" +estomagoKirby);
 				//Reacomodar el label de kirby(entidad)
 					EntKirby.setBounds(kirbyX, kirbyY, EntKirby.getWidth(),EntKirby.getHeight());
 				//dependiendo del estado lado, se modifica la variable hsp de la entidad kirby
@@ -357,7 +370,9 @@ public class Ventana extends JFrame {
 					if(izquierda==true) {kirbyLado="izquierda";
 						EntKirby.setHsp(EntKirby.getHspWalk()*(-1));}
 					//salto
-					if(arriba==true)  {EntKirby.setVsp(EntKirby.vspJump);}
+					if(arriba==true && coolDownSalto==0)  {EntKirby.setVsp(EntKirby.vspJump);
+					coolDownSalto=4;
+					estomagoKirby="aire";}
 					if(!EntKirby.colision(prueba)) 
 					{
 					 //bajar el label de kirby sumandole la gravedad
@@ -374,12 +389,46 @@ public class Ventana extends JFrame {
 									{kirbyColisionHFlag=true;}
 							if(new Entidad(imgKirbyBase,EntKirby.getX(),EntKirby.getY()+EntKirby.getVsp(),EntKirby.getWidth(),EntKirby.getHeight()).colision(Walls[a]))
 									{kirbyColisionVFlag=true;}
+							if(new Entidad(imgBloqueEstrella,bloqueEstrella.getX()+bloqueEstrella.getHsp(),bloqueEstrella.getY(),bloqueEstrella.getWidth(),bloqueEstrella.getHeight()).colision(Walls[a]))
+								{kirbyColisionHFlag=true;}
+							if(new Entidad(imgBloqueEstrella,bloqueEstrella.getX(),bloqueEstrella.getY()+bloqueEstrella.getVsp(),bloqueEstrella.getWidth(),bloqueEstrella.getHeight()).colision(Walls[a]))
+								{kirbyColisionVFlag=true;}
+								if(Aires[0]!=null)
+								{
+									if(Walls[a].colision(Aires[0])==true) {Aires[0].removeAll();}
+								}
+								if(Aires[1]!=null)
+								{
+									if(Walls[a].colision(Aires[1])==true) {Aires[1].removeAll();;}
+								}
+					}
+					
+					
+					if(Aires[0]!=null)
+					{
+						Aires[0].setBounds(Aires[0].getX()+3, Aires[0].getY(), Aires[0].getWidth(), Aires[0].getHeight());
+					}
+					if(Aires[1]!=null)
+					{
+						Aires[1].setBounds(Aires[1].getX()-3, Aires[1].getY(), Aires[1].getWidth(), Aires[1].getHeight());
 					}
 					
 					if(kirbyColisionHFlag==true)
 							{kirbyColisionH=true;}else {kirbyColisionH=false;}
 					if(kirbyColisionVFlag==true)
-							{kirbyColisionV=true;}else {kirbyColisionV=false;}
+							{estomagoKirby="vacio";
+						kirbyColisionV=true;}else {kirbyColisionV=false;}
+					
+					if(estomagoKirby=="aire")
+					{
+						EntKirby.setGravedad(1);
+						if(k==true) {
+							if(Aires[0]!=null) {Aires[0] =new Entidad(imgAire,EntKirby.getX(),EntKirby.getY(),40,19);}
+							if(Aires[1]!=null) {Aires[1]=new Entidad(imgAireIzq,EntKirby.getX(),EntKirby.getY(),40,19);}
+							estomagoKirby="vacio";}
+					}else {EntKirby.setGravedad(3);
+						
+					}
 					
 					if(kirbyColisionH==true) {EntKirby.setHsp(0);}
 					if(kirbyColisionH==false && juegoPlay==true) {kirbyX+=EntKirby.getHsp();}
@@ -560,6 +609,7 @@ public class Ventana extends JFrame {
 				if(EntKirby.getHsp()<0) {EntKirby.setHsp(EntKirby.getHsp()+1);}
 				if(EntKirby.getVsp()<0) {EntKirby.setVsp(EntKirby.getVsp()+1);}
 				if(coolDownTransicion>0) {coolDownTransicion--;}
+				if(coolDownSalto>0) {coolDownSalto--;}
 			}
 		};
 		timerVariables.schedule(taskReducirVariables, 10, 70);
