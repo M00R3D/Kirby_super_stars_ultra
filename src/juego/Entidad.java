@@ -79,3 +79,5 @@ public class Entidad extends JLabel {
 	
 
 }
+
+

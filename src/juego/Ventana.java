@@ -577,9 +577,21 @@ public class Ventana extends JFrame {
 						if(k==true) 
 						{//absorcion derecha
 							if(kirbyLado=="derecha") {
-								EntKirby.setIcon(imgKirbyAbsorb);}
-							if(kirbyLado=="izquierda") {
+								EntKirby.setIcon(imgKirbyAbsorb);
+								if(bloqueEstrella.getX()-EntKirby.getX()<155 && bloqueEstrella.getX()>EntKirby.getX()+30) 
+								{
+									bloqueEstrella.setHsp(bloqueEstrella.getHsp()-4);
+									bloqueEstrella.setBounds(bloqueEstrella.getX()+bloqueEstrella.getHsp(), bloqueEstrella.getY()+bloqueEstrella.getVsp(), bloqueEstrella.getWidth(), bloqueEstrella.getHeight());
+								}
+							
+							}
+							else if(kirbyLado=="izquierda") {
 								EntKirby.setIcon(imgKirbyAbsorbLeft);
+								if(bloqueEstrella.getX()-EntKirby.getX()>-155 && bloqueEstrella.getX()<EntKirby.getX()-30 ) 
+								{
+									bloqueEstrella.setHsp(bloqueEstrella.getHsp()+4);
+									bloqueEstrella.setBounds(bloqueEstrella.getX()+bloqueEstrella.getHsp(), bloqueEstrella.getY()+bloqueEstrella.getVsp(), bloqueEstrella.getWidth(), bloqueEstrella.getHeight());
+								}
 							}
 						}else {
 							if(EntKirby.getHsp()==0) 
