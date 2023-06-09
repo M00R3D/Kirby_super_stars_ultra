@@ -180,7 +180,7 @@ public class Ventana extends JFrame {
 		
 		
 		JPanel Nivel1 = new JPanelPersonalizado("Nivel1"); 	
-		Entidad EntKirby = new Entidad(imgKirbyBase,22,22,75,70);
+		Entidad EntKirby = new Entidad(imgKirbyBase,22,22,65,60);
 		
 		
 		Entidad prueba = new Entidad(piso1,0,300,322,32);
@@ -264,14 +264,14 @@ public class Ventana extends JFrame {
 						arriba=true;}
 					}//else{arriba=false;}
 					if(e.getKeyCode()== 65 || e.getKeyCode()==37){//A
-						kirbyX-=1;
+//						kirbyX-=1;
 						izquierda=true;
 					}//else {izquierda=false;}
 					if(e.getKeyCode()== 83 || e.getKeyCode()==40){//S
 //						kirbyY+=kirbySpd;
 					}
 					if(e.getKeyCode()== 68 || e.getKeyCode()==39){//D
-						kirbyX+=1;
+//						kirbyX+=1;
 						derecha=true;
 					}//else {derecha=false;}
 					if(e.getKeyCode()== 75 ){//
@@ -298,6 +298,8 @@ public class Ventana extends JFrame {
 			//se sumen dependiendo si esta activada una maquina de estados (kirbyColisionH== false)  y o (kirbyColisionY== false)
 			//añadir un  
 			public void run() {
+			boolean kirbyColisionHFlag=false;
+			boolean kirbyColisionVFlag=false;
 				//Reacomodar el label de kirby(entidad)
 					EntKirby.setBounds(kirbyX, kirbyY, EntKirby.getWidth(),EntKirby.getHeight());
 				//dependiendo del estado lado, se modifica la variable hsp de la entidad kirby
@@ -319,9 +321,19 @@ public class Ventana extends JFrame {
 //{EntKirby.setVsp(0);}	
 //					else {kirbyY+=EntKirby.getVsp();}
 //					EntKirby.setBounds(EntKirby.getX()+EntKirby.getHsp(), EntKirby.getY()+EntKirby.getVsp(), EntKirby.getWidth(), EntKirby.getHeight());
-					if(new Entidad(imgKirbyBase,EntKirby.getX()+EntKirby.getHsp(),EntKirby.getY(),EntKirby.getWidth(),EntKirby.getHeight()).colision(prueba))
+					
+					
+					for(int a=0;a<Walls.length;a++) 
+					{
+							if(new Entidad(imgKirbyBase,EntKirby.getX()+EntKirby.getHsp(),EntKirby.getY(),EntKirby.getWidth(),EntKirby.getHeight()).colision(Walls[a]))
+									{kirbyColisionHFlag=true;}
+							if(new Entidad(imgKirbyBase,EntKirby.getX(),EntKirby.getY()+EntKirby.getVsp(),EntKirby.getWidth(),EntKirby.getHeight()).colision(Walls[a]))
+									{kirbyColisionVFlag=true;}
+					}
+					
+					if(kirbyColisionHFlag==true)
 							{kirbyColisionH=true;}else {kirbyColisionH=false;}
-					if(new Entidad(imgKirbyBase,EntKirby.getX(),EntKirby.getY()+EntKirby.getVsp(),EntKirby.getWidth(),EntKirby.getHeight()).colision(prueba))
+					if(kirbyColisionVFlag==true)
 							{kirbyColisionV=true;}else {kirbyColisionV=false;}
 					
 					if(kirbyColisionH==true) {EntKirby.setHsp(0);}
