@@ -82,6 +82,7 @@ public class Ventana extends JFrame {
 	////teclas
 	private boolean derecha=false,izquierda=false,arriba=false,k=false;
 	private boolean juegoPlay=true;
+	private int nivelParte=1;
 	/**
 	 * Launch the application.
 	 */
@@ -188,6 +189,10 @@ public class Ventana extends JFrame {
 		estadosColisionH.setBounds(40,80,150,150);
 		JLabel estadosColisionV = new JLabel("kirbyColisionV"+kirbyColisionV);
 		estadosColisionV.setBounds(40,120,150,150);
+		JLabel estadosNivelParte = new JLabel("NivelParte"+nivelParte);
+		estadosNivelParte.setBounds(40,50,150,150);
+		
+		
 		Entidad EntKirby = new Entidad(imgKirbyBase,22,22,65,60);
 		
 		
@@ -199,14 +204,29 @@ public class Ventana extends JFrame {
 		prueba3.transformarWall();
 		Entidad prueba4 = new Entidad(piso1,-64,0,64,352);
 		prueba4.transformarWall();
-		
-		//		Entidad prueba2 = new Entidad(piso2,200,220,60,132);
-		
-		Entidad Walls[] = new Entidad[4];
+		 Entidad prueba5 = new Entidad(piso1,0+542,255,300,22);
+		 prueba5.transformarWall();
+		 Entidad prueba6 = new Entidad(piso1,310+542,285,270,24);
+		 prueba6.transformarWall();
+		 Entidad prueba7 = new Entidad(piso1,480+542,240,50,32);
+		 prueba7.transformarWall();
+		 Entidad prueba8 = new Entidad(piso2,520+542,190,40,42);
+		 prueba8.transformarWall();
+		Entidad prueba9 = new Entidad(piso1,0+542+542,205,50,322);
+		prueba9.transformarWall();
+		Entidad prueba10 = new Entidad(piso1,130+542+542+20,210,230,324);
+		prueba10.transformarWall();		
+		Entidad Walls[] = new Entidad[10];
 		Walls[0]=prueba;
 		Walls[1]=prueba2;
 		Walls[2]=prueba3;
 		Walls[3]=prueba4;
+		Walls[4]=prueba5;
+		Walls[5]=prueba6;
+		Walls[6]=prueba7;
+		Walls[7]=prueba8;
+		Walls[8]=prueba9;
+		Walls[9]=prueba10;
 		for(int a=0;a<Walls.length;a++) 
 		{
 			Nivel1.add(Walls[a]);
@@ -218,13 +238,18 @@ public class Ventana extends JFrame {
 		transicionDerecha.transformarWall();transicionDerecha.setBackground(Color.red);
 		Nivel1.add(transicionDerecha);
 		
-		JLabel fondo = new JLabel(imgFondo1_1_1);
-		fondo.setBounds(0,0,563,371);
+		Entidad fondo = new Entidad(imgFondo1_1_1, 0,0,563,371);
+		Entidad fondo2 = new Entidad(imgFondo1_1_2,542,0,563,371);
+		Entidad fondo3 = new Entidad(imgFondo1_1_3,542+542,0,563,371);
+
 		Nivel1.add(estadosColisionH);
 		Nivel1.add(estadosColisionV);
 		Nivel1.add(estadosLado);
+		Nivel1.add(estadosNivelParte);
 		Nivel1.add(EntKirby);
 		Nivel1.add(fondo);
+		Nivel1.add(fondo2);
+		Nivel1.add(fondo3);
 
 		//En este panel navegamos por el menu de guardado
 		kirb1.addActionListener(new ActionListener() {
@@ -320,6 +345,7 @@ public class Ventana extends JFrame {
 			estadosLado.setText("kirbyLado"+kirbyLado);
 			estadosColisionH.setText("kirbyColisionH"+kirbyColisionH);
 			estadosColisionV.setText("kirbyColisionV"+kirbyColisionV);
+			estadosNivelParte.setText("NivelParte"+nivelParte);
 				//Reacomodar el label de kirby(entidad)
 					EntKirby.setBounds(kirbyX, kirbyY, EntKirby.getWidth(),EntKirby.getHeight());
 				//dependiendo del estado lado, se modifica la variable hsp de la entidad kirby
@@ -332,7 +358,9 @@ public class Ventana extends JFrame {
 					if(!EntKirby.colision(prueba)) 
 					{
 					 //bajar el label de kirby sumandole la gravedad
+						if(juegoPlay==true) {
 						EntKirby.setVsp(EntKirby.getVsp()+EntKirby.getGravedad());
+						}
 					}
 					
 					
@@ -351,35 +379,65 @@ public class Ventana extends JFrame {
 							{kirbyColisionV=true;}else {kirbyColisionV=false;}
 					
 					if(kirbyColisionH==true) {EntKirby.setHsp(0);}
-					if(kirbyColisionH==false) {kirbyX+=EntKirby.getHsp();}
+					if(kirbyColisionH==false && juegoPlay==true) {kirbyX+=EntKirby.getHsp();}
 					if(kirbyColisionV==true) {EntKirby.setVsp(0);}
-					if(kirbyColisionV==false) {kirbyY+=EntKirby.getVsp();}
+					if(kirbyColisionV==false && juegoPlay==true) {kirbyY+=EntKirby.getVsp();}
+					if(juegoPlay==false) {EntKirby.setHsp(0);EntKirby.setVsp(0);}
+					
 					
 					if(new Entidad(imgKirbyBase,EntKirby.getX()+EntKirby.getHsp(),EntKirby.getY(),EntKirby.getWidth(),EntKirby.getHeight()).colision(transicionDerecha))
-					{System.out.println("transicion derecha");
+					{//System.out.println("transicion derecha");
 					Timer timerTransicionDerecha = new Timer();
 					TimerTask task = new TimerTask() {
 						@Override
 						public void run() {
-								for(int a=0;a<Walls.length;a++) 
+								if(nivelParte==1) 
 								{
-									if(Walls[0].getX()>=-320) 
+									for(int a=0;a<Walls.length;a++) 
 									{
-										Walls[a].setBounds(Walls[a].getX()-1,Walls[a].getY(),Walls[a].getWidth(),Walls[a].getHeight());
-									}else {timerTransicionDerecha.cancel();
-									fondo.setIcon(imgFondo1_1_2);}
-									
-									if(EntKirby.getX()>=10) 
+										if(Walls[0].getX()>=-550) 
+										{
+											Walls[a].setBounds(Walls[a].getX()-6,Walls[a].getY(),Walls[a].getWidth(),Walls[a].getHeight());
+											juegoPlay=false;
+											
+										}else {timerTransicionDerecha.cancel();
+										juegoPlay=true;
+										nivelParte=2;
+										}
+										
+										if(fondo2.getX()>0 && juegoPlay==false)
+										{
+											fondo.setLocation(fondo.getX()-1,fondo.getY());fondo2.setLocation(fondo2.getX()-1,fondo2.getY());fondo3.setLocation(fondo3.getX()-1,fondo3.getY());
+										}
+										if(EntKirby.getX()>=10) 
+										{kirbyX-=1;	}
+									}	
+								}else if(nivelParte==2) 
+								{
+									for(int a=0;a<Walls.length;a++) 
 									{
-//										EntKirby.setBounds(EntKirby.getX()-1,EntKirby.getY(),EntKirby.getWidth(),EntKirby.getHeight());
-										kirbyX-=1;										
-									}
-
-									
+										if(Walls[0].getX()>=-550-550) 
+										{
+											Walls[a].setBounds(Walls[a].getX()-6,Walls[a].getY(),Walls[a].getWidth(),Walls[a].getHeight());
+											juegoPlay=false;
+											
+										}else {timerTransicionDerecha.cancel();
+										juegoPlay=true;
+										nivelParte=3;
+										}
+										
+										if(fondo2.getX()>-550 && juegoPlay==false)
+										{
+											fondo.setLocation(fondo.getX()-1,fondo.getY());fondo2.setLocation(fondo2.getX()-1,fondo2.getY());fondo3.setLocation(fondo3.getX()-1,fondo3.getY());
+										}
+										if(EntKirby.getX()>=10) 
+										{kirbyX-=1;	}
+									}	
 								}
-						}
-					};
-					timerTransicionDerecha.schedule(task, 10, 30);
+								
+							
+						}};
+					timerTransicionDerecha.schedule(task, 10, 10);
 					}
 					
 					EntKirby.setBounds(EntKirby.getX()+EntKirby.getHsp(), EntKirby.getY()+EntKirby.getVsp(), EntKirby.getWidth(), EntKirby.getHeight());
