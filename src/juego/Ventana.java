@@ -82,7 +82,7 @@ public class Ventana extends JFrame {
 	////teclas
 	private boolean derecha=false,izquierda=false,arriba=false,k=false;
 	private boolean juegoPlay=true;
-	private int nivelParte=1;
+	private int nivelParte=1,coolDownTransicion=0;
 	/**
 	 * Launch the application.
 	 */
@@ -230,13 +230,16 @@ public class Ventana extends JFrame {
 		for(int a=0;a<Walls.length;a++) 
 		{
 			Nivel1.add(Walls[a]);
-//			Walls[a].setOpaque(false);
+			Walls[a].setOpaque(false);
 		}
 		
 		
-		Entidad transicionDerecha = new Entidad(piso1,499,30,64,82);
+		Entidad transicionDerecha = new Entidad(piso1,562,40,64,352);
 		transicionDerecha.transformarWall();transicionDerecha.setBackground(Color.red);
 		Nivel1.add(transicionDerecha);
+		Entidad transicionIzquierda = new Entidad(piso1,-66,40,64,352);
+		transicionIzquierda.transformarWall();transicionIzquierda.setBackground(Color.green);
+		Nivel1.add(transicionIzquierda);
 		
 		Entidad fondo = new Entidad(imgFondo1_1_1, 0,0,563,371);
 		Entidad fondo2 = new Entidad(imgFondo1_1_2,542,0,563,371);
@@ -385,12 +388,13 @@ public class Ventana extends JFrame {
 					if(juegoPlay==false) {EntKirby.setHsp(0);EntKirby.setVsp(0);}
 					
 					
-					if(new Entidad(imgKirbyBase,EntKirby.getX()+EntKirby.getHsp(),EntKirby.getY(),EntKirby.getWidth(),EntKirby.getHeight()).colision(transicionDerecha))
+					if(new Entidad(imgKirbyBase,EntKirby.getX()+EntKirby.getHsp(),EntKirby.getY(),EntKirby.getWidth(),EntKirby.getHeight()).colision(transicionDerecha) && coolDownTransicion==0)
 					{//System.out.println("transicion derecha");
 					Timer timerTransicionDerecha = new Timer();
 					TimerTask task = new TimerTask() {
 						@Override
 						public void run() {
+								coolDownTransicion=10;
 								if(nivelParte==1) 
 								{
 									for(int a=0;a<Walls.length;a++) 
@@ -404,11 +408,8 @@ public class Ventana extends JFrame {
 										juegoPlay=true;
 										nivelParte=2;
 										}
-										
 										if(fondo2.getX()>0 && juegoPlay==false)
-										{
-											fondo.setLocation(fondo.getX()-1,fondo.getY());fondo2.setLocation(fondo2.getX()-1,fondo2.getY());fondo3.setLocation(fondo3.getX()-1,fondo3.getY());
-										}
+										{fondo.setLocation(fondo.getX()-1,fondo.getY());fondo2.setLocation(fondo2.getX()-1,fondo2.getY());fondo3.setLocation(fondo3.getX()-1,fondo3.getY());}
 										if(EntKirby.getX()>=10) 
 										{kirbyX-=1;	}
 									}	
@@ -420,7 +421,6 @@ public class Ventana extends JFrame {
 										{
 											Walls[a].setBounds(Walls[a].getX()-6,Walls[a].getY(),Walls[a].getWidth(),Walls[a].getHeight());
 											juegoPlay=false;
-											
 										}else {timerTransicionDerecha.cancel();
 										juegoPlay=true;
 										nivelParte=3;
@@ -434,12 +434,58 @@ public class Ventana extends JFrame {
 										{kirbyX-=1;	}
 									}	
 								}
-								
-							
 						}};
 					timerTransicionDerecha.schedule(task, 10, 10);
 					}
-					
+					if(new Entidad(imgKirbyBase,EntKirby.getX()+EntKirby.getHsp(),EntKirby.getY(),EntKirby.getWidth(),EntKirby.getHeight()).colision(transicionIzquierda)  && coolDownTransicion==0)
+					{//System.out.println("transicion derecha");
+						Timer timerTransicionIzquierda = new Timer();
+						TimerTask task = new TimerTask() {
+							@Override
+							public void run() {
+									coolDownTransicion=10;
+									if(nivelParte==2) 
+									{
+										for(int a=0;a<Walls.length;a++) 
+										{
+											if(Walls[0].getX()<=0) 
+											{
+												Walls[a].setBounds(Walls[a].getX()+6,Walls[a].getY(),Walls[a].getWidth(),Walls[a].getHeight());
+												juegoPlay=false;
+												
+											}else {timerTransicionIzquierda.cancel();
+											juegoPlay=true;
+											nivelParte=1;
+											}
+											if(fondo.getX()<0 && juegoPlay==false)
+											{fondo.setLocation(fondo.getX()+1,fondo.getY());fondo2.setLocation(fondo2.getX()+1,fondo2.getY());fondo3.setLocation(fondo3.getX()+1,fondo3.getY());}
+											if(EntKirby.getX()<=457) 
+											{kirbyX+=1;	}
+										}	
+									}else if(nivelParte==3) 
+									{
+										for(int a=0;a<Walls.length;a++) 
+										{
+											if(Walls[0].getX()<=-550) 
+											{
+												Walls[a].setBounds(Walls[a].getX()+6,Walls[a].getY(),Walls[a].getWidth(),Walls[a].getHeight());
+												juegoPlay=false;
+											}else {timerTransicionIzquierda.cancel();
+											juegoPlay=true;
+											nivelParte=2;
+											}
+											
+											if(fondo.getX()<-550 && juegoPlay==false)
+											{
+												fondo.setLocation(fondo.getX()+1,fondo.getY());fondo2.setLocation(fondo2.getX()+1,fondo2.getY());fondo3.setLocation(fondo3.getX()+1,fondo3.getY());
+											}
+											if(EntKirby.getX()<=457) 
+											{kirbyX+=1;	}
+										}	
+									}
+							}};
+							timerTransicionIzquierda.schedule(task, 10, 10);
+					}
 					EntKirby.setBounds(EntKirby.getX()+EntKirby.getHsp(), EntKirby.getY()+EntKirby.getVsp(), EntKirby.getWidth(), EntKirby.getHeight());
 					//ANIMACION
 					//reestablecer la imagen dependiendo del estado del lado de kirby(el lado al que esta volteando)
@@ -513,6 +559,7 @@ public class Ventana extends JFrame {
 				if(EntKirby.getVsp()>0) {EntKirby.setVsp(EntKirby.getVsp()-1);}
 				if(EntKirby.getHsp()<0) {EntKirby.setHsp(EntKirby.getHsp()+1);}
 				if(EntKirby.getVsp()<0) {EntKirby.setVsp(EntKirby.getVsp()+1);}
+				if(coolDownTransicion>0) {coolDownTransicion--;}
 			}
 		};
 		timerVariables.schedule(taskReducirVariables, 10, 70);
