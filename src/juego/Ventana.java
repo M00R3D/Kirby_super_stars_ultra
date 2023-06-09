@@ -580,6 +580,7 @@ public class Ventana extends JFrame {
 								EntKirby.setIcon(imgKirbyAbsorb);
 								if(bloqueEstrella.getX()-EntKirby.getX()<155 && bloqueEstrella.getX()>EntKirby.getX()+30) 
 								{
+									if(bloqueEstrella.colision(EntKirby)) {bloqueEstrella.setBounds(-500,-500,0,0);}
 									bloqueEstrella.setHsp(bloqueEstrella.getHsp()-4);
 									bloqueEstrella.setBounds(bloqueEstrella.getX()+bloqueEstrella.getHsp(), bloqueEstrella.getY()+bloqueEstrella.getVsp(), bloqueEstrella.getWidth(), bloqueEstrella.getHeight());
 								}
@@ -589,6 +590,7 @@ public class Ventana extends JFrame {
 								EntKirby.setIcon(imgKirbyAbsorbLeft);
 								if(bloqueEstrella.getX()-EntKirby.getX()>-155 && bloqueEstrella.getX()<EntKirby.getX()-30 ) 
 								{
+									if(bloqueEstrella.colision(EntKirby)) {bloqueEstrella.setBounds(-500,-500,0,0);}
 									bloqueEstrella.setHsp(bloqueEstrella.getHsp()+4);
 									bloqueEstrella.setBounds(bloqueEstrella.getX()+bloqueEstrella.getHsp(), bloqueEstrella.getY()+bloqueEstrella.getVsp(), bloqueEstrella.getWidth(), bloqueEstrella.getHeight());
 								}
