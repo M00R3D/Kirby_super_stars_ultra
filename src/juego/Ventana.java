@@ -79,6 +79,7 @@ public class Ventana extends JFrame {
 	private int kirbyX=50,kirbyY=50;
 	private String kirbyLado="derecha";///estado de kirby(a donde esta mirando)
 	private Boolean kirbyColisionH=false,kirbyColisionV=false;///estado de kirby(colisiones vertical y horizontal)
+	private boolean bloqueH=false, bloqueV=false;
 	private String estomagoKirby="vacio";
 	
 	////teclas
@@ -356,6 +357,8 @@ public class Ventana extends JFrame {
 			public void run() {
 			boolean kirbyColisionHFlag=false;
 			boolean kirbyColisionVFlag=false;
+			boolean bloqueHFlag=false;
+			boolean bloqueVFlag=false;
 			
 			estadosLado.setText("kirbyLado"+kirbyLado);
 			estadosColisionH.setText("kirbyColisionH"+kirbyColisionH);
@@ -390,9 +393,9 @@ public class Ventana extends JFrame {
 							if(new Entidad(imgKirbyBase,EntKirby.getX(),EntKirby.getY()+EntKirby.getVsp(),EntKirby.getWidth(),EntKirby.getHeight()).colision(Walls[a]))
 									{kirbyColisionVFlag=true;}
 							if(new Entidad(imgBloqueEstrella,bloqueEstrella.getX()+bloqueEstrella.getHsp(),bloqueEstrella.getY(),bloqueEstrella.getWidth(),bloqueEstrella.getHeight()).colision(Walls[a]))
-								{kirbyColisionHFlag=true;}
+								{bloqueHFlag=true;}
 							if(new Entidad(imgBloqueEstrella,bloqueEstrella.getX(),bloqueEstrella.getY()+bloqueEstrella.getVsp(),bloqueEstrella.getWidth(),bloqueEstrella.getHeight()).colision(Walls[a]))
-								{kirbyColisionVFlag=true;}
+								{bloqueVFlag=true;}
 								if(Aires[0]!=null)
 								{
 									if(Walls[a].colision(Aires[0])==true) {Aires[0].removeAll();}
@@ -418,7 +421,11 @@ public class Ventana extends JFrame {
 					if(kirbyColisionVFlag==true)
 							{estomagoKirby="vacio";
 						kirbyColisionV=true;}else {kirbyColisionV=false;}
-					
+					if(bloqueHFlag==true)
+						{bloqueH=true;}else {bloqueH=false;}
+					if(bloqueVFlag==true)
+						{bloqueV=true;}else {bloqueV=false;}
+			
 					if(estomagoKirby=="aire")
 					{
 						EntKirby.setGravedad(1);
@@ -435,6 +442,13 @@ public class Ventana extends JFrame {
 					if(kirbyColisionV==true) {EntKirby.setVsp(0);}
 					if(kirbyColisionV==false && juegoPlay==true) {kirbyY+=EntKirby.getVsp();}
 					if(juegoPlay==false) {EntKirby.setHsp(0);EntKirby.setVsp(0);}
+					if(bloqueH==true) {bloqueEstrella.setHsp(0);}
+					if(bloqueV==true) {bloqueEstrella.setVsp(0);}
+					if(bloqueH==false ) {bloqueEstrella.setBounds(bloqueEstrella.getX()+bloqueEstrella.getHsp(),bloqueEstrella.getY(),bloqueEstrella.getWidth(),bloqueEstrella.getHeight());
+					}
+					if(bloqueV==false ) {bloqueEstrella.setVsp(2);
+						bloqueEstrella.setBounds(bloqueEstrella.getX(),bloqueEstrella.getY()+bloqueEstrella.getVsp(),bloqueEstrella.getWidth(),bloqueEstrella.getHeight());
+					}
 					
 					
 					if(new Entidad(imgKirbyBase,EntKirby.getX()+EntKirby.getHsp(),EntKirby.getY(),EntKirby.getWidth(),EntKirby.getHeight()).colision(transicionDerecha) && coolDownTransicion==0)
