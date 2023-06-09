@@ -81,6 +81,7 @@ public class Ventana extends JFrame {
 	private Boolean kirbyColisionH=false,kirbyColisionV=false;///estado de kirby(colisiones vertical y horizontal)
 	////teclas
 	private boolean derecha=false,izquierda=false,arriba=false,k=false;
+	private boolean juegoPlay=true;
 	/**
 	 * Launch the application.
 	 */
@@ -192,21 +193,30 @@ public class Ventana extends JFrame {
 		
 		Entidad prueba = new Entidad(piso1,0,300,322,32);
 		prueba.transformarWall();
-		Entidad prueba2 = new Entidad(piso1,310,258,322,64);
+		Entidad prueba2 = new Entidad(piso1,330,258,322,64);
 		prueba2.transformarWall();
-		Entidad prueba3 = new Entidad(piso1,500,108,64,322);
+		Entidad prueba3 = new Entidad(piso1,510,108,64,322);
 		prueba3.transformarWall();
+		Entidad prueba4 = new Entidad(piso1,-64,0,64,352);
+		prueba4.transformarWall();
+		
 		//		Entidad prueba2 = new Entidad(piso2,200,220,60,132);
 		
-		Entidad Walls[] = new Entidad[3];
+		Entidad Walls[] = new Entidad[4];
 		Walls[0]=prueba;
 		Walls[1]=prueba2;
 		Walls[2]=prueba3;
+		Walls[3]=prueba4;
 		for(int a=0;a<Walls.length;a++) 
 		{
 			Nivel1.add(Walls[a]);
+//			Walls[a].setOpaque(false);
 		}
 		
+		
+		Entidad transicionDerecha = new Entidad(piso1,499,30,64,82);
+		transicionDerecha.transformarWall();transicionDerecha.setBackground(Color.red);
+		Nivel1.add(transicionDerecha);
 		
 		JLabel fondo = new JLabel(imgFondo1_1_1);
 		fondo.setBounds(0,0,563,371);
@@ -220,36 +230,33 @@ public class Ventana extends JFrame {
 		kirb1.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				frame.remove(Partidas);frame.repaint();frame.add(Jugadores);		frame.repaint();
-			}});
+				frame.remove(Partidas);frame.repaint();frame.add(Jugadores);		frame.repaint();}});
 		kirb2.addActionListener(kirb1.getActionListeners()[0]);
 		kirb3.addActionListener(kirb1.getActionListeners()[0]);
 		btnRegresar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				frame.remove(Jugadores);frame.repaint();frame.add(Partidas);		frame.repaint();
-			}});
+				frame.remove(Jugadores);frame.repaint();frame.add(Partidas);		frame.repaint();}});
 		im6.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				frame.remove(Jugadores);frame.repaint();frame.add(Nivel1);frame.setBounds(100, 100, 563, 371);		frame.repaint();
-			}});
+				frame.remove(Jugadores);frame.repaint();frame.add(Nivel1);frame.setBounds(100, 100, 563, 371);		frame.repaint();}});
 		im7.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				frame.remove(Jugadores);frame.repaint();frame.add(Nivel1);frame.setBounds(100, 100, 563, 371);frame.repaint();
-			}});
+				frame.remove(Jugadores);frame.repaint();frame.add(Nivel1);frame.setBounds(100, 100, 563, 371);frame.repaint();}});
 		kirb2.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				frame.remove(Partidas);frame.repaint();frame.add(Jugadores);frame.repaint();
-			}});
+				frame.remove(Partidas);frame.repaint();frame.add(Jugadores);frame.repaint();}});
 		kirb3.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				frame.remove(Partidas);frame.repaint();frame.add(Jugadores);		frame.repaint();
-			}});
+				frame.remove(Partidas);frame.repaint();frame.add(Jugadores);		frame.repaint();}});
 		frame.setFocusable(true);
+		
+		
+		
 		frame.addKeyListener(new KeyListener() {
 			@Override
 			public void keyTyped(KeyEvent e) {
@@ -269,33 +276,33 @@ public class Ventana extends JFrame {
 					}
 				}
 					if(e.getKeyCode()== 87 || e.getKeyCode()==38){//W
-						for(int a =0;a<9;a++) {kirbyY-=1;
 						arriba=true;}
-					}//else{arriba=false;}
 					if(e.getKeyCode()== 65 || e.getKeyCode()==37){//A
-//						kirbyX-=1;
-						izquierda=true;
-					}//else {izquierda=false;}
+						izquierda=true;}
 					if(e.getKeyCode()== 83 || e.getKeyCode()==40){//S
-//						kirbyY+=kirbySpd;
-					}
+}
 					if(e.getKeyCode()== 68 || e.getKeyCode()==39){//D
-//						kirbyX+=1;
-						derecha=true;
-					}//else {derecha=false;}
-					if(e.getKeyCode()== 75 ){//
-						k=true;
-					}else {k=false;}
+						derecha=true;}
+					if(e.getKeyCode()== 75 ){k=true;}
 			}
 			@Override
 			public void keyReleased(KeyEvent e) {
-				// TODO Auto-generated method stub
-				derecha=false;izquierda=false;arriba=false;k=false;
+				if(e.getKeyCode()== 87 || e.getKeyCode()==38){//W
+					for(int a =0;a<9;a++) {kirbyY-=1;
+					arriba=false;}
+				}
+				if(e.getKeyCode()== 65 || e.getKeyCode()==37){//A
+					izquierda=false;
+				}
+				if(e.getKeyCode()== 83 || e.getKeyCode()==40){//S
+				}
+				if(e.getKeyCode()== 68 || e.getKeyCode()==39){//D
+					derecha=false;
+				}
+				if(e.getKeyCode()== 75 ){//
+					k=false;
+				}
 			}});
-		
-		
-		
-		
 		
 		
 		
