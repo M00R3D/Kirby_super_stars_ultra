@@ -76,7 +76,7 @@ import javax.swing.BoxLayout;
 public class Ventana extends JFrame {
 	public JPanel panelActual;
 	private JFrame frame;
-	private int kirbyX=50,kirbyY=50;
+	private int kirbyX=10,kirbyY=50;
 	private String kirbyLado="derecha";///estado de kirby(a donde esta mirando)
 	private Boolean kirbyColisionH=false,kirbyColisionV=false;///estado de kirby(colisiones vertical y horizontal)
 	private boolean bloqueH=false, bloqueV=false;
@@ -210,45 +210,43 @@ public class Ventana extends JFrame {
 		
 		
 
-		//////// FONDO DE IMAGEN 1_1_4 PNG POR 850 X 371
+		//////// FONDO DE IMAGEN 1_1_5 PNG POR 744 X 371
 		
-		Entidad prueba = new Entidad(piso1,0,280,322,32);
+		Entidad prueba = new Entidad(piso1,50,280,152,32);
 		prueba.transformarWall();
-		Entidad prueba2 = new Entidad(piso1,300,280,422,32);
+		Entidad prueba2 = new Entidad(piso1,420,210,282,22);
 		prueba2.transformarWall();
-		Entidad prueba3 = new Entidad(piso1,720,200,122,32);
+		Entidad prueba3 = new Entidad(piso1,180,160,50,132);
 		prueba3.transformarWall();
-		Entidad prueba4 = new Entidad(piso1,720,220,24,152);
+		Entidad prueba4 = new Entidad(piso1,10,160,50,132);
 		prueba4.transformarWall();
-		/*
-		 Entidad prueba5 = new Entidad(piso1,0+542,255,300,22);
+		 Entidad prueba5 = new Entidad(piso1,200,245,150,22);
 		 prueba5.transformarWall();
-		 Entidad prueba6 = new Entidad(piso1,310+542,285,270,24);
+		 Entidad prueba6 = new Entidad(piso1,330,243,50,22);
 		 prueba6.transformarWall();
-		 Entidad prueba7 = new Entidad(piso1,480+542,240,50,32);
+		 Entidad prueba7 = new Entidad(piso1,380,235,80,22);
 		 prueba7.transformarWall();
-		 Entidad prueba8 = new Entidad(piso2,520+542,190,40,42);
+		 Entidad prueba8 = new Entidad(piso2,650,110,52,122);
 		 prueba8.transformarWall();
-		Entidad prueba9 = new Entidad(piso1,0+542+542,205,50,322);
-		prueba9.transformarWall();
-		Entidad prueba10 = new Entidad(piso1,130+542+542+20,210,230,324);
-		prueba10.transformarWall();	
-		*/	
+//		Entidad prueba9 = new Entidad(piso1,0+542+542,205,50,322);
+//		prueba9.transformarWall();
+//		Entidad prueba10 = new Entidad(piso1,130+542+542+20,210,230,324);
+//		prueba10.transformarWall();	
 		
-		///// SON 4 BLOQUES VACION EN VEZ DE 10
-		Entidad Walls[] = new Entidad[4];
+		
+		///// SON 8 BLOQUES VACION EN VEZ DE 10
+		Entidad Walls[] = new Entidad[8];
 		Walls[0]=prueba;
 		Walls[1]=prueba2;
 		Walls[2]=prueba3;
 		Walls[3]=prueba4;
-	/*	
 		Walls[4]=prueba5;
 		Walls[5]=prueba6;
 		Walls[6]=prueba7;
 		Walls[7]=prueba8;
-		Walls[8]=prueba9;
-		Walls[9]=prueba10;
-		*/
+//		Walls[8]=prueba9;
+//		Walls[9]=prueba10;
+		
 		for(int a=0;a<Walls.length;a++) 
 		{
 			Nivel1.add(Walls[a]);
@@ -275,6 +273,7 @@ public class Ventana extends JFrame {
 		Entidad fondo2 = new Entidad(imgFondo1_1_2,542,0,563,371);
 		Entidad fondo3 = new Entidad(imgFondo1_1_3,542+542,0,563,371);
 		Entidad fondo4 = new Entidad(imgFondo1_1_4,0,0,863,371);
+		Entidad fondo5 = new Entidad(imgFondo1_1_5,0,0,744,371);
 		
 		Nivel1.add(Aires[0]);
 		Nivel1.add(Aires[1]);
@@ -286,12 +285,12 @@ public class Ventana extends JFrame {
 		Nivel1.add(estadosNivelParte);
 		Nivel1.add(estadosEstomago);
 		Nivel1.add(EntKirby);
-		///// ESTO PARA QUE AGARRE EL FONDO 1_1_4
-	/*	Nivel1.add(fondo);
-		Nivel1.add(fondo2);
-		Nivel1.add(fondo3);
-	*/
-		Nivel1.add(fondo4);
+		///// ESTO PARA QUE AGARRE EL FONDO 1_1_5
+//		Nivel1.add(fondo);
+//		Nivel1.add(fondo2);
+//		Nivel1.add(fondo3);
+//		Nivel1.add(fondo4);
+		Nivel1.add(fondo5);
 		//En este panel navegamos por el menu de guardado
 		kirb1.addActionListener(new ActionListener() {
 			@Override
@@ -305,9 +304,9 @@ public class Ventana extends JFrame {
 				frame.remove(Jugadores);frame.repaint();frame.add(Partidas);frame.repaint();}});
 		im6.addActionListener(new ActionListener() {
 			@Override
-			///// PARA EL FONDO 1_1_4 
+			///// PARA EL FONDO 1_1_5 
 			public void actionPerformed(ActionEvent e) {
-				frame.remove(Jugadores);frame.repaint();frame.add(Nivel1);frame.setBounds(100, 100, 853, 372);		frame.repaint();}});
+				frame.remove(Jugadores);frame.repaint();frame.add(Nivel1);frame.setBounds(100, 100, 744, 372);		frame.repaint();}});
 		im7.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
