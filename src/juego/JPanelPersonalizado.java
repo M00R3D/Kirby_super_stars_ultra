@@ -52,7 +52,7 @@ public class JPanelPersonalizado extends JPanel {
 
 		case "Nivel1":
 			this.setBackground(Color.decode("#002190"));
-			this.setBounds(0, 0, 927, 900);
+			this.setBounds(0, 0, 927, 774);
 //			frame.getContentPane().add(Nivel1);
 			this.setLayout(null);
 			break;
