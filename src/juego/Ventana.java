@@ -214,6 +214,10 @@ public class Ventana extends JFrame {
 		ImageIcon imgFondo1_1_7 = new ImageIcon("imgFondo1_1_7.png");
 		ImageIcon imgFondo2_1_1 = new ImageIcon("imgFondo2_1_1.png");
 		ImageIcon imgFondo2_1_2 = new ImageIcon("imgFondo2_1_2.png");
+		ImageIcon imgFondo2_1_3 = new ImageIcon("imgFondo2_1_3.png");
+		ImageIcon imgFondo2_1_4 = new ImageIcon("imgFondo2_1_4.png");
+		
+		
 
 		ImageIcon piso1 = new ImageIcon("piso1.png");
 		ImageIcon piso2 = new ImageIcon("piso2.png");
@@ -317,6 +321,8 @@ public class Ventana extends JFrame {
 		Entidad fondo7 = new Entidad(imgFondo1_1_7, 0, 0, 352, 974);
 		Entidad fondo8 = new Entidad(imgFondo2_1_1, 0, 0, 927, 900);
 		Entidad fondo9 = new Entidad(imgFondo2_1_2, 0, 0, 927, 774);
+		Entidad fondo10 = new Entidad(imgFondo2_1_3, 0, 0, 850, 351);
+		Entidad fondo11 = new Entidad(imgFondo2_1_4, 0, 0, 850, 307);
 		
 		
 		
@@ -340,6 +346,8 @@ public class Ventana extends JFrame {
 //		Nivel1.add(fondo7);
 //		Nivel1.add(fondo8);
 		Nivel1.add(fondo9);
+		Nivel1.add(fondo10);
+		Nivel1.add(fondo11);
 		
 		
 		
@@ -1144,7 +1152,7 @@ public class Ventana extends JFrame {
 //		}
 //	});
 	
-////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
 	
 }
