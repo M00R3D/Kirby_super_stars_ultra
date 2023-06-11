@@ -76,7 +76,7 @@ import javax.swing.BoxLayout;
 public class Ventana extends JFrame {
 	public JPanel panelActual;
 	private JFrame frame;
-	private int kirbyX = 70	, kirbyY = 50;
+	private int kirbyX = 50, kirbyY = 50;
 	private String kirbyLado = "derecha";/// estado de kirby(a donde esta mirando)
 	private Boolean kirbyColisionH = false, kirbyColisionV = false;/// estado de kirby(colisiones vertical y horizontal)
 	private boolean bloqueH = false, bloqueV = false;
@@ -227,7 +227,7 @@ public class Ventana extends JFrame {
 
 		Entidad EntKirby = new Entidad(imgKirbyBase, 22, 22, 65, 60);
 
-		//////// FONDO DE IMAGEN 1_1_7 PNG POR 352 X 973
+		/////// FONDO DE IMAGEN 1_1_7 PNG POR 352 X 973
 
 		Entidad prueba = new Entidad(piso1, 0, 900, 230, 22);
 		prueba.transformarWall();
@@ -245,22 +245,21 @@ public class Ventana extends JFrame {
 		prueba7.transformarWall();
 		Entidad prueba8 = new Entidad(piso2,  210, 280, 180, 22);
 		prueba8.transformarWall();
-//		Entidad prueba9 = new Entidad(piso1,420,300,50,12);
+//		Entidad prueba9 = new Entidad(piso1, 420, 300, 50, 12);
 //		prueba9.transformarWall();
-//		Entidad prueba10 = new Entidad(piso1,220,300,50,10);
-//		prueba10.transformarWall();	
+//		Entidad prueba10 = new Entidad(piso1, 220, 300, 50, 10);
+//		prueba10.transformarWall();
 //		prueba9.transformarWall();
-//		Entidad prueba11 = new Entidad(piso1,90,350,20,152);
-//		prueba11.transformarWall();	
-//		Entidad prueba12 = new Entidad(piso1,500,630,50,52);
-//		prueba12.transformarWall();	
-//		Entidad prueba13 = new Entidad(piso1,550,430,20,222);
-//		prueba13.transformarWall();	
+//		Entidad prueba11 = new Entidad(piso1, 90, 350, 20, 152);
+//		prueba11.transformarWall();
+//		Entidad prueba12 = new Entidad(piso1, 500, 630, 50, 52);
+//		prueba12.transformarWall();
+//		Entidad prueba13 = new Entidad(piso1, 550, 430, 20, 222);
+//		prueba13.transformarWall();
 //		Entidad prueba14 = new Entidad(piso1,280,430,300,22);
 //		prueba14.transformarWall();	
-//		
 
-		///// SON 8 BLOQUES PARA ESTE ROOM
+		///// SON 13 BLOQUES PARA ESTE ROOM
 		Entidad Walls[] = new Entidad[8];
 		Walls[0] = prueba;
 		Walls[1] = prueba2;
@@ -270,16 +269,16 @@ public class Ventana extends JFrame {
 		Walls[5] = prueba6;
 		Walls[6] = prueba7;
 		Walls[7] = prueba8;
-//		Walls[8]=prueba9;
-//		Walls[9]=prueba10;
-//		Walls[10]=prueba11;
-//		Walls[11]=prueba12;
-//		Walls[12]=prueba13;
+//		Walls[8] = prueba9;
+//		Walls[9] = prueba10;
+//		Walls[10] = prueba11;
+//		Walls[11] = prueba12;
+//		Walls[12] = prueba13;
 //		Walls[13]=prueba14;
 
 		for (int a = 0; a < Walls.length; a++) {
 			Nivel1.add(Walls[a]);
-			 Walls[a].setOpaque(false);
+			Walls[a].setOpaque(false);
 		}
 
 		Entidad Aires[] = new Entidad[2];
@@ -318,7 +317,7 @@ public class Ventana extends JFrame {
 		Nivel1.add(estadosNivelParte);
 		Nivel1.add(estadosEstomago);
 		Nivel1.add(EntKirby);
-		///// ESTO PARA QUE AGARRE EL FONDO 1_1_7
+		///// ESTO PARA QUE AGARRE EL FONDO 1_1_6
 //		Nivel1.add(fondo);
 //		Nivel1.add(fondo2);
 //		Nivel1.add(fondo3);
@@ -354,11 +353,11 @@ public class Ventana extends JFrame {
 				frame.remove(Jugadores);
 				frame.repaint();
 				frame.add(Nivel1);
-				frame.setBounds(100, 100, 352, 974);
+				frame.setBounds(100, 100, 352, 973);
 				frame.repaint();
 			}
 		});
-		////// PARA LA IMAGEN DE 1_1_7
+
 		im7.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -815,4 +814,203 @@ public class Ventana extends JFrame {
 
 	}
 
+////////// FONDOS MAS LO SBLOQUES VACIOS DE CADA ROOM DEL NIVEL 1
+
+//	private int kirbyX = 50, kirbyY = 50;
+	
+/////// FONDO DE IMAGEN 1_1_7 PNG POR 352 X 973
+
+//		Entidad prueba = new Entidad(piso1, 0, 900, 230, 22);
+//		prueba.transformarWall();
+//		Entidad prueba2 = new Entidad(piso1, 30, 490, 60, 22);
+//		prueba2.transformarWall();
+//		Entidad prueba3 = new Entidad(piso1, 10, 290, 20, 222);
+//		prueba3.transformarWall();
+//		Entidad prueba4 = new Entidad(piso1, 0, 0, 30, 302);
+//		prueba4.transformarWall();
+//		Entidad prueba5 = new Entidad(piso1, 0, 105, 220, 22);
+//		prueba5.transformarWall();
+//		Entidad prueba6 = new Entidad(piso1, 290, 113, 50, 22);
+//		prueba6.transformarWall();
+//		Entidad prueba7 = new Entidad(piso1, 0, 280, 120, 22);
+//		prueba7.transformarWall();
+//		Entidad prueba8 = new Entidad(piso2,  210, 280, 180, 22);
+//		prueba8.transformarWall();
+
+///// SON 8 BLOQUES PARA ESTE ROOM
+//		Entidad Walls[] = new Entidad[8];
+//		Walls[0] = prueba;
+//		Walls[1] = prueba2;
+//		Walls[2] = prueba3;
+//		Walls[3] = prueba4;
+//		Walls[4] = prueba5;
+//		Walls[5] = prueba6;
+//		Walls[6] = prueba7;
+//		Walls[7] = prueba8;
+//	
+//	im6.addActionListener(new ActionListener() {
+//		@Override
+//		///// PARA EL FONDO 1_1_6
+//		public void actionPerformed(ActionEvent e) {
+//			frame.remove(Jugadores);
+//			frame.repaint();
+//			frame.add(Nivel1);
+//			frame.setBounds(100, 100, 352, 974);
+//			frame.repaint();
+
+/////////////////////////////////////////////////////////////
+
+////////FONDO DE IMAGEN 1_1_4 PNG POR 863 X 371
+
+	/// POSESION DEL KIrBY DE ESTE ROOM
+//	private int kirbyX = 50, kirbyY = 50;
+	
+//	Entidad prueba = new Entidad(piso1,0,280,322,32);
+//	prueba. transformarWall();
+//	Entidad prueba2 = new Entidad(piso1,300,280,422,32);
+//	prueba2. transformarWall();
+//	 Entidad prueba3 = new Entidad(piso1,720,200,122,32);
+//	prueba3. transformarWall();
+//	 Entidad prueba4 = new Entidad(piso1,720,220,24,152);
+//	prueba4. transformarWall();
+//	
+
+	///// SON 4 BLOQUES PARA ESTE ROOM
+//	Entidad Walls[] = new Entidad[4];
+//	Walls[0] = prueba;
+//	Walls[1] = prueba2;
+//	Walls[2] = prueba3;
+//	Walls[3] = prueba4;
+
+//	im6.addActionListener(new ActionListener() {
+//		@Override
+//		///// PARA EL FONDO 1_1_4
+//		public void actionPerformed(ActionEvent e) {
+//			frame.remove(Jugadores);
+//			frame.repaint();
+//			frame.add(Nivel1);
+//			frame.setBounds(100, 100, 863, 371);
+//			frame.repaint();
+//		}
+//	});
+
+/////////////////////////////////////////////////////////////////////
+
+///////FONDO DE IMAGEN 1_1_5 PNG POR 744 X 371
+
+	/// POSESION DEL KIrBY DE ESTE ROOM
+//	private int kirbyX = 10, kirbyY = 50;
+
+//		Entidad prueba = new Entidad(piso1, 50, 280, 152, 32);
+//		prueba.transformarWall();
+//		Entidad prueba2 = new Entidad(piso1, 420, 210, 282, 22);
+//		prueba2.transformarWall();
+//		Entidad prueba3 = new Entidad(piso1, 180, 160, 50, 132);
+//		prueba3.transformarWall();
+//		Entidad prueba4 = new Entidad(piso1, 10, 160, 50, 132);
+//		prueba4.transformarWall();
+//		Entidad prueba5 = new Entidad(piso1, 200, 245, 150, 22);
+//		prueba5.transformarWall();
+//		Entidad prueba6 = new Entidad(piso1, 330, 243, 50, 22);
+//		prueba6.transformarWall();
+//		Entidad prueba7 = new Entidad(piso1, 380, 235, 80, 22);
+//		prueba7.transformarWall();
+//		Entidad prueba8 = new Entidad(piso2, 650, 110, 52, 122);
+//		prueba8.transformarWall();
+//	
+
+///// SON 8 BLOQUES PARA ESTE ROOM
+//		Entidad Walls[] = new Entidad[8];
+//		Walls[0] = prueba;
+//		Walls[1] = prueba2;
+//		Walls[2] = prueba3;
+//		Walls[3] = prueba4;
+//		Walls[4] = prueba5;
+//		Walls[5] = prueba6;
+//		Walls[6] = prueba7;
+//		Walls[7] = prueba8;
+
+//	im6.addActionListener(new ActionListener() {
+//		@Override
+//		///// PARA EL FONDO 1_1_5
+//		public void actionPerformed(ActionEvent e) {
+//			frame.remove(Jugadores);
+//			frame.repaint();
+//			frame.add(Nivel1);
+//			frame.setBounds(100, 100, 744, 371);
+//			frame.repaint();
+//		}
+//	});
+//	
+///////////////////////////////////////////////////////////////////////////////////	
+
+	
+/////// FONDO DE IMAGEN 1_1_6 PNG POR 680 X 973
+
+
+	/// POSESION DEL KIrBY DE ESTE ROOM
+	//	private int kirbyX = 270, kirbyY = 50;
+	
+//		Entidad prueba = new Entidad(piso1, 110, 820, 452, 32);
+//		prueba.transformarWall();
+//		Entidad prueba2 = new Entidad(piso1, 410, 740, 140, 22);
+//		prueba2.transformarWall();
+//		Entidad prueba3 = new Entidad(piso1, 70, 690, 50, 132);
+//		prueba3.transformarWall();
+//		Entidad prueba4 = new Entidad(piso1, 550, 690, 50, 132);
+//		prueba4.transformarWall();
+//		Entidad prueba5 = new Entidad(piso1, 250, 645, 150, 22);
+//		prueba5.transformarWall();
+//		Entidad prueba6 = new Entidad(piso1, 260, 203, 150, 22);
+//		prueba6.transformarWall();
+//		Entidad prueba7 = new Entidad(piso1, 0, 585, 250, 22);
+//		prueba7.transformarWall();
+//		Entidad prueba8 = new Entidad(piso2, 260, 390, 220, 22);
+//		prueba8.transformarWall();
+//		Entidad prueba9 = new Entidad(piso1, 420, 300, 50, 12);
+//		prueba9.transformarWall();
+//		Entidad prueba10 = new Entidad(piso1, 220, 300, 50, 10);
+//		prueba10.transformarWall();
+//		prueba9.transformarWall();
+//		Entidad prueba11 = new Entidad(piso1, 90, 350, 20, 152);
+//		prueba11.transformarWall();
+//		Entidad prueba12 = new Entidad(piso1, 500, 630, 50, 52);
+//		prueba12.transformarWall();
+//		Entidad prueba13 = new Entidad(piso1, 550, 430, 20, 222);
+//		prueba13.transformarWall();
+//	
+	
+	
+///// SON 13 BLOQUES PARA ESTE ROOM
+//		Entidad Walls[] = new Entidad[13];
+//		Walls[0] = prueba;
+//		Walls[1] = prueba2;
+//		Walls[2] = prueba3;
+//		Walls[3] = prueba4;
+//		Walls[4] = prueba5;
+//		Walls[5] = prueba6;
+//		Walls[6] = prueba7;
+//		Walls[7] = prueba8;
+//		Walls[8] = prueba9;
+//		Walls[9] = prueba10;
+//		Walls[10] = prueba11;
+//		Walls[11] = prueba12;
+//		Walls[12] = prueba13;
+	
+	
+//	im6.addActionListener(new ActionListener() {
+//		@Override
+//		///// PARA EL FONDO 1_1_6
+//		public void actionPerformed(ActionEvent e) {
+//			frame.remove(Jugadores);
+//			frame.repaint();
+//			frame.add(Nivel1);
+//			frame.setBounds(100, 100, 680, 973);
+//			frame.repaint();
+//		}
+//	});
+	
+	
+	
+	
 }
