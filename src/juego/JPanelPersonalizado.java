@@ -13,6 +13,7 @@ public class JPanelPersonalizado extends JPanel {
 
 	public JPanelPersonalizado(String tipo) {
 		switch (tipo) {
+		
 		case "Menu":
 			this.setBounds(0, 0, 404, 352);
 			this.setLayout(null);
@@ -25,6 +26,7 @@ public class JPanelPersonalizado extends JPanel {
 			im1.setIcon(ices1);
 			this.add(im1);
 			break;
+
 		case "Inicio":
 			this.setBounds(0, 0, 404, 352);
 			this.setLayout(null);
@@ -52,7 +54,7 @@ public class JPanelPersonalizado extends JPanel {
 
 		case "Nivel1":
 			this.setBackground(Color.decode("#002190"));
-			this.setBounds(0, 0, 927, 774);
+			this.setBounds(0, 0, 850, 307);
 //			frame.getContentPane().add(Nivel1);
 			this.setLayout(null);
 			break;
