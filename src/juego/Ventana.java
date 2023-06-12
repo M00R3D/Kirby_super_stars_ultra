@@ -84,7 +84,7 @@ public class Ventana extends JFrame {
 
 	public JPanel panelActual;
 	private JFrame frame;
-	private int kirbyX = 50, kirbyY = 50;
+	private int kirbyX = 0, kirbyY = 50;
 	private String kirbyLado = "derecha";/// estado de kirby(a donde esta mirando)
 	private Boolean kirbyColisionH = false, kirbyColisionV = false;/// estado de kirby(colisiones vertical y horizontal)
 	private boolean bloqueH = false, bloqueV = false;
@@ -240,19 +240,19 @@ public class Ventana extends JFrame {
 
 		Entidad EntKirby = new Entidad(imgKirbyBase, 22, 22, 65, 60);
 
-		/////// FONDO DE IMAGEN 2_1_3 PNG POR 850 X 307
+		/////// FONDO DE IMAGEN 2_1_4 PNG POR 850 X 307
 
-		Entidad prueba = new Entidad(piso1, 0, 250, 250, 12);
+		Entidad prueba = new Entidad(piso1, 0, 140, 30, 12);
 		prueba.transformarWall();
-		Entidad prueba2 = new Entidad(piso1, 240, 210, 230, 22);
+		Entidad prueba2 = new Entidad(piso1, 30, 190, 150, 22);
 		prueba2.transformarWall();
-		Entidad prueba3 = new Entidad(piso1, 760, 170, 170, 22);
+		Entidad prueba3 = new Entidad(piso1, 170, 130, 70, 22);
 		prueba3.transformarWall();
-		Entidad prueba4 = new Entidad(piso1, 520, 230, 250, 12);
+		Entidad prueba4 = new Entidad(piso1, 340, 160, 400, 12);
 		prueba4.transformarWall();
-		Entidad prueba5 = new Entidad(piso1, 440, 190, 70, 22);
+		Entidad prueba5 = new Entidad(piso1, 250, 190, 100, 22);
 		prueba5.transformarWall();
-		Entidad prueba6 = new Entidad(piso1, 0, 40, 12, 222);
+		Entidad prueba6 = new Entidad(piso1, 740, 40, 12, 302);
 		prueba6.transformarWall();
 //		Entidad prueba7 = new Entidad(piso1, 270, 40, 50, 330);
 //		prueba7.transformarWall();
@@ -334,7 +334,7 @@ public class Ventana extends JFrame {
 		Nivel1.add(estadosNivelParte);
 		Nivel1.add(estadosEstomago);
 		Nivel1.add(EntKirby);
-		///// ESTO PARA QUE AGARRE EL FONDO 2_1_2
+		///// ESTO PARA QUE AGARRE EL FONDO 2_1_3
 //		Nivel1.add(fondo);
 //		Nivel1.add(fondo2);
 //		Nivel1.add(fondo3);
@@ -343,8 +343,8 @@ public class Ventana extends JFrame {
 //		Nivel1.add(fondo6);
 //		Nivel1.add(fondo7);
 //		Nivel1.add(fondo8);
-		// Nivel1.add(fondo9);
-		Nivel1.add(fondo10);
+//  	Nivel1.add(fondo9);
+//		Nivel1.add(fondo10);
 		Nivel1.add(fondo11);
 
 		// En este panel navegamos por el menu de guardado
@@ -370,7 +370,7 @@ public class Ventana extends JFrame {
 		});
 		im6.addActionListener(new ActionListener() {
 			@Override
-			///// PARA EL FONDO 2_1_3
+			///// PARA EL FONDO 2_1_4
 			public void actionPerformed(ActionEvent e) {
 				frame.remove(Jugadores);
 				frame.repaint();
@@ -1181,7 +1181,50 @@ public class Ventana extends JFrame {
 //	});
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
 	
+	/// POSESION DE KIRBY EN ESTE ROOM
+//	private int kirbyX = 0, kirbyY = 50;
 	
 	
+	/////// FONDO DE IMAGEN 2_1_4 PNG POR 850 X 307
+//
+//	Entidad prueba = new Entidad(piso1, 0, 140, 30, 12);
+//	prueba.transformarWall();
+//	Entidad prueba2 = new Entidad(piso1, 30, 190, 150, 22);
+//	prueba2.transformarWall();
+//	Entidad prueba3 = new Entidad(piso1, 170, 130, 70, 22);
+//	prueba3.transformarWall();
+//	Entidad prueba4 = new Entidad(piso1, 340, 160, 400, 12);
+//	prueba4.transformarWall();
+//	Entidad prueba5 = new Entidad(piso1, 250, 190, 100, 22);
+//	prueba5.transformarWall();
+//	Entidad prueba6 = new Entidad(piso1, 740, 40, 12, 302);
+//	prueba6.transformarWall();
+//	
+	
+	
+
+	///// SON 6 BLOQUES PARA ESTE ROOM
+//	Entidad Walls[] = new Entidad[6];
+//	Walls[0] = prueba;
+//	Walls[1] = prueba2;
+//	Walls[2] = prueba3;
+//	Walls[3] = prueba4;
+//	Walls[4] = prueba5;
+//	Walls[5] = prueba6;	
+//	
+	
+//	im6.addActionListener(new ActionListener() {
+//		@Override
+//		///// PARA EL FONDO 2_1_4
+//		public void actionPerformed(ActionEvent e) {
+//			frame.remove(Jugadores);
+//			frame.repaint();
+//			frame.add(Nivel1);
+//			frame.setBounds(100, 100, 850, 307);
+//			frame.repaint();
+//		}
+//	});
+	
+/////////////////////////////////////////////////////////////////////////////////////////////////////////	
 	
 }
