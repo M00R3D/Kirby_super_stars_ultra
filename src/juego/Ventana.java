@@ -84,7 +84,7 @@ public class Ventana extends JFrame {
 
 	public JPanel panelActual;
 	private JFrame frame;
-	private int kirbyX = 50, kirbyY = 50;
+	private int kirbyX = 200, kirbyY = 110;
 	private String kirbyLado = "derecha";/// estado de kirby(a donde esta mirando)
 	private Boolean kirbyColisionH = false, kirbyColisionV = false;/// estado de kirby(colisiones vertical y horizontal)
 	private boolean bloqueH = false, bloqueV = false;
@@ -221,7 +221,7 @@ public class Ventana extends JFrame {
 		ImageIcon imgFondo2_1_5 = new ImageIcon("imgFondo2_1_5.png");
 		ImageIcon imgFondo2_1_6 = new ImageIcon("imgFondo2_1_6.png");
 		ImageIcon imgFondo2_1_7 = new ImageIcon("imgFondo2_1_7.png");
-
+		ImageIcon imgFondo2_1_8 = new ImageIcon("imgFondo2_1_8.png");
 		
 		
 		
@@ -247,20 +247,20 @@ public class Ventana extends JFrame {
 
 		Entidad EntKirby = new Entidad(imgKirbyBase, 22, 22, 65, 60);
 
-		/////// FONDO DE IMAGEN 2_1_7 PNG POR 500 X 447
+		/////// FONDO DE IMAGEN 2_1_8 PNG POR 500 X 418
 
-		Entidad prueba = new Entidad(piso1, 0, 310, 370, 12);
+		Entidad prueba = new Entidad(piso1, 0, 90, 180, 12);
 		prueba.transformarWall();
-		Entidad prueba2 = new Entidad(piso1, 350, 100, 20, 222);
+		Entidad prueba2 = new Entidad(piso1, 320, 90, 210, 12);
 		prueba2.transformarWall();
-//		Entidad prueba3 = new Entidad(piso1, 250, 190, 20, 822);
-//		prueba3.transformarWall();
-//		Entidad prueba4 = new Entidad(piso1, 340, 160, 400, 12);
-//		prueba4.transformarWall();
-//		Entidad prueba5 = new Entidad(piso1, 250, 190, 100, 22);
-//		prueba5.transformarWall();
-//		Entidad prueba6 = new Entidad(piso1, 740, 40, 12, 302);
-//		prueba6.transformarWall();
+		Entidad prueba3 = new Entidad(piso1, 0, 270, 620, 12);
+		prueba3.transformarWall();
+		Entidad prueba4 = new Entidad(piso1, 130, 170, 220, 12);
+		prueba4.transformarWall();
+		Entidad prueba5 = new Entidad(piso1, 0, 0, 10, 622);
+		prueba5.transformarWall();
+		Entidad prueba6 = new Entidad(piso1,  470, 0, 10, 622);
+		prueba6.transformarWall();
 //		Entidad prueba7 = new Entidad(piso1, 270, 40, 50, 330);
 //		prueba7.transformarWall();
 //		Entidad prueba8 = new Entidad(piso2, 140, 0, 50, 122);
@@ -279,14 +279,14 @@ public class Ventana extends JFrame {
 //		Entidad prueba14 = new Entidad(piso1,280,430,300,22);
 //		prueba14.transformarWall();	
 
-		///// SON 2 BLOQUES PARA ESTE ROOM
-		Entidad Walls[] = new Entidad[2];
+		///// SON 6 BLOQUES PARA ESTE ROOM
+		Entidad Walls[] = new Entidad[6];
 		Walls[0] = prueba;
 		Walls[1] = prueba2;
-//		Walls[2] = prueba3;
-//		Walls[3] = prueba4;
-//		Walls[4] = prueba5;
-//		Walls[5] = prueba6;
+		Walls[2] = prueba3;
+		Walls[3] = prueba4;
+		Walls[4] = prueba5;
+		Walls[5] = prueba6;
 //		Walls[6] = prueba7;
 //		Walls[7] = prueba8;
 //		Walls[8] = prueba9;
@@ -298,7 +298,7 @@ public class Ventana extends JFrame {
 
 		for (int a = 0; a < Walls.length; a++) {
 			Nivel1.add(Walls[a]);
-			Walls[a].setOpaque(false);
+		Walls[a].setOpaque(false);
 		}
 
 		Entidad Aires[] = new Entidad[2];
@@ -333,6 +333,7 @@ public class Ventana extends JFrame {
 		Entidad fondo12 = new Entidad(imgFondo2_1_5, 0, 0, 280, 900);
 		Entidad fondo13 = new Entidad(imgFondo2_1_6, 0, 0, 500, 622);
 		Entidad fondo14 = new Entidad(imgFondo2_1_7, 0, 0, 500, 447);
+		Entidad fondo15 = new Entidad(imgFondo2_1_8, 0, 0, 500, 418);
 
 		
 		
@@ -361,7 +362,8 @@ public class Ventana extends JFrame {
 //		Nivel1.add(fondo11);
 //		Nivel1.add(fondo12);
 //		Nivel1.add(fondo13);
-		Nivel1.add(fondo14);
+//		Nivel1.add(fondo14);
+		Nivel1.add(fondo15);
 		
 		// En este panel navegamos por el menu de guardado
 		kirb1.addActionListener(new ActionListener() {
@@ -386,12 +388,12 @@ public class Ventana extends JFrame {
 		});
 		im6.addActionListener(new ActionListener() {
 			@Override
-			///// PARA EL FONDO 2_1_7
+			///// PARA EL FONDO 2_1_8
 			public void actionPerformed(ActionEvent e) {
 				frame.remove(Jugadores);
 				frame.repaint();
 				frame.add(Nivel1);
-				frame.setBounds(100, 100,500, 447);
+				frame.setBounds(100, 100,500, 418);
 				frame.repaint();
 			}
 		});
@@ -1343,6 +1345,50 @@ public class Ventana extends JFrame {
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
 	
+	/// POSESION DE KIRBY EN ESTE ROOM
+	
+//	private int kirbyX = 200, kirbyY = 110;
 	
 	
+/////// FONDO DE IMAGEN 2_1_8 PNG POR 500 X 418
+
+//		Entidad prueba = new Entidad(piso1, 0, 90, 180, 12);
+//		prueba.transformarWall();
+//		Entidad prueba2 = new Entidad(piso1, 320, 90, 210, 12);
+//		prueba2.transformarWall();
+//		Entidad prueba3 = new Entidad(piso1, 0, 270, 620, 12);
+//		prueba3.transformarWall();
+//		Entidad prueba4 = new Entidad(piso1, 130, 170, 220, 12);
+//		prueba4.transformarWall();
+//		Entidad prueba5 = new Entidad(piso1, 0, 0, 10, 622);
+//		prueba5.transformarWall();
+//		Entidad prueba6 = new Entidad(piso1,  470, 0, 10, 622);
+//		prueba6.transformarWall();
+//	
+	
+///// SON 6 BLOQUES PARA ESTE ROOM
+//		Entidad Walls[] = new Entidad[6];
+//		Walls[0] = prueba;
+//		Walls[1] = prueba2;
+//		Walls[2] = prueba3;
+//		Walls[3] = prueba4;
+//		Walls[4] = prueba5;
+//		Walls[5] = prueba6;
+
+//	im6.addActionListener(new ActionListener() {
+//		@Override
+//		///// PARA EL FONDO 2_1_8
+//		public void actionPerformed(ActionEvent e) {
+//			frame.remove(Jugadores);
+//			frame.repaint();
+//			frame.add(Nivel1);
+//			frame.setBounds(100, 100,500, 418);
+//			frame.repaint();
+//		}
+//	});
+//	
+	
+	
+	
+	////////////////////////////////////////////////////////////////////////////////////////////////
 }
