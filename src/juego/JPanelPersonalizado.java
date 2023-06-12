@@ -2,20 +2,26 @@ package juego;
 
 import java.awt.Color;
 import java.awt.Image;
-
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
+import java.util.Timer;
+import java.util.TimerTask;
+
+
 
 public class JPanelPersonalizado extends JPanel {
 
 	public JPanelPersonalizado(String tipo) {
 		switch (tipo) {
 		
+		
 		case "Menu":
-			this.setBounds(0, 0, 404, 352);
+			
+			
+			this.setBounds(0, 0, 400, 352);
 			this.setLayout(null);
 			ImageIcon img1 = new ImageIcon("Menu.png");
 			JLabel im1 = new JLabel(img1);
@@ -40,13 +46,13 @@ public class JPanelPersonalizado extends JPanel {
 			this.add(im2);
 			break;
 		case "Partidas":
-			this.setBackground(Color.CYAN);
+			this.setBackground(Color.decode("#002190"));
 			this.setBounds(0, 0, 404, 352);
 //			frame.getContentPane().add(Partidas);
 			this.setLayout(null);
 			break;
 		case "Jugadores":
-			this.setBackground(Color.CYAN);
+			this.setBackground(Color.decode("#002190"));
 			this.setBounds(0, 0, 404, 352);
 //			frame.getContentPane().add(Jugadores);
 			this.setLayout(null);
@@ -54,7 +60,7 @@ public class JPanelPersonalizado extends JPanel {
 
 		case "Nivel1":
 			this.setBackground(Color.decode("#002190"));
-			this.setBounds(0, 0, 280, 900);
+			this.setBounds(0, 0, 500, 447);
 //			frame.getContentPane().add(Nivel1);
 			this.setLayout(null);
 			break;
