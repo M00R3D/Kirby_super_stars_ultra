@@ -89,9 +89,9 @@ public class Ventana extends JFrame {
 	private Boolean kirbyColisionH = false, kirbyColisionV = false;/// estado de kirby(colisiones vertical y horizontal)
 	private boolean bloqueH = false, bloqueV = false;
 	private String estomagoKirby = "vacio";
-	private boolean aireShootR=false;
-	
-	
+	private boolean aireShootR = false;
+	private boolean aireShoosR = false;
+
 	//// teclas
 	private boolean derecha = false, izquierda = false, arriba = false, k = false;
 	private boolean juegoPlay = true;
@@ -336,11 +336,9 @@ public class Ventana extends JFrame {
 		Entidad fondo15 = new Entidad(imgFondo2_1_8, 0, 0, 500, 418);
 		Entidad fondo16 = new Entidad(imgFondo2_1_9, 0, 0, 530, 433);
 
-		
-		Entidad aireProy=new Entidad(imgAire,-202,-220,50,30);		
+		Entidad aireProy = new Entidad(imgAire, -202, -220, 50, 30);
 		Nivel1.add(aireProy);
 
-		
 		Nivel1.add(Aires[0]);
 		Nivel1.add(Aires[1]);
 		Nivel1.add(bloqueEstrella);
@@ -526,9 +524,19 @@ public class Ventana extends JFrame {
 				}
 
 				for (int a = 0; a < Walls.length; a++) {
-					if(aireProy.colision(Walls[a])) {aireShootR=false;
-					aireProy.setLocation(-200,-200);}
-					
+					if (aireProy.colision(Walls[a])) {
+						aireShootR = false;
+						aireProy.setLocation(-200, -200);
+					}
+
+				}
+
+				for (int a = 0; a < Walls.length; a++) {
+					if (aireProy.colision(Walls[a])) {
+						aireShoosR = false;
+						aireProy.setLocation(-200, -200);
+					}
+
 					if (new Entidad(imgKirbyBase, EntKirby.getX() + EntKirby.getHsp(), EntKirby.getY(),
 							EntKirby.getWidth(), EntKirby.getHeight()).colision(Walls[a])
 							|| new Entidad(imgKirbyBase, EntKirby.getX() + EntKirby.getHsp(), EntKirby.getY(),
@@ -597,12 +605,28 @@ public class Ventana extends JFrame {
 				if (estomagoKirby == "aire") {
 					EntKirby.setGravedad(1);
 					if (k == true) {
-					if(kirbyLado=="derecha") {
-					aireProy.setLocation(EntKirby.getX(),EntKirby.getY()-5);
-					aireShootR=true;}
-						
+						if (kirbyLado == "derecha") {
+							aireProy.setLocation(EntKirby.getX(), EntKirby.getY() - 5);
+							aireShootR = true;
+						}
+
 						estomagoKirby = "vacio";
 					}
+
+					if (estomagoKirby == "aire") {
+						EntKirby.setGravedad(1);
+						if (k == true) {
+							if (kirbyLado == "Izquierda") {
+								aireProy.setLocation(EntKirby.getX(), EntKirby.getY() - 5);
+								aireShootR = true;
+							}
+
+							estomagoKirby = "vacio";
+
+						}
+
+					}
+
 				} else {
 					EntKirby.setGravedad(3);
 
@@ -639,13 +663,21 @@ public class Ventana extends JFrame {
 					bloqueEstrella.setBounds(bloqueEstrella.getX(), bloqueEstrella.getY() + bloqueEstrella.getVsp(),
 							bloqueEstrella.getWidth(), bloqueEstrella.getHeight());
 				}
-				if(aireShootR==true) 
-				{
-					aireProy.setLocation(aireProy.getX()+14,aireProy.getY());
+				if (aireShootR == true) {
+					aireProy.setLocation(aireProy.getX() + 14, aireProy.getY());
 				}
 				if (new Entidad(imgKirbyBase, EntKirby.getX() + EntKirby.getHsp(), EntKirby.getY(), EntKirby.getWidth(),
-						EntKirby.getHeight()).colision(transicionDerecha) && coolDownTransicion == 0) {// System.out.println("transicion
-//																										 derecha");
+						EntKirby.getHeight()).colision(transicionDerecha) && coolDownTransicion == 0) {// System.out.println("transicioderecha");
+
+					if (aireShoosR == true) {
+						aireProy.setLocation(aireProy.getX() + 14, aireProy.getY());
+					}
+					if (new Entidad(imgKirbyBase, EntKirby.getX() + EntKirby.getHsp(), EntKirby.getY(),
+							EntKirby.getWidth(), EntKirby.getHeight()).colision(transicionIzquierda)
+							&& coolDownTransicion == 0) {// System.out.println("transicion
+//																											 derecha");	
+					}
+
 //					Timer timerTransicionDerecha = new Timer();
 //					TimerTask task = new TimerTask() {
 //						@Override
@@ -762,7 +794,7 @@ public class Ventana extends JFrame {
 				}
 				if (EntKirby.getVsp() != 0) {
 					if (kirbyLado == "derecha") {
-						
+
 						EntKirby.setIcon(imgKirbyFly);
 					}
 					if (kirbyLado == "izquierda") {
@@ -772,9 +804,7 @@ public class Ventana extends JFrame {
 				{
 					if (k == true) {// absorcion derecha
 						if (kirbyLado == "derecha") {
-							
-							
-							
+
 							EntKirby.setIcon(imgKirbyAbsorb);
 							if (bloqueEstrella.getX() - EntKirby.getX() < 155
 									&& bloqueEstrella.getX() > EntKirby.getX() + 30) {
