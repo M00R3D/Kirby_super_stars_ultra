@@ -8,7 +8,7 @@ import javax.swing.JLabel;
 public class Entidad extends JLabel {
 	public Entidad(ImageIcon i,int x,int y, int w, int h) 
 	{
-		
+		super();
 		this.setIcon(i);
 		this.setBounds(x,y,w,h);
 	}

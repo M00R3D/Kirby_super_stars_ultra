@@ -337,12 +337,13 @@ public class Ventana extends JFrame {
 		Nivel1.add(Aires[0]);
 		Nivel1.add(Aires[1]);
 		Nivel1.add(bloqueEstrella);
-
-		Nivel1.add(estadosColisionH);
-		Nivel1.add(estadosColisionV);
-		Nivel1.add(estadosLado);
-		Nivel1.add(estadosNivelParte);
-		Nivel1.add(estadosEstomago);
+		EntidadEnemigo a = new EntidadEnemigo(imgFondo1_1_1,0,0,0,0);
+		Nivel1.add(a);
+//		Nivel1.add(estadosColisionH);
+//		Nivel1.add(estadosColisionV);
+//		Nivel1.add(estadosLado);
+//		Nivel1.add(estadosNivelParte);
+//		Nivel1.add(estadosEstomago);
 		Nivel1.add(EntKirby);
 
 		///// ESTO PARA QUE AGARRE EL FONDO 2_1_9
@@ -524,6 +525,61 @@ public class Ventana extends JFrame {
 							|| new Entidad(imgKirbyBase, EntKirby.getX() + EntKirby.getHsp(), EntKirby.getY(),
 									EntKirby.getWidth(), EntKirby.getHeight()).colision(bloqueEstrella)) {
 						kirbyColisionHFlag = true;
+			boolean kirbyColisionHFlag=false;
+			boolean kirbyColisionVFlag=false;
+			boolean bloqueHFlag=false;
+			boolean bloqueVFlag=false;
+			
+			estadosLado.setText("kirbyLado"+kirbyLado);
+			estadosColisionH.setText("kirbyColisionH"+kirbyColisionH);
+			estadosColisionV.setText("kirbyColisionV"+kirbyColisionV);
+			estadosNivelParte.setText("NivelParte"+nivelParte);
+			estadosEstomago.setText("estomago:" +estomagoKirby);
+				//Reacomodar el label de kirby(entidad)
+					EntKirby.setBounds(kirbyX, kirbyY, EntKirby.getWidth(),EntKirby.getHeight());
+//				dependiendo del estado lado, se modifica la variable hsp de la entidad kirby
+					if(derecha==true) {kirbyLado="derecha";
+						EntKirby.setHsp(EntKirby.getHspWalk());}
+					if(izquierda==true) {kirbyLado="izquierda";
+						EntKirby.setHsp(EntKirby.getHspWalk()*(-1));}
+//					salto
+					if(arriba==true && coolDownSalto==0)  {EntKirby.setVsp(EntKirby.vspJump);
+					coolDownSalto=4;
+					estomagoKirby="aire";}
+					if(!EntKirby.colision(prueba)) 
+					{
+					 //bajar el label de kirby sumandole la gravedad
+						if(juegoPlay==true) {
+						EntKirby.setVsp(EntKirby.getVsp()+EntKirby.getGravedad());
+						}
+					}
+					
+					
+					
+					for(int a=0;a<Walls.length;a++) 
+					{
+							if(new Entidad(imgKirbyBase,EntKirby.getX()+EntKirby.getHsp(),EntKirby.getY(),EntKirby.getWidth(),EntKirby.getHeight()).colision(Walls[a])
+									||	new Entidad(imgKirbyBase,EntKirby.getX()+EntKirby.getHsp(),EntKirby.getY(),EntKirby.getWidth(),EntKirby.getHeight()).colision(bloqueEstrella))
+									{kirbyColisionHFlag=true;}
+							if(new Entidad(imgKirbyBase,EntKirby.getX(),EntKirby.getY()+EntKirby.getVsp(),EntKirby.getWidth(),EntKirby.getHeight()).colision(Walls[a])
+									||	 new Entidad(imgKirbyBase,EntKirby.getX(),EntKirby.getY()+EntKirby.getVsp(),EntKirby.getWidth(),EntKirby.getHeight()).colision(bloqueEstrella))
+									{kirbyColisionVFlag=true;}
+							
+							
+							if(new Entidad(imgBloqueEstrella,bloqueEstrella.getX()+bloqueEstrella.getHsp(),bloqueEstrella.getY(),bloqueEstrella.getWidth(),bloqueEstrella.getHeight()).colision(Walls[a]))
+								{bloqueHFlag=true;}
+							if(new Entidad(imgBloqueEstrella,bloqueEstrella.getX(),bloqueEstrella.getY()+bloqueEstrella.getVsp(),bloqueEstrella.getWidth(),bloqueEstrella.getHeight()).colision(Walls[a]))
+								{bloqueVFlag=true;}
+							
+								if(Aires[0]!=null)
+								{
+									if(Walls[a].colision(Aires[0])==true) {Aires[0].removeAll();}
+								}
+								if(Aires[1]!=null)
+								{
+									if(Walls[a].colision(Aires[1])==true) {Aires[1].removeAll();;}
+								}
+>>>>>>> Stashed changes
 					}
 					if (new Entidad(imgKirbyBase, EntKirby.getX(), EntKirby.getY() + EntKirby.getVsp(),
 							EntKirby.getWidth(), EntKirby.getHeight()).colision(Walls[a])
@@ -537,6 +593,7 @@ public class Ventana extends JFrame {
 							.colision(Walls[a])) {
 						bloqueHFlag = true;
 					}
+<<<<<<< Updated upstream
 					if (new Entidad(imgBloqueEstrella, bloqueEstrella.getX(),
 							bloqueEstrella.getY() + bloqueEstrella.getVsp(), bloqueEstrella.getWidth(),
 							bloqueEstrella.getHeight()).colision(Walls[a])) {
@@ -546,6 +603,36 @@ public class Ventana extends JFrame {
 						if (Walls[a].colision(Aires[0]) == true) {
 							Aires[0].removeAll();
 						}
+=======
+					
+					if(kirbyColisionHFlag==true)
+							{kirbyColisionH=true;}else {kirbyColisionH=false;}
+					if(kirbyColisionVFlag==true)
+							{estomagoKirby="vacio";
+						kirbyColisionV=true;}else {kirbyColisionV=false;}
+					if(bloqueHFlag==true)
+						{bloqueH=true;}else {bloqueH=false;}
+					if(bloqueVFlag==true)
+						{bloqueV=true;}else {bloqueV=false;}
+			
+					if(estomagoKirby=="aire")
+					{
+						EntKirby.setGravedad(1);
+						if(k==true) {
+							if(Aires[0]!=null) {Aires[0] =new Entidad(imgAire,EntKirby.getX(),EntKirby.getY(),40,19);}
+							if(Aires[1]!=null) {Aires[1]=new Entidad(imgAireIzq,EntKirby.getX(),EntKirby.getY(),40,19);}
+							estomagoKirby="vacio";}
+					}else {EntKirby.setGravedad(3);
+					}
+					if(kirbyColisionH==true) {EntKirby.setHsp(0);}
+					if(kirbyColisionH==false && juegoPlay==true) {kirbyX+=EntKirby.getHsp();}
+					if(kirbyColisionV==true) {EntKirby.setVsp(0);}
+					if(kirbyColisionV==false && juegoPlay==true) {kirbyY+=EntKirby.getVsp();}
+					if(juegoPlay==false) {EntKirby.setHsp(0);EntKirby.setVsp(0);}
+					if(bloqueH==true) {bloqueEstrella.setHsp(0);}
+					if(bloqueV==true) {bloqueEstrella.setVsp(0);}
+					if(bloqueH==false ) {bloqueEstrella.setBounds(bloqueEstrella.getX()+bloqueEstrella.getHsp(),bloqueEstrella.getY(),bloqueEstrella.getWidth(),bloqueEstrella.getHeight());
+>>>>>>> Stashed changes
 					}
 					if (Aires[1] != null) {
 						if (Walls[a].colision(Aires[1]) == true) {
@@ -553,6 +640,7 @@ public class Ventana extends JFrame {
 							;
 						}
 					}
+<<<<<<< Updated upstream
 				}
 
 				if (Aires[0] != null) {
@@ -752,10 +840,128 @@ public class Ventana extends JFrame {
 				if (EntKirby.getVsp() != 0) {
 					if (kirbyLado == "derecha") {
 						EntKirby.setIcon(imgKirbyFly);
+=======
+					EntKirby.setBounds(EntKirby.getX()+EntKirby.getHsp(), EntKirby.getY()+EntKirby.getVsp(), EntKirby.getWidth(), EntKirby.getHeight());
+					//ANIMACION
+					//reestablecer la imagen dependiendo del estado del lado de kirby(el lado al que esta volteando)
+					if(kirbyLado=="derecha") {
+						EntKirby.setIcon(imgKirbyWalkRight);}
+					if(kirbyLado=="izquierda") {
+						EntKirby.setIcon(imgKirbyWalkLeft);}
+					//reestablecer el estado del lado de kirby(el lado al que esta volteando)
+					if(kirbyLado=="derecha") {
+						EntKirby.setIcon(imgKirbyWalkRight);}
+					if(kirbyLado=="izquierda") {
+						EntKirby.setIcon(imgKirbyWalkLeft);}
+					if(EntKirby.getVsp()!=0) 
+					{
+							if(kirbyLado=="derecha") {
+								EntKirby.setIcon(imgKirbyFly);}
+							if(kirbyLado=="izquierda") {
+								EntKirby.setIcon(imgKirbyFlyLeft);
+							}
+					}else//(si esta quieto y en el piso)
+						{
+						if(k==true) 
+						{//absorcion derecha
+							if(kirbyLado=="derecha") {
+								EntKirby.setIcon(imgKirbyAbsorb);
+								EntidadProyectil aireProy = new EntidadProyectil(imgAire,EntKirby.getX(),EntKirby.getY(),50,50);
+								aireProy.setOpaque(true);
+								Nivel1.add(aireProy);
+								for(int a=0;a<Walls.length;a++) 
+								{
+									if(aireProy.colision(Walls[a])==true) 
+									{aireProy.setColisionWal(true);}
+								}
+								
+								
+								if(bloqueEstrella.getX()-EntKirby.getX()<155 && bloqueEstrella.getX()>EntKirby.getX()+30) 
+								{
+									if(bloqueEstrella.colision(EntKirby)) {bloqueEstrella.setBounds(-500,-500,0,0);}
+									bloqueEstrella.setHsp(bloqueEstrella.getHsp()-4);
+									bloqueEstrella.setBounds(bloqueEstrella.getX()+bloqueEstrella.getHsp(), bloqueEstrella.getY()+bloqueEstrella.getVsp(), bloqueEstrella.getWidth(), bloqueEstrella.getHeight());
+									
+								}
+							
+							}
+							else if(kirbyLado=="izquierda") {
+								EntKirby.setIcon(imgKirbyAbsorbLeft);
+								if(bloqueEstrella.getX()-EntKirby.getX()>-155 && bloqueEstrella.getX()<EntKirby.getX()-30 ) 
+								{
+									if(bloqueEstrella.colision(EntKirby)) {bloqueEstrella.setBounds(-500,-500,0,0);}
+									bloqueEstrella.setHsp(bloqueEstrella.getHsp()+4);
+									bloqueEstrella.setBounds(bloqueEstrella.getX()+bloqueEstrella.getHsp(), bloqueEstrella.getY()+bloqueEstrella.getVsp(), bloqueEstrella.getWidth(), bloqueEstrella.getHeight());
+								}
+							}
+						}else {
+							if(EntKirby.getHsp()==0) 
+								{
+										//absorcion izquierda
+										if(kirbyLado=="derecha") {
+											EntKirby.setIcon(imgKirbyBase);}
+										if(kirbyLado=="izquierda") {
+											EntKirby.setIcon(imgKirbyBaseLeft);
+										}
+								}
+							}
+						//ANIMACION
+						}
+					
+					if(new Entidad(imgKirbyBase,EntKirby.getX()+EntKirby.getHsp(),EntKirby.getY(),EntKirby.getWidth(),EntKirby.getHeight()).colision(transicionDerecha) && coolDownTransicion==0)
+					{//System.out.println("transicion derecha");
+					Timer timerTransicionDerecha = new Timer();
+					TimerTask task = new TimerTask() {
+						@Override
+						public void run() {
+								coolDownTransicion=10;
+								if(nivelParte==1) 
+								{
+									for(int a=0;a<Walls.length;a++) 
+									{
+										if(Walls[0].getX()>=-550) 
+										{
+											Walls[a].setBounds(Walls[a].getX()-6,Walls[a].getY(),Walls[a].getWidth(),Walls[a].getHeight());
+											juegoPlay=false;
+											
+										}else {timerTransicionDerecha.cancel();
+										juegoPlay=true;
+										nivelParte=2;
+										}
+										if(fondo2.getX()>0 && juegoPlay==false)
+										{fondo.setLocation(fondo.getX()-1,fondo.getY());fondo2.setLocation(fondo2.getX()-1,fondo2.getY());fondo3.setLocation(fondo3.getX()-1,fondo3.getY());}
+										if(EntKirby.getX()>=10) 
+										{kirbyX-=1;	}
+									}	
+								}else if(nivelParte==2) 
+								{
+									for(int a=0;a<Walls.length;a++) 
+									{
+										if(Walls[0].getX()>=-550-550) 
+										{
+											Walls[a].setBounds(Walls[a].getX()-6,Walls[a].getY(),Walls[a].getWidth(),Walls[a].getHeight());
+											juegoPlay=false;
+										}else {timerTransicionDerecha.cancel();
+										juegoPlay=true;
+										nivelParte=3;
+										}
+										
+										if(fondo2.getX()>-550 && juegoPlay==false)
+										{
+											fondo.setLocation(fondo.getX()-1,fondo.getY());fondo2.setLocation(fondo2.getX()-1,fondo2.getY());fondo3.setLocation(fondo3.getX()-1,fondo3.getY());
+										}
+										if(EntKirby.getX()>=10) 
+										{kirbyX-=1;	}
+									}	
+								}
+						}};
+					timerTransicionDerecha.schedule(task, 10, 10);
+>>>>>>> Stashed changes
 					}
 					if (kirbyLado == "izquierda") {
 						EntKirby.setIcon(imgKirbyFlyLeft);
 					}
+<<<<<<< Updated upstream
 				} else// (si esta quieto y en el piso)
 				{
 					if (k == true) {// absorcion derecha
@@ -800,6 +1006,10 @@ public class Ventana extends JFrame {
 				}
 				frame.repaint();
 				frame.revalidate();
+=======
+					frame.repaint();
+					frame.revalidate();
+>>>>>>> Stashed changes
 			}
 		};
 		timerTicks.schedule(repintar, 10, 30);
