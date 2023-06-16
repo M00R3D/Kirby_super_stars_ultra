@@ -90,7 +90,7 @@ public class Ventana extends JFrame {
 	private boolean bloqueH = false, bloqueV = false;
 	private String estomagoKirby = "vacio";
 	private boolean aireShootR = false;
-	private boolean aireShoosR = false;
+	private boolean aireShootL = false;
 
 	//// teclas
 	private boolean derecha = false, izquierda = false, arriba = false, k = false;
@@ -301,10 +301,6 @@ public class Ventana extends JFrame {
 			Walls[a].setOpaque(false);
 		}
 
-		Entidad Aires[] = new Entidad[2];
-
-		Aires[0] = new Entidad(imgAire, 20, 20, 40, 19);
-		Aires[1] = new Entidad(imgAireIzq, 20, 20, 40, 19);
 		Entidad bloqueEstrella = new Entidad(imgBloqueEstrella, 180, 180, 75, 65);
 
 		///// ESTO ES PARA QUE NO SE VEA LOS BLOQUES ROJOS Y VERDES
@@ -337,10 +333,12 @@ public class Ventana extends JFrame {
 		Entidad fondo16 = new Entidad(imgFondo2_1_9, 0, 0, 530, 433);
 
 		Entidad aireProy = new Entidad(imgAire, -202, -220, 50, 30);
-		Nivel1.add(aireProy);
+		Entidad aireProyIzq = new Entidad(imgAireIzq, -202, -220, 50, 30);
 
-		Nivel1.add(Aires[0]);
-		Nivel1.add(Aires[1]);
+		Nivel1.add(aireProy);
+		Nivel1.add(aireProyIzq);
+		
+		
 		Nivel1.add(bloqueEstrella);
 
 		Nivel1.add(estadosColisionH);
@@ -532,9 +530,9 @@ public class Ventana extends JFrame {
 				}
 
 				for (int a = 0; a < Walls.length; a++) {
-					if (aireProy.colision(Walls[a])) {
-						aireShoosR = false;
-						aireProy.setLocation(-200, -200);
+					if (aireProyIzq.colision(Walls[a])) {
+						aireShootL = false;
+						aireProyIzq.setLocation(-200, -200);
 					}
 
 					if (new Entidad(imgKirbyBase, EntKirby.getX() + EntKirby.getHsp(), EntKirby.getY(),
@@ -560,26 +558,10 @@ public class Ventana extends JFrame {
 							bloqueEstrella.getHeight()).colision(Walls[a])) {
 						bloqueVFlag = true;
 					}
-					if (Aires[0] != null) {
-						if (Walls[a].colision(Aires[0]) == true) {
-							Aires[0].removeAll();
-						}
-					}
-					if (Aires[1] != null) {
-						if (Walls[a].colision(Aires[1]) == true) {
-							Aires[1].removeAll();
-							;
-						}
-					}
 				}
-
-				if (Aires[0] != null) {
-					Aires[0].setBounds(Aires[0].getX() + 3, Aires[0].getY(), Aires[0].getWidth(), Aires[0].getHeight());
-				}
-				if (Aires[1] != null) {
-					Aires[1].setBounds(Aires[1].getX() - 3, Aires[1].getY(), Aires[1].getWidth(), Aires[1].getHeight());
-				}
-
+				
+				
+				
 				if (kirbyColisionHFlag == true) {
 					kirbyColisionH = true;
 				} else {
@@ -605,32 +587,19 @@ public class Ventana extends JFrame {
 				if (estomagoKirby == "aire") {
 					EntKirby.setGravedad(1);
 					if (k == true) {
-						if (kirbyLado == "derecha") {
+						if (kirbyLado == "derecha") 
+							{
 							aireProy.setLocation(EntKirby.getX(), EntKirby.getY() - 5);
 							aireShootR = true;
-						}
-
+							}
+						else if (kirbyLado == "izquierda") 	
+							{
+							aireProyIzq.setLocation(EntKirby.getX()-EntKirby.getWidth(), EntKirby.getY() - 5);
+							aireShootL = true;
+							}
 						estomagoKirby = "vacio";
 					}
-
-					if (estomagoKirby == "aire") {
-						EntKirby.setGravedad(1);
-						if (k == true) {
-							if (kirbyLado == "Izquierda") {
-								aireProy.setLocation(EntKirby.getX(), EntKirby.getY() - 5);
-								aireShootR = true;
-							}
-
-							estomagoKirby = "vacio";
-
-						}
-
-					}
-
-				} else {
-					EntKirby.setGravedad(3);
-
-				}
+				} else {EntKirby.setGravedad(3);}
 
 				if (kirbyColisionH == true) {
 					EntKirby.setHsp(0);
@@ -666,12 +635,14 @@ public class Ventana extends JFrame {
 				if (aireShootR == true) {
 					aireProy.setLocation(aireProy.getX() + 14, aireProy.getY());
 				}
+				if (aireShootL == true) {
+					aireProyIzq.setLocation(aireProyIzq.getX() - 14, aireProyIzq.getY());
+				}
+				
 				if (new Entidad(imgKirbyBase, EntKirby.getX() + EntKirby.getHsp(), EntKirby.getY(), EntKirby.getWidth(),
 						EntKirby.getHeight()).colision(transicionDerecha) && coolDownTransicion == 0) {// System.out.println("transicioderecha");
 
-					if (aireShoosR == true) {
-						aireProy.setLocation(aireProy.getX() + 14, aireProy.getY());
-					}
+					
 					if (new Entidad(imgKirbyBase, EntKirby.getX() + EntKirby.getHsp(), EntKirby.getY(),
 							EntKirby.getWidth(), EntKirby.getHeight()).colision(transicionIzquierda)
 							&& coolDownTransicion == 0) {// System.out.println("transicion
