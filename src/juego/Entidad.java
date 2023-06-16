@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 //En esta clase Entidad creamos un sistema de gravedad
@@ -22,6 +23,10 @@ public class Entidad extends JLabel {
 		this.setBounds(e.getX(),e.getY(),e.getWidth(),e.getHeight());
 		
 	}
+	public Entidad(Icon i, int x, int y, int w, int h) {
+		this.setIcon(i);
+		this.setBounds(x,y,w,h);
+		}
 	public int gravedad=2,hsp=0,vsp=0,hspWalk=7,vspJump=-22,canJump=0;
 	public boolean HFlag=false,VFlag=false,HCol=false,VCol=false;
 	
@@ -129,10 +134,10 @@ public class Entidad extends JLabel {
 			public void run() {
 				if (isHFlag()==true) {setHCol(true);}else {setHCol(false);}
 				if (isVFlag()==true) {setVCol(true);}else {setHCol(false);}
-				if(isHCol()==true) {setHsp(0);}else {setHsp(3);}
-				if(isVCol()==true) {setVsp(0);}else {setVsp(3);}
+				if(isHCol()==true) {setHsp(0);}//else {setHsp(3);}
+				if(isVCol()==true) {setVsp(0);}else {setVsp(3);}//caer
 				setBounds(getX()+getHsp(),getY()+getVsp(),getWidth(),getHeight());
-				setHFlag(false);setVFlag(false);
+//				setHFlag(false);setVFlag(false);
 			}
 		};
 		timer.schedule(task, 10, 90);

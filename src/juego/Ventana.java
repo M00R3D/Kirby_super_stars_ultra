@@ -348,9 +348,20 @@ public class Ventana extends JFrame {
 		Entidad aireProy = new Entidad(imgAire, -202, -220, 50, 30);
 		Entidad aireProyIzq = new Entidad(imgAireIzq, -202, -220, 50, 30);
 		
+		
+		
+		
 		Entidad itemGalleta = new Entidad(imgItemGalleta, EntKirby.getX()+30,EntKirby.getY()-50, 40, 40);
 		itemGalleta.gravitar();
 		
+		Entidad items[] = new Entidad[3];
+		items[0]= new Entidad(imgItemGalleta, EntKirby.getX()+30,EntKirby.getY()-50, 40, 40);
+		items[1]= new Entidad(imgItemGalleta, EntKirby.getX()+60,EntKirby.getY()-50, 40, 40);
+		items[2]= new Entidad(imgItemGalleta, EntKirby.getX()+80,EntKirby.getY()-50, 40, 40);
+		for (int a = 0; a < items.length; a++) {
+			items[a].gravitar();
+			Nivel1.add(items[a]);
+		}
 		
 		Nivel1.add(aireProy);
 		Nivel1.add(aireProyIzq);
@@ -364,7 +375,7 @@ public class Ventana extends JFrame {
 		Nivel1.add(estadosNivelParte);
 		Nivel1.add(estadosEstomago);
 		Nivel1.add(EntKirby);
-		Nivel1.add(itemGalleta);
+//		Nivel1.add(itemGalleta);
 		///// ESTO PARA QUE AGARRE EL FONDO 2_1_9
 //		Nivel1.add(fondo);
 //		Nivel1.add(fondo2);
@@ -580,17 +591,29 @@ public class Ventana extends JFrame {
 					}
 					
 					
-					if (new Entidad(imgItemGalleta, itemGalleta.getX() + itemGalleta.getHsp(),
-							itemGalleta.getY(), itemGalleta.getWidth(),
-							itemGalleta.getHeight()).colision(Walls[a])) {
-							itemGalleta.setHFlag(true);
-					}
-					if (new Entidad(imgItemGalleta, itemGalleta.getX(),
-							itemGalleta.getY() + itemGalleta.getVsp(), itemGalleta.getWidth(),
-							itemGalleta.getHeight()).colision(Walls[a])) {
-							itemGalleta.setVFlag(true);
-					}
-					
+//					if (new Entidad(imgItemGalleta, itemGalleta.getX() + itemGalleta.getHsp(),
+//							itemGalleta.getY(), itemGalleta.getWidth(),
+//							itemGalleta.getHeight()).colision(Walls[a])) {
+//							itemGalleta.setHFlag(true);
+//					}
+//					if (new Entidad(imgItemGalleta, itemGalleta.getX(),
+//							itemGalleta.getY() + itemGalleta.getVsp(), itemGalleta.getWidth(),
+//							itemGalleta.getHeight()).colision(Walls[a])) {
+//							itemGalleta.setVFlag(true);
+//					}
+					for (int a1 = 0; a1 < items.length; a1++) 
+						{
+									if (new Entidad(items[a1].getIcon(), items[a1].getX() + items[a1].getHsp(),
+											items[a1].getY(), items[a1].getWidth(),
+											items[a1].getHeight()).colision(Walls[a])) {
+										items[a1].setHFlag(true);
+									}
+									if (new Entidad(items[a1].getIcon(), items[a1].getX(),
+											items[a1].getY() + items[a1].getVsp(), items[a1].getWidth(),
+											items[a1].getHeight()).colision(Walls[a])) {
+										items[a1].setVFlag(true);
+									}					
+						}
 					
 				}
 				
