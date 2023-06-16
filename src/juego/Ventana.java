@@ -132,7 +132,7 @@ public class Ventana extends JFrame {
 
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 420, 391);
+		frame.setBounds(100, 100, 474, 352);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		// MENU DEL JUEGO
@@ -149,7 +149,7 @@ public class Ventana extends JFrame {
 		ImageIcon img3 = new ImageIcon("kirby 1.png");
 		JButton kirb1 = new JButton(img3);
 		kirb1.setSize(223, 42);
-		kirb1.setLocation(90, 87);
+		kirb1.setLocation(120, 45);
 		Image esc3 = img3.getImage().getScaledInstance(kirb1.getWidth(), kirb1.getHeight(), Image.SCALE_SMOOTH);
 		Icon ices3 = new ImageIcon(esc3);
 		kirb1.setIcon(ices3);
@@ -158,7 +158,7 @@ public class Ventana extends JFrame {
 		ImageIcon img4 = new ImageIcon("kirby 2.png");
 		JButton kirb2 = new JButton(img4);
 		kirb2.setSize(223, 42);
-		kirb2.setLocation(90, 156);
+		kirb2.setLocation(120, 125);
 		Image esc4 = img4.getImage().getScaledInstance(kirb2.getWidth(), kirb2.getHeight(), Image.SCALE_SMOOTH);
 		Icon ices4 = new ImageIcon(esc4);
 		kirb2.setIcon(ices4);
@@ -167,7 +167,7 @@ public class Ventana extends JFrame {
 		ImageIcon img5 = new ImageIcon("kirby 3.png");
 		JButton kirb3 = new JButton(img5);
 		kirb3.setSize(223, 42);
-		kirb3.setLocation(90, 228);
+		kirb3.setLocation(120, 205);
 		Image esc5 = img5.getImage().getScaledInstance(kirb3.getWidth(), kirb3.getHeight(), Image.SCALE_SMOOTH);
 		Icon ices5 = new ImageIcon(esc5);
 		kirb3.setIcon(ices5);
@@ -179,7 +179,7 @@ public class Ventana extends JFrame {
 		ImageIcon img6 = new ImageIcon("Jugador 1.png");
 		JButton im6 = new JButton(img6);
 		im6.setSize(223, 42);
-		im6.setLocation(90, 87);
+		im6.setLocation(120, 45);
 		Image esc6 = img6.getImage().getScaledInstance(im6.getWidth(), im6.getHeight(), Image.SCALE_SMOOTH);
 		Icon ices6 = new ImageIcon(esc6);
 		im6.setIcon(ices6);
@@ -188,7 +188,7 @@ public class Ventana extends JFrame {
 		ImageIcon img7 = new ImageIcon("Jugador 2.png");
 		JButton im7 = new JButton(img7);
 		im7.setSize(223, 42);
-		im7.setLocation(90, 156);
+		im7.setLocation(120, 126);
 		Image esc7 = img7.getImage().getScaledInstance(im7.getWidth(), im7.getHeight(), Image.SCALE_SMOOTH);
 		Icon ices7 = new ImageIcon(esc7);
 		im7.setIcon(ices7);
@@ -197,13 +197,15 @@ public class Ventana extends JFrame {
 		ImageIcon img8 = new ImageIcon("Regresar.png");
 		JButton btnRegresar = new JButton(img8);
 		btnRegresar.setSize(53, 42);
-		btnRegresar.setLocation(322, 273);
+		btnRegresar.setLocation(400, 243);
 		Image esc8 = img8.getImage().getScaledInstance(btnRegresar.getWidth(), btnRegresar.getHeight(),
 				Image.SCALE_SMOOTH);
 		Icon ices8 = new ImageIcon(esc8);
 		btnRegresar.setIcon(ices8);
 		Jugadores.add(btnRegresar);
 		panelActual = Menu;
+
+
 		/// NIVEL 1 Y 2
 		// Creamos un panel y añadimos a kirby ademas una prueba para las colisiones
 		ImageIcon imgKirbyBase = new ImageIcon("kirbyStand.gif");
