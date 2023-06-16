@@ -1,6 +1,8 @@
 package juego;
 
 import java.awt.Color;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -11,10 +13,43 @@ public class Entidad extends JLabel {
 		super();
 		this.setIcon(i);
 		this.setBounds(x,y,w,h);
+		
 	}
 	public int gravedad=2,hsp=0,vsp=0,hspWalk=7,vspJump=-22,canJump=0;
+	public boolean HFlag=false,VFlag=false,HCol=false,VCol=false;
 	
-	
+	public boolean isHFlag() {
+		return HFlag;
+	}
+
+	public void setHFlag(boolean hFlag) {
+		HFlag = hFlag;
+	}
+
+	public boolean isVFlag() {
+		return VFlag;
+	}
+
+	public void setVFlag(boolean vFlag) {
+		VFlag = vFlag;
+	}
+
+	public boolean isHCol() {
+		return HCol;
+	}
+
+	public void setHCol(boolean hCol) {
+		HCol = hCol;
+	}
+
+	public boolean isVCol() {
+		return VCol;
+	}
+
+	public void setVCol(boolean vCol) {
+		VCol = vCol;
+	}
+
 	public boolean colision(Entidad entidad) {
 	    int thisX = this.getX();
 	    int thisY = this.getY();
@@ -76,6 +111,23 @@ public class Entidad extends JLabel {
 	}
 	public void setCanJump(int canJump) {
 		this.canJump = canJump;
+	}
+	
+	public void gravitar() 
+	{
+		Timer timer = new Timer();
+		TimerTask task = new TimerTask() {
+					
+			@Override
+			public void run() {
+				if (isHFlag()==true) {setHCol(true);}else {setHCol(false);}
+				if (isVFlag()==true) {setVCol(true);}else {setHCol(false);}
+				if(isHCol()==true) {setHsp(0);}
+				if(isVCol()==true) {setVsp(0);}
+				setBounds(getX()+getHsp(),getY()+getVsp(),getWidth(),getHeight());
+			}
+		};
+		timer.schedule(task, 10, 30);
 	}
 	
 

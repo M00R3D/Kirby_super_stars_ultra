@@ -123,7 +123,6 @@ public class Ventana extends JFrame {
 	 */
 	public Ventana() {
 		initialize();
-		ReproducirSonido("Gourmet-Race-Kirby.wav");
 
 	}
 
@@ -402,6 +401,7 @@ public class Ventana extends JFrame {
 				frame.repaint();
 				frame.add(Nivel1);
 				frame.setBounds(100, 100, 530, 433);
+//				ReproducirSonido("Gourmet-Race-Kirby.wav");
 				frame.repaint();
 			}
 		});
@@ -412,6 +412,7 @@ public class Ventana extends JFrame {
 				frame.remove(Jugadores);
 				frame.repaint();
 				frame.add(Nivel1);
+//				ReproducirSonido("Gourmet-Race-Kirby.wav");
 				frame.setBounds(100, 100, 255, 371);
 				frame.repaint();
 			}
