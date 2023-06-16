@@ -98,7 +98,7 @@ public class Ventana extends JFrame {
 	private boolean aireShootL = false;
 	private int fondoContadorX=0;
 	//// teclas
-	private boolean derecha = false, izquierda = false, arriba = false, k = false;
+	private boolean derecha = false, izquierda = false, arriba = false, k = false,j=false;
 	private boolean juegoPlay = true;
 	private int nivelParte = 1, coolDownTransicion = 0, coolDownSalto = 0;;
 
@@ -265,21 +265,21 @@ public class Ventana extends JFrame {
 		prueba.transformarWall();
 		Entidad prueba2 = new Entidad(piso1, 0, 0, 10, 622);
 		prueba2.transformarWall();
-		Entidad prueba3 = new Entidad(piso1, 480, 120, 70, 12);
+		Entidad prueba3 = new Entidad(piso1, 480, 120, 70, 162);
 		prueba3.transformarWall();
-		Entidad prueba4 = new Entidad(piso1, 320, 260, 180, 12);
+		Entidad prueba4 = new Entidad(piso1, 320, 260, 280, 82);
 		prueba4.transformarWall();
-		Entidad prueba5 = new Entidad(piso1, 0 + 542, 255, 300, 22);
+		Entidad prueba5 = new Entidad(piso1, 0 + 500, 255, 300, 22);
 		prueba5.transformarWall();
-		Entidad prueba6 = new Entidad(piso1, 310 + 542, 285, 270, 24);
+		Entidad prueba6 = new Entidad(piso1, 310 + 460,20+ 285, 270, 24);
 		prueba6.transformarWall();
-		Entidad prueba7 = new Entidad(piso1, 480 + 542, 240, 50, 32);
+		Entidad prueba7 = new Entidad(piso1, 480 + 460,20+ 240, 50, 32);
 		prueba7.transformarWall();
-		Entidad prueba8 = new Entidad(piso2, 520 + 542, 190, 40, 42);
+		Entidad prueba8 = new Entidad(piso2, 520 + 460,20+ 190, 40, 42);
 		prueba8.transformarWall();
-		Entidad prueba9 = new Entidad(piso1, 0 + 542 + 542, 205, 50, 322);
+		Entidad prueba9 = new Entidad(piso1, 0 + 500 + 480, 205, 50, 322);
 		prueba9.transformarWall();
-		Entidad prueba10 = new Entidad(piso1, 130 + 542 + 542 + 20, 210, 230, 324);
+		Entidad prueba10 = new Entidad(piso1, 130 + 500 + 480 + 20, 210, 230, 324);
 		prueba10.transformarWall();
 
 		///// SON 3 BLOQUE PARA ESTE ROOM
@@ -301,6 +301,7 @@ public class Ventana extends JFrame {
 
 		for (int a = 0; a < Walls.length; a++) {
 			Nivel1.add(Walls[a]);
+			Walls[a].setLocation(Walls[a].getX()-50, Walls[a].getY());
 //			Walls[a].setOpaque(false);
 		}
 
@@ -459,7 +460,7 @@ public class Ventana extends JFrame {
 			public void keyPressed(KeyEvent e) {
 				// TODO Auto-generated method stub
 				if (panelActual == Inicio) {
-//					System.out.println(e.getKeyCode()+""+e.getKeyChar());
+					System.out.println(e.getKeyCode()+""+e.getKeyChar());
 					if (e.getKeyCode() == 10) {
 						frame.remove(Inicio);
 						frame.repaint();
@@ -479,6 +480,9 @@ public class Ventana extends JFrame {
 				}
 				if (e.getKeyCode() == 75) {
 					k = true;
+				}
+				if (e.getKeyCode() == 74) {
+					j = true;
 				}
 			}
 
@@ -500,6 +504,9 @@ public class Ventana extends JFrame {
 				}
 				if (e.getKeyCode() == 75) {//
 					k = false;
+				}
+				if (e.getKeyCode() == 74) {
+					j = false;
 				}
 			}
 		});
@@ -530,17 +537,15 @@ public class Ventana extends JFrame {
 					EntKirby.setHsp(EntKirby.getHspWalk() * (-1));
 				}
 				// salto
-				if (arriba == true && coolDownSalto == 0) {
+				if (j == true && coolDownSalto == 0) {
 					EntKirby.setVsp(EntKirby.vspJump);
 					coolDownSalto = 4;
 					estomagoKirby = "aire";
 				}
-				if (!EntKirby.colision(prueba)) {
 					// bajar el label de kirby sumandole la gravedad
 					if (juegoPlay == true) {
 						EntKirby.setVsp(EntKirby.getVsp() + EntKirby.getGravedad());
 					}
-				}
 
 				for (int a = 0; a < Walls.length; a++) {
 					if (aireProy.colision(Walls[a])) {
@@ -681,6 +686,10 @@ public class Ventana extends JFrame {
 				// ANIMACION
 				// reestablecer la imagen dependiendo del estado del lado de kirby(el lado al
 				// que esta volteando)
+
+				
+				
+				///////////CAMARA
 				if(EntKirby.getX()-fondoContadorX>frame.getWidth()-EntKirby.getWidth()  && EntKirby.getHsp()>0)
 				{
 					Nivel1.setBounds(Nivel1.getX()-5, Nivel1.getY(), Nivel1.getWidth(), Nivel1.getHeight());
@@ -690,6 +699,9 @@ public class Ventana extends JFrame {
 					Nivel1.setBounds(Nivel1.getX()+5, Nivel1.getY(), Nivel1.getWidth(), Nivel1.getHeight());
 					fondoContadorX-=5;
 				}
+				///////////CAMARA
+				
+				
 				
 				if (kirbyLado == "derecha") {
 					EntKirby.setIcon(imgKirbyWalkRight);
