@@ -78,6 +78,11 @@ import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.awt.TextField;
 
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.BoxLayout;
 
 public class Ventana extends JFrame {
@@ -118,12 +123,14 @@ public class Ventana extends JFrame {
 	 */
 	public Ventana() {
 		initialize();
+		ReproducirSonido("Gourmet-Race-Kirby.wav");
 
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
+
 	private void initialize() {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 420, 391);
@@ -867,6 +874,16 @@ public class Ventana extends JFrame {
 		timerVariables.schedule(taskReducirVariables, 10, 70);
 
 	}
+	public void ReproducirSonido(String nombreSonido1){
+        try {
+         AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File(nombreSonido1).getAbsoluteFile());
+         Clip clip = AudioSystem.getClip();
+         clip.open(audioInputStream);
+         clip.start();
+        } catch(UnsupportedAudioFileException | IOException | LineUnavailableException ex) {
+          System.out.println("Error al reproducir el sonido.");
+        }
+    }
 
 ////////// FONDOS MAS LO SBLOQUES VACIOS DE CADA ROOM DEL NIVEL 1
 
