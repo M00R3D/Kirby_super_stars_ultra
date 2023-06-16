@@ -94,10 +94,53 @@ public class EntidadEnemigo extends JLabel {
 		this.setOpaque(true);this.setBackground(Color.pink);this.setIcon(null);
 	}
 	
+	public void gravitar() 
+	{
+		switch(tipo) 
+		{
+				case "Escoba":
+								ImageIcon imgDer = new ImageIcon("imgEscoba.gif");
+								ImageIcon imgIzq = new ImageIcon("imgEscobaIzq.gif");setIcon(imgDer);
+								Timer timer = new Timer();
+								TimerTask task = new TimerTask() {
+									@Override
+									public void run() {
+										
+
+										if (isHFlag()==true) {setHCol(true);}else {setHCol(false);}
+										if (isVFlag()==true) {setVCol(true);}else {setHCol(false);}
+										
+										setBounds(getX()+getHsp(),getY()+getVsp(),getWidth(),getHeight());
+										if(lado == "derecha") {setIcon(imgDer);}
+										if(lado == "izquierda") {setIcon(imgIzq);}
+										if(lado == "derecha"  ) {if(isHCol()==true) {setHsp(0);}else{setHsp(3);}}
+										else if(lado == "izquierda") {if(isHCol()==true) {setHsp(0);}else{setHsp(-3);}}
+										//else {setHsp(3);}
+										if(isVCol()==true) {setVsp(0);}else {setVsp(3);}//caer
+									}
+								};
+								timer.schedule(task, 10, 70);
+								Timer mover = new Timer();
+								TimerTask taskmover = new TimerTask() {
+									@Override
+									public void run() {
+										cambiarLado();
+									}
+								};
+								mover.schedule(taskmover, 10, 300);
+					break;
+					
+		}
+	}
 	
+
 	
 	//getters y setters
-	
+	public void cambiarLado() 
+	{
+		if(lado == "derecha") {lado="izquierda";}
+		if(lado == "izquierda") {lado="derecha";}
+	}
 	public int getGravedad() {
 		return gravedad;
 	}
@@ -108,7 +151,11 @@ public class EntidadEnemigo extends JLabel {
 		return hsp;
 	}
 	public void setHsp(int hsp) {
-		
-		
+		this.hsp=hsp;
 	}
+	public int getVsp() {
+		return vsp;
+	}
+	public void setVsp(int vsp) {
+		this.vsp=vsp;	}
 	}

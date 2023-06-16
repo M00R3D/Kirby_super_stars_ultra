@@ -287,7 +287,10 @@ public class Ventana extends JFrame {
 		puerta1.setVisible(false);
 		Nivel1.add(puerta1);
 		
-		
+		EntidadEnemigo escoba = new EntidadEnemigo(piso1, 279, 53, 50, 50);
+		escoba.tipo="Escoba";
+		escoba.gravitar();
+		Nivel1.add(escoba);
 		///// SON 3 BLOQUE PARA ESTE ROOM
 		Entidad Walls[] = new Entidad[10];
 		Walls[0] = prueba;
@@ -528,7 +531,8 @@ public class Ventana extends JFrame {
 			public void run() {
 				if(p==true) {System.out.println("kirbyX:  " + EntKirby.getX()+"kirbyY:  " + EntKirby.getY());}
 				if(puerta1.colision(EntKirby)==true && arriba==true) {Nivel1.removeAll();}
-				
+//				escoba.setHFlag(false);escoba.setVFlag(false);
+
 				
 				boolean kirbyColisionHFlag = false;
 				boolean kirbyColisionVFlag = false;
@@ -589,16 +593,19 @@ public class Ventana extends JFrame {
 						kirbyColisionVFlag = true;
 					}
 
-					if (new Entidad(imgBloqueEstrella, bloqueEstrella.getX() + bloqueEstrella.getHsp(),
-							bloqueEstrella.getY(), bloqueEstrella.getWidth(), bloqueEstrella.getHeight())
+					if (new Entidad(piso1, escoba.getX() + escoba.getHsp(),
+							escoba.getY(), escoba.getWidth(), escoba.getHeight())
 							.colision(Walls[a])) {
-						bloqueHFlag = true;
-					}
-					if (new Entidad(imgBloqueEstrella, bloqueEstrella.getX(),
-							bloqueEstrella.getY() + bloqueEstrella.getVsp(), bloqueEstrella.getWidth(),
-							bloqueEstrella.getHeight()).colision(Walls[a])) {
-						bloqueVFlag = true;
-					}
+						escoba.setHFlag(true);
+						escoba.cambiarLado();
+					}else {escoba.setVFlag(false);}
+					if (new Entidad(piso1, escoba.getX(),
+							escoba.getY() + escoba.getVsp(), escoba.getWidth(),
+							escoba.getHeight()).colision(Walls[a])) {
+						escoba.setVFlag(true);
+						escoba.setLocation(escoba.getX(), escoba.getY()-escoba.getHsp());
+					}else {escoba.setVFlag(false);}
+					
 
 //					if (new Entidad(imgItemGalleta, itemGalleta.getX() + itemGalleta.getHsp(),
 //							itemGalleta.getY(), itemGalleta.getWidth(),
