@@ -98,7 +98,7 @@ public class Ventana extends JFrame {
 	private boolean aireShootL = false;
 	private int fondoContadorX=0;
 	//// teclas
-	private boolean derecha = false, izquierda = false, arriba = false, k = false,j=false;
+	private boolean derecha = false, izquierda = false, arriba = false, k = false,j=false,p=false;
 	private boolean juegoPlay = true;
 	private int nivelParte = 1, coolDownTransicion = 0, coolDownSalto = 0;;
 
@@ -282,6 +282,12 @@ public class Ventana extends JFrame {
 		Entidad prueba10 = new Entidad(piso1, 130 + 500 + 480 + 20, 210, 230, 324);
 		prueba10.transformarWall();
 
+		Entidad puerta1 = new Entidad(piso1, 612, 193, 50, 70);
+		puerta1.transformarWall();
+		puerta1.setVisible(false);
+		Nivel1.add(puerta1);
+		
+		
 		///// SON 3 BLOQUE PARA ESTE ROOM
 		Entidad Walls[] = new Entidad[10];
 		Walls[0] = prueba;
@@ -460,7 +466,7 @@ public class Ventana extends JFrame {
 			public void keyPressed(KeyEvent e) {
 				// TODO Auto-generated method stub
 				if (panelActual == Inicio) {
-					System.out.println(e.getKeyCode()+""+e.getKeyChar());
+//					System.out.println(e.getKeyCode()+""+e.getKeyChar());
 					if (e.getKeyCode() == 10) {
 						frame.remove(Inicio);
 						frame.repaint();
@@ -483,6 +489,9 @@ public class Ventana extends JFrame {
 				}
 				if (e.getKeyCode() == 74) {
 					j = true;
+				}
+				if (e.getKeyCode() == 80) {
+					p = true;
 				}
 			}
 
@@ -508,13 +517,19 @@ public class Ventana extends JFrame {
 				if (e.getKeyCode() == 74) {
 					j = false;
 				}
+				if (e.getKeyCode() == 80) {
+					p = false;
+				}
 			}
 		});
 		Timer timerTicks = new Timer();
 		TimerTask repintar = new TimerTask() {
 			@Override
 			public void run() {
-
+				if(p==true) {System.out.println("kirbyX:  " + EntKirby.getX()+"kirbyY:  " + EntKirby.getY());}
+				if(puerta1.colision(EntKirby)==true && arriba==true) {Nivel1.removeAll();}
+				
+				
 				boolean kirbyColisionHFlag = false;
 				boolean kirbyColisionVFlag = false;
 				boolean bloqueHFlag = false;
