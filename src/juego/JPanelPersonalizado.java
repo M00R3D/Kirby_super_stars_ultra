@@ -72,7 +72,7 @@ public class JPanelPersonalizado extends JPanel {
 
 		case "Nivel1":
 			this.setBackground(Color.decode("#002190"));
-			this.setBounds(0, 0, 530, 433);
+			this.setBounds(0, 0, 763, 370);
 //			frame.getContentPane().add(Nivel1);
 			this.setLayout(null);
 			break;
@@ -80,9 +80,9 @@ public class JPanelPersonalizado extends JPanel {
 		case "Hudkirby":
 			ImageIcon Kirby_hud =new ImageIcon("kirby_HUD1.jpg");
 			JLabel Hud_estructura = new JLabel(Kirby_hud);
-			Hud_estructura.setBounds(0, 0, 544, 300);
+			Hud_estructura.setBounds(0, 0, 690, 400);
 			this.add(Hud_estructura);
-			this.setBounds(0, 430, 550, 200);
+			this.setBounds(0, 360, 540, 200);
 
 		}
 
