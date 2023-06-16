@@ -241,6 +241,7 @@ public class Ventana extends JFrame {
 		ImageIcon imgItemGalleta = new ImageIcon("imgItemGalleta.png");
 
 		JPanel Nivel1 = new JPanelPersonalizado("Nivel1");
+		JPanel Hudkirby = new JPanelPersonalizado("Hudkirby");
 
 		JLabel estadosLado = new JLabel("kirbyLado" + kirbyLado);
 		estadosLado.setBounds(40, 40, 150, 150);
@@ -421,9 +422,10 @@ public class Ventana extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				frame.remove(Jugadores);
 				frame.repaint();
-				frame.add(Nivel1);
-				frame.setBounds(100, 100, 530, 433);
-//				ReproducirSonido("Gourmet-Race-Kirby.wav");
+				frame.add(Nivel1, BorderLayout.CENTER);
+				frame.add(Hudkirby, BorderLayout.PAGE_END);
+				frame.setBounds(100, 100, 540, 565);
+				ReproducirSonido("Gourmet-Race-Kirby.wav");
 				frame.repaint();
 			}
 		});

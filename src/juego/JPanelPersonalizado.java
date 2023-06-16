@@ -43,10 +43,6 @@ public class JPanelPersonalizado extends JPanel {
 			im2.setIcon(img2);
 			this.add(im2);
 			break;
-		
-
-
-
 			
 		case "Partidas":
 			this.setBackground(Color.decode("#002190"));
@@ -80,6 +76,13 @@ public class JPanelPersonalizado extends JPanel {
 //			frame.getContentPane().add(Nivel1);
 			this.setLayout(null);
 			break;
+			
+		case "Hudkirby":
+			ImageIcon Kirby_hud =new ImageIcon("kirby_HUD1.jpg");
+			JLabel Hud_estructura = new JLabel(Kirby_hud);
+			Hud_estructura.setBounds(0, 0, 544, 300);
+			this.add(Hud_estructura);
+			this.setBounds(0, 430, 550, 200);
 
 		}
 
