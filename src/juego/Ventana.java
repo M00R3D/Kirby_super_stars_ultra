@@ -231,12 +231,12 @@ public class Ventana extends JFrame {
 		ImageIcon imgFondo2_1_7 = new ImageIcon("imgFondo2_1_7.png");
 		ImageIcon imgFondo2_1_8 = new ImageIcon("imgFondo2_1_8.png");
 		ImageIcon imgFondo2_1_9 = new ImageIcon("imgFondo2_1_9.png");
-
 		ImageIcon piso1 = new ImageIcon("piso1.png");
 		ImageIcon piso2 = new ImageIcon("piso2.png");
 		ImageIcon imgAire = new ImageIcon("Aire.gif");
 		ImageIcon imgAireIzq = new ImageIcon("AireIzq.gif");
 		ImageIcon imgBloqueEstrella = new ImageIcon("bloqueEstrella.png");
+		ImageIcon imgItemGalleta = new ImageIcon("imgItemGalleta.png");
 
 		JPanel Nivel1 = new JPanelPersonalizado("Nivel1");
 
@@ -251,6 +251,11 @@ public class Ventana extends JFrame {
 		JLabel estadosNivelParte = new JLabel("NivelParte" + nivelParte);
 		estadosNivelParte.setBounds(40, 50, 150, 150);
 
+		
+		
+		
+		
+		
 		Entidad EntKirby = new Entidad(imgKirbyBase, 22, 22, 65, 60);
 
 		/////// FONDO DE IMAGEN 2_1_9 PNG POR 530 X 433
@@ -340,7 +345,11 @@ public class Ventana extends JFrame {
 
 		Entidad aireProy = new Entidad(imgAire, -202, -220, 50, 30);
 		Entidad aireProyIzq = new Entidad(imgAireIzq, -202, -220, 50, 30);
-
+		
+		Entidad itemGalleta = new Entidad(imgItemGalleta, EntKirby.getX()+30,EntKirby.getY()-50, 40, 40);
+		itemGalleta.gravitar();
+		
+		
 		Nivel1.add(aireProy);
 		Nivel1.add(aireProyIzq);
 		
@@ -353,7 +362,7 @@ public class Ventana extends JFrame {
 		Nivel1.add(estadosNivelParte);
 		Nivel1.add(estadosEstomago);
 		Nivel1.add(EntKirby);
-
+		Nivel1.add(itemGalleta);
 		///// ESTO PARA QUE AGARRE EL FONDO 2_1_9
 //		Nivel1.add(fondo);
 //		Nivel1.add(fondo2);
@@ -495,6 +504,7 @@ public class Ventana extends JFrame {
 		TimerTask repintar = new TimerTask() {
 			@Override
 			public void run() {
+				
 				boolean kirbyColisionHFlag = false;
 				boolean kirbyColisionVFlag = false;
 				boolean bloqueHFlag = false;
@@ -566,6 +576,20 @@ public class Ventana extends JFrame {
 							bloqueEstrella.getHeight()).colision(Walls[a])) {
 						bloqueVFlag = true;
 					}
+					
+					
+					if (new Entidad(imgItemGalleta, itemGalleta.getX() + itemGalleta.getHsp(),
+							itemGalleta.getY(), itemGalleta.getWidth(),
+							itemGalleta.getHeight()).colision(Walls[a])) {
+							itemGalleta.setHFlag(true);
+					}
+					if (new Entidad(imgItemGalleta, itemGalleta.getX(),
+							itemGalleta.getY() + itemGalleta.getVsp(), itemGalleta.getWidth(),
+							itemGalleta.getHeight()).colision(Walls[a])) {
+							itemGalleta.setVFlag(true);
+					}
+					
+					
 				}
 				
 				

@@ -15,6 +15,13 @@ public class Entidad extends JLabel {
 		this.setBounds(x,y,w,h);
 		
 	}
+	public Entidad(Entidad e) 
+	{
+		super();
+		this.setIcon(e.getIcon());
+		this.setBounds(e.getX(),e.getY(),e.getWidth(),e.getHeight());
+		
+	}
 	public int gravedad=2,hsp=0,vsp=0,hspWalk=7,vspJump=-22,canJump=0;
 	public boolean HFlag=false,VFlag=false,HCol=false,VCol=false;
 	
@@ -122,12 +129,13 @@ public class Entidad extends JLabel {
 			public void run() {
 				if (isHFlag()==true) {setHCol(true);}else {setHCol(false);}
 				if (isVFlag()==true) {setVCol(true);}else {setHCol(false);}
-				if(isHCol()==true) {setHsp(0);}
-				if(isVCol()==true) {setVsp(0);}
+				if(isHCol()==true) {setHsp(0);}else {setHsp(3);}
+				if(isVCol()==true) {setVsp(0);}else {setVsp(3);}
 				setBounds(getX()+getHsp(),getY()+getVsp(),getWidth(),getHeight());
+				setHFlag(false);setVFlag(false);
 			}
 		};
-		timer.schedule(task, 10, 30);
+		timer.schedule(task, 10, 90);
 	}
 	
 
