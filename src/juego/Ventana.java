@@ -573,7 +573,17 @@ public class Ventana extends JFrame {
 					}
 
 				}
-
+				
+				
+				for (int a =0;a<items.length;a++) 
+				{
+					if(items[a].colision(EntKirby)) 
+					{
+						items[a].setBounds(-3,-3, 0, 0);
+					}
+				}
+				
+				
 				for (int a = 0; a < Walls.length; a++) {
 					if (aireProyIzq.colision(Walls[a])) {
 						aireShootL = false;
@@ -605,6 +615,7 @@ public class Ventana extends JFrame {
 						escoba.setVFlag(true);
 						escoba.setLocation(escoba.getX(), escoba.getY()-escoba.getHsp());
 					}else {escoba.setVFlag(false);}
+					
 					
 
 //					if (new Entidad(imgItemGalleta, itemGalleta.getX() + itemGalleta.getHsp(),
