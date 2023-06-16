@@ -79,10 +79,16 @@ public class JPanelPersonalizado extends JPanel {
 			
 		case "Hudkirby":
 			ImageIcon Kirby_hud =new ImageIcon("kirby_HUD1.jpg");
+			ImageIcon Hudkirby_Icon = new ImageIcon("kirby_icon_base.png");
 			JLabel Hud_estructura = new JLabel(Kirby_hud);
-			Hud_estructura.setBounds(0, 0, 690, 400);
+			JLabel iconsKirby = new JLabel(Hudkirby_Icon);
+			Hud_estructura.setBounds(0, 0, 563, 95);
+			iconsKirby.setBounds(22, 10, 64, 80);
+			iconsKirby.setVisible(true);
+			this.add(iconsKirby);
 			this.add(Hud_estructura);
-			this.setBounds(0, 360, 540, 200);
+			this.setBounds(0, 370, 540, 300);
+			this.setLayout(null);
 
 		}
 

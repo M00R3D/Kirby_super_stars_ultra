@@ -13,6 +13,7 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import java.awt.EventQueue;
@@ -241,11 +242,10 @@ public class Ventana extends JFrame {
 
 		JPanel Nivel1 = new JPanelPersonalizado("Nivel1");
 		JPanel Hudkirby = new JPanelPersonalizado("Hudkirby");
-		ImageIcon Hudkirby_Icon = new ImageIcon("kirby_icon_base.png");
-		JLabel imagenLabel = new JLabel(Hudkirby_Icon);
-		imagenLabel.setBounds(500, 500, 500, 500);
-		imagenLabel.setBackground(Color.GREEN);
-		Hudkirby.add(imagenLabel);
+		JLayeredPane capas = new JLayeredPane();
+		frame.getContentPane().add(capas);
+		
+		capas.add(Hudkirby, JLayeredPane.DEFAULT_LAYER);
 		JLabel estadosLado = new JLabel("kirbyLado" + kirbyLado);
 		estadosLado.setBounds(40, 40, 150, 150);
 		JLabel estadosEstomago = new JLabel("estomago:" + estomagoKirby);
