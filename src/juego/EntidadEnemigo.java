@@ -378,6 +378,134 @@ public class EntidadEnemigo extends JLabel {
 			};
 			mover3.schedule(taskmover3, 10, 300);
 			break;
+			
+			
+
+		case "Grizzon":
+			ImageIcon imgDer4 = new ImageIcon("imgGrizzonDer.gif");
+			ImageIcon imgIzq4 = new ImageIcon("imgGrizzonIzq.gif");
+			setIcon(imgDer4);
+			Timer timer4 = new Timer();
+			TimerTask task4 = new TimerTask() {
+				@Override
+				public void run() {
+
+					if (isHFlag() == true) {
+						setHCol(true);
+					} else {
+						setHCol(false);
+					}
+					if (isVFlag() == true) {
+						setVCol(true);
+					} else {
+						setHCol(false);
+					}
+
+					setBounds(getX() + getHsp(), getY() + getVsp(), getWidth(), getHeight());
+					if (lado == "derecha") {
+						setIcon(imgDer4);
+					}
+					if (lado == "izquierda") {
+						setIcon(imgIzq4);
+					}
+					if (lado == "derecha") {
+						if (isHCol() == true) {
+							setHsp(0);
+						} else {
+							setHsp(3);
+						}
+					} else if (lado == "izquierda") {
+						if (isHCol() == true) {
+							setHsp(0);
+						} else {
+							setHsp(-3);
+						}
+					}
+					// else {setHsp(3);}
+					if (isVCol() == true) {
+						setVsp(0);
+					} else {
+						setVsp(3);
+					} // caer
+				}
+			};
+			timer4.schedule(task4, 10, 70);
+			Timer mover4 = new Timer();
+			TimerTask taskmover4 = new TimerTask() {
+				@Override
+				public void run() {
+					cambiarLado();
+				}
+			};
+			mover4.schedule(taskmover4, 10, 300);
+			break;
+
+		case "Wadlee":
+			ImageIcon imgDer5 = new ImageIcon("imgWadleeDer.gif");
+			ImageIcon imgIzq5 = new ImageIcon("imgWadleeIzq.gif");
+			setIcon(imgDer5);
+			Timer timer5 = new Timer();
+			TimerTask task5 = new TimerTask() {
+				@Override
+				public void run() {
+
+					if (isHFlag() == true) {
+						setHCol(true);
+					} else {
+						setHCol(false);
+					}
+					if (isVFlag() == true) {
+						setVCol(true);
+					} else {
+						setHCol(false);
+					}
+
+					setBounds(getX() + getHsp(), getY() + getVsp(), getWidth(), getHeight());
+					if (lado == "derecha") {
+						setIcon(imgDer5);
+					}
+					if (lado == "izquierda") {
+						setIcon(imgIzq5);
+					}
+					if (lado == "derecha") {
+						if (isHCol() == true) {
+							setHsp(0);
+						} else {
+							setHsp(3);
+						}
+					} else if (lado == "izquierda") {
+						if (isHCol() == true) {
+							setHsp(0);
+						} else {
+							setHsp(-3);
+						}
+					}
+					// else {setHsp(3);}
+					if (isVCol() == true) {
+						setVsp(0);
+					} else {
+						setVsp(3);
+					} // caer
+				}
+			};
+			timer5.schedule(task5, 10, 70);
+			Timer mover5 = new Timer();
+			TimerTask taskmover5 = new TimerTask() {
+				@Override
+				public void run() {
+					cambiarLado();
+				}
+			};
+			mover5.schedule(taskmover5, 10, 300);
+			break;
+			
+			
+			
+			
+			
+			
+			
+			
 
 		}
 	}

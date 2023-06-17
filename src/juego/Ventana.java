@@ -329,7 +329,7 @@ public class Ventana extends JFrame {
 		Nivel1.add(pajarito);
 		
 
-		EntidadEnemigo Brunto = new EntidadEnemigo(piso1, 0, 53, 50, 50);
+		EntidadEnemigo Brunto = new EntidadEnemigo(piso1, 100, 53, 350, 50);
 		Brunto.tipo="Brunto";
 		Brunto.gravitar();
 		Nivel1.add(Brunto);
@@ -342,13 +342,22 @@ public class Ventana extends JFrame {
 		
 		
 		
-
+		EntidadEnemigo pajarito1 = new EntidadEnemigo(piso1, 100, 53, 350, 50);
+		pajarito1.tipo="Twizzy";
+		pajarito1.gravitar();
+		Nivel1.add(pajarito1);
 		
 		
+		EntidadEnemigo Grizzon = new EntidadEnemigo(piso1, 9, 253, 50, 50);
+		Grizzon.tipo="Grizzon";
+		Grizzon.gravitar();
+		Nivel1.add(Grizzon);
 		
-		
-		
-		
+	
+		EntidadEnemigo Wadlee = new EntidadEnemigo(piso1, 0, 153, 50, 50);
+		Wadlee.tipo="Wadlee";
+		Wadlee.gravitar();
+		Nivel1.add(Wadlee);
 		
 		
 		
@@ -415,11 +424,7 @@ public class Ventana extends JFrame {
 		Walls2[11]=pruebaLV2_12;
 		
 		
-		EntidadEnemigo pajarito1 = new EntidadEnemigo(piso1, 100, 53, 350, 50);
-		pajarito1.tipo="Twizzy";
-		pajarito1.gravitar();
-		Nivel1.add(pajarito1);
-		
+	
 	
 		for (int a = 0; a < Walls2.length; a++) {
 //			Walls2[a].setLocation(Walls[a].getX()-50, Walls[a].getY());
@@ -780,6 +785,9 @@ public class Ventana extends JFrame {
 				Nivel1.add(EntKirby);
 				Nivel1.add(puerta2);
 				Nivel1.add(Brunto);
+				Nivel1.add(Grizzon);
+				Nivel1.add(Wadlee);
+				Nivel1.add(pajarito1);
 				Nivel1.add(fondo4);
 				Nivel1.add(fondo5);
 				}
@@ -795,6 +803,10 @@ public class Ventana extends JFrame {
 				kirbyY=-250;
 				Nivel1.add(puerta3);
 				Nivel1.add(EntKirby);
+				Nivel1.add(Brunto);
+				Nivel1.add(Grizzon);
+				Nivel1.add(Wadlee);
+				Nivel1.add(pajarito1);
 				Nivel1.add(fondo6);
 				Nivel1.setSize(1000,2000);
 				}
@@ -963,6 +975,42 @@ public class Ventana extends JFrame {
 							
 						
 						
+							
+							if (new Entidad(piso1, Grizzon.getX() + Grizzon.getHsp(),
+									Grizzon.getY(), Grizzon.getWidth(), Grizzon.getHeight())
+									.colision(Walls[a])) {
+								Grizzon.setHFlag(true);
+								Grizzon.cambiarLado();
+							}else {Grizzon.setVFlag(false);}
+							if (new Entidad(piso1, Grizzon.getX(),
+									Grizzon.getY() + Grizzon.getVsp(), Grizzon.getWidth(),
+									Grizzon.getHeight()).colision(Walls[a])) {
+								Grizzon.setVFlag(true);
+								Grizzon.setLocation(Grizzon.getX(), Grizzon.getY()-Grizzon.getHsp());
+							}else {Grizzon.setVFlag(false);}
+		
+							
+							
+							
+							if (new Entidad(piso1, Wadlee.getX() + Wadlee.getHsp(),
+									Wadlee.getY(), Wadlee.getWidth(), Wadlee.getHeight())
+									.colision(Walls2[a])) {
+								Wadlee.setHFlag(true);
+								Wadlee.cambiarLado();
+							}else {Wadlee.setVFlag(false);}
+							if (new Entidad(piso1, Wadlee.getX(),
+									Wadlee.getY() + Wadlee.getVsp(), Wadlee.getWidth(),
+									Wadlee.getHeight()).colision(Walls2[a])) {
+								Wadlee.setVFlag(true);
+								Wadlee.setLocation(Wadlee.getX(), Wadlee.getY()-Wadlee.getHsp());
+							}else {Wadlee.setVFlag(false);}
+							
+							
+							
+							
+							
+							
+							
 					
 							
 							
