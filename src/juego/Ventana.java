@@ -6,6 +6,7 @@
  * SEMESTRE : 4
  */
 package juego;
+import java.util.Random;
 
 import java.awt.EventQueue;
 import java.awt.Image;
@@ -93,6 +94,7 @@ public class Ventana extends JFrame {
 	private int kirbyX = 200, kirbyY = 110;
 	private String kirbyLado = "derecha";/// estado de kirby(a donde esta mirando)
 	private Boolean kirbyColisionH = false, kirbyColisionV = false;/// estado de kirby(colisiones vertical y horizontal)
+	private int kirbyVida=50,kirbyVidaMax=200,kirbyScore=0;
 	private boolean bloqueH = false, bloqueV = false;
 	private String estomagoKirby = "vacio";
 	private boolean aireShootR = false;
@@ -244,9 +246,29 @@ public class Ventana extends JFrame {
 		JPanel Nivel1 = new JPanelPersonalizado("Nivel1");
 		JPanel Hudkirby = new JPanelPersonalizado("Hudkirby");
 		JLayeredPane capas = new JLayeredPane();
+		JLabel barraVida = new JLabel();
+		barraVida.setBounds(116, 30, 133*(kirbyVida/kirbyVidaMax), 19);		
+		barraVida.setOpaque(true);
+		barraVida.setBackground(Color.red);
 		frame.getContentPane().add(capas);
 		capas.setBounds(capas.getX(),capas.getY()-50,capas.getWidth(),capas.getHeight());
+		ImageIcon Kirby_hud =new ImageIcon("kirby_HUD1.png");
+		ImageIcon Hudkirby_Icon = new ImageIcon("kirby_icon_base.png");
+		JLabel Hud_estructura = new JLabel(Kirby_hud);
+		JLabel iconsKirby = new JLabel(Hudkirby_Icon);
+		JLabel puntaje = new JLabel(Integer.toString(kirbyScore));
+		puntaje.setBounds(413,24,118,19);
+		Hud_estructura.setBounds(0, 0, 563, 95);
+		iconsKirby.setBounds(22, 10, 64, 80);
+		iconsKirby.setVisible(true);
+		
+		Hudkirby.add(puntaje);
+		Hudkirby.add(barraVida);
+		Hudkirby.add(iconsKirby);
+		Hudkirby.add(Hud_estructura);
 		capas.add(Hudkirby, JLayeredPane.DEFAULT_LAYER);
+		
+		
 		JLabel estadosLado = new JLabel("kirbyLado" + kirbyLado);
 		estadosLado.setBounds(40, 40, 150, 150);
 		JLabel estadosEstomago = new JLabel("estomago:" + estomagoKirby);
@@ -538,12 +560,9 @@ public class Ventana extends JFrame {
 			items[a].gravitar();
 			Nivel1.add(items[a]);
 		}
-		Entidad kirbyCam=new Entidad(EntKirby);
-		kirbyCam.setVisible(false);
-		frame.add(kirbyCam);
 		Nivel1.add(aireProy);
 		Nivel1.add(aireProyIzq);
-
+		
 		Nivel1.add(bloqueEstrella);
 
 		Nivel1.add(estadosColisionH);
@@ -707,6 +726,9 @@ public class Ventana extends JFrame {
 		TimerTask repintar = new TimerTask() {
 			@Override
 			public void run() {
+				barraVida.setBounds(116, 30, 133*(kirbyVida)/kirbyVidaMax, 19);
+				puntaje.setText(Integer.toString(kirbyScore));
+				Hudkirby.repaint();
 				if(p==true) {System.out.println("kirbyX:  " + EntKirby.getX()+"kirbyY:  " + EntKirby.getY());}
 				if(puerta1.colision(EntKirby)==true && arriba==true) {Nivel1.removeAll();
 				nivel=2;
@@ -741,6 +763,7 @@ public class Ventana extends JFrame {
 				estadosEstomago.setText("estomago:" + estomagoKirby);
 				// Reacomodar el label de kirby(entidad)
 				EntKirby.setBounds(kirbyX, kirbyY, EntKirby.getWidth(), EntKirby.getHeight());
+				
 				// dependiendo del estado lado, se modifica la variable hsp de la entidad kirby
 				if (derecha == true) {
 					kirbyLado = "derecha";
@@ -774,6 +797,9 @@ public class Ventana extends JFrame {
 				{
 					if(items[a].colision(EntKirby)) 
 					{
+						kirbyVida+=20;
+						Random random = new Random();
+						kirbyScore+=random.nextInt(201);
 						items[a].setBounds(-3,-3, 0, 0);
 					}
 				}
