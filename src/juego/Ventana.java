@@ -102,7 +102,7 @@ public class Ventana extends JFrame {
 	private boolean derecha = false, izquierda = false, arriba = false, k = false,j=false,p=false;
 	private boolean juegoPlay = true;
 	private int nivelParte = 1, coolDownTransicion = 0, coolDownSalto = 0;;
-
+	private int nivel=1;
 	/**
 	 * Launch the application.
 	 */
@@ -239,12 +239,13 @@ public class Ventana extends JFrame {
 		ImageIcon imgAireIzq = new ImageIcon("AireIzq.gif");
 		ImageIcon imgBloqueEstrella = new ImageIcon("bloqueEstrella.png");
 		ImageIcon imgItemGalleta = new ImageIcon("imgItemGalleta.png");
+		ImageIcon imgFinish = new ImageIcon("Finish.gif");
 
 		JPanel Nivel1 = new JPanelPersonalizado("Nivel1");
 		JPanel Hudkirby = new JPanelPersonalizado("Hudkirby");
 		JLayeredPane capas = new JLayeredPane();
 		frame.getContentPane().add(capas);
-		
+		capas.setBounds(capas.getX(),capas.getY()-50,capas.getWidth(),capas.getHeight());
 		capas.add(Hudkirby, JLayeredPane.DEFAULT_LAYER);
 		JLabel estadosLado = new JLabel("kirbyLado" + kirbyLado);
 		estadosLado.setBounds(40, 40, 150, 150);
@@ -282,9 +283,9 @@ public class Ventana extends JFrame {
 		Entidad prueba10 = new Entidad(piso1, 130 + 500 + 480 + 20, 210, 230, 324);
 		prueba10.transformarWall();
 
-		Entidad puerta1 = new Entidad(piso1, 612, 193, 50, 70);
-		puerta1.transformarWall();
-		puerta1.setVisible(false);
+		Entidad puerta1 = new Entidad(imgFinish, 1241, 148, 50, 70);
+//		puerta1.transformarWall();
+		puerta1.setVisible(true);
 		Nivel1.add(puerta1);
 		
 		
@@ -335,7 +336,50 @@ public class Ventana extends JFrame {
 			Walls[a].setLocation(Walls[a].getX()-50, Walls[a].getY());
 //			Walls[a].setOpaque(false);
 		}
+		
+		Entidad pruebaLV2_ = new Entidad(piso1,0,280,322,32);
+		pruebaLV2_. transformarWall();
+		Entidad pruebaLV2_2 = new Entidad(piso1,300,280,422,32);
+		pruebaLV2_2. transformarWall();
+		 Entidad pruebaLV2_3 = new Entidad(piso1,720,200,122,32);
+		pruebaLV2_3. transformarWall();
+		 Entidad pruebaLV2_4 = new Entidad(piso1,720,220,24,152);
+		pruebaLV2_4. transformarWall();
+		Entidad pruebaLV2_5 = new Entidad(piso1, 50+862, 280, 152, 32);
+		pruebaLV2_5.transformarWall();
+		Entidad pruebaLV2_6 = new Entidad(piso1, 420+862, 210, 282, 22);
+		pruebaLV2_6.transformarWall();
+		Entidad pruebaLV2_7 = new Entidad(piso1, 180+862, 160, 50, 132);
+		pruebaLV2_7.transformarWall();
+		Entidad pruebaLV2_8 = new Entidad(piso1, 10+862, 160, 50, 132);
+		pruebaLV2_8.transformarWall();
+		Entidad pruebaLV2_9 = new Entidad(piso1, 200+862, 245, 150, 22);
+		pruebaLV2_9.transformarWall();
+		Entidad pruebaLV2_10 = new Entidad(piso1, 330+862, 243, 50, 22);
+		pruebaLV2_10.transformarWall();
+		Entidad pruebaLV2_11 = new Entidad(piso1, 380+862, 235, 80, 22);
+		pruebaLV2_11.transformarWall();
+		Entidad pruebaLV2_12 = new Entidad(piso2, 650+862, 110, 52, 122);
+		pruebaLV2_12.transformarWall();
+		Entidad Walls2[] = new Entidad[12];
+		Walls2[0]=pruebaLV2_;
+		Walls2[1]=pruebaLV2_2;
+		Walls2[2]=pruebaLV2_3;
+		Walls2[3]=pruebaLV2_4;
+		Walls2[4]=pruebaLV2_5;
+		Walls2[5]=pruebaLV2_6;
+		Walls2[6]=pruebaLV2_7;
+		Walls2[7]=pruebaLV2_8;
+		Walls2[8]=pruebaLV2_9;
+		Walls2[9]=pruebaLV2_10;
+		Walls2[10]=pruebaLV2_11;
+		Walls2[11]=pruebaLV2_12;
 
+		for (int a = 0; a < Walls2.length; a++) {
+//			Walls2[a].setLocation(Walls[a].getX()-50, Walls[a].getY());
+			Walls2[a].transformarWall();
+			Walls2[a].setOpaque(true);
+		}
 		Entidad bloqueEstrella = new Entidad(imgBloqueEstrella, 180, 180, 75, 65);
 
 		///// ESTO ES PARA QUE NO SE VEA LOS BLOQUES ROJOS Y VERDES
@@ -373,7 +417,7 @@ public class Ventana extends JFrame {
 
 		Entidad itemGalleta = new Entidad(imgItemGalleta, EntKirby.getX() + 30, EntKirby.getY() - 50, 40, 40);
 		itemGalleta.gravitar();
-
+		
 		Entidad items[] = new Entidad[3];
 		items[0] = new Entidad(imgItemGalleta, EntKirby.getX() + 30, EntKirby.getY() - 50, 40, 40);
 		items[1] = new Entidad(imgItemGalleta, EntKirby.getX() + 60, EntKirby.getY() - 50, 40, 40);
@@ -552,7 +596,18 @@ public class Ventana extends JFrame {
 			@Override
 			public void run() {
 				if(p==true) {System.out.println("kirbyX:  " + EntKirby.getX()+"kirbyY:  " + EntKirby.getY());}
-				if(puerta1.colision(EntKirby)==true && arriba==true) {Nivel1.removeAll();}
+				if(puerta1.colision(EntKirby)==true && arriba==true) {Nivel1.removeAll();
+				nivel=2;
+				EntKirby.setLocation(50, 50);
+				
+				fondo5.setBounds(fondo4.getWidth(), 0,fondo5.getWidth(),fondo5.getHeight());
+				
+				for (int a = 0; a < Walls2.length; a++) {
+					Nivel1.add(Walls2[a]);}
+				Nivel1.add(EntKirby);
+				Nivel1.add(fondo4);
+				Nivel1.add(fondo5);
+				}
 //				escoba.setHFlag(false);escoba.setVFlag(false);
 
 				
@@ -605,120 +660,194 @@ public class Ventana extends JFrame {
 					}
 				}
 				
-				
-				for (int a = 0; a < Walls.length; a++) {
-					if (aireProyIzq.colision(Walls[a])) {
-						aireShootL = false;
-						aireProyIzq.setLocation(-200, -200);
-					}
-
-					if (new Entidad(imgKirbyBase, EntKirby.getX() + EntKirby.getHsp(), EntKirby.getY(),
-							EntKirby.getWidth(), EntKirby.getHeight()).colision(Walls[a])
-							|| new Entidad(imgKirbyBase, EntKirby.getX() + EntKirby.getHsp(), EntKirby.getY(),
-									EntKirby.getWidth(), EntKirby.getHeight()).colision(bloqueEstrella)) {
-						kirbyColisionHFlag = true;
-					}
-					if (new Entidad(imgKirbyBase, EntKirby.getX(), EntKirby.getY() + EntKirby.getVsp(),
-							EntKirby.getWidth(), EntKirby.getHeight()).colision(Walls[a])
-							|| new Entidad(imgKirbyBase, EntKirby.getX(), EntKirby.getY() + EntKirby.getVsp(),
-									EntKirby.getWidth(), EntKirby.getHeight()).colision(bloqueEstrella)) {
-						kirbyColisionVFlag = true;
-					}
-					
-					
-					///////ENEMIGOS EN EL ROOM
-
-					if (new Entidad(piso1, escoba.getX() + escoba.getHsp(),
-							escoba.getY(), escoba.getWidth(), escoba.getHeight())
-							.colision(Walls[a])) {
-						escoba.setHFlag(true);
-						escoba.cambiarLado();
-					}else {escoba.setVFlag(false);}
-					if (new Entidad(piso1, escoba.getX(),
-							escoba.getY() + escoba.getVsp(), escoba.getWidth(),
-							escoba.getHeight()).colision(Walls[a])) {
-						escoba.setVFlag(true);
-						escoba.setLocation(escoba.getX(), escoba.getY()-escoba.getHsp());
-					}else {escoba.setVFlag(false);}
-					
-					
-					
-					
-					if (new Entidad(piso1, pajarito.getX() + pajarito.getHsp(),
-							pajarito.getY(), pajarito.getWidth(), pajarito.getHeight())
-							.colision(Walls[a])) {
-						pajarito.setHFlag(true);
-						pajarito.cambiarLado();
-					}else {pajarito.setVFlag(false);}
-					if (new Entidad(piso1, pajarito.getX(),
-							pajarito.getY() + pajarito.getVsp(), pajarito.getWidth(),
-							pajarito.getHeight()).colision(Walls[a])) {
-						pajarito.setVFlag(true);
-						pajarito.setLocation(pajarito.getX(), pajarito.getY()-pajarito.getHsp());
-					}else {pajarito.setVFlag(false);}
-					
-					
-					if (new Entidad(piso1, Brunto.getX() + Brunto.getHsp(),
-							Brunto.getY(), Brunto.getWidth(), Brunto.getHeight())
-							.colision(Walls[a])) {
-						Brunto.setHFlag(true);
-						Brunto.cambiarLado();
-					}else {Brunto.setVFlag(false);}
-					if (new Entidad(piso1, Brunto.getX(),
-							Brunto.getY() + Brunto.getVsp(), Brunto.getWidth(),
-							Brunto.getHeight()).colision(Walls[a])) {
-						Brunto.setVFlag(true);
-						Brunto.setLocation(Brunto.getX(), Brunto.getY()-Brunto.getHsp());
-					}else {Brunto.setVFlag(false);}
-					
-					
-					if (new Entidad(piso1, Cappy.getX() + Cappy.getHsp(),
-							Cappy.getY(), Cappy.getWidth(), Cappy.getHeight())
-							.colision(Walls[a])) {
-						Cappy.setHFlag(true);
-						Cappy.cambiarLado();
-					}else {Cappy.setVFlag(false);}
-					if (new Entidad(piso1, Cappy.getX(),
-							Cappy.getY() + Cappy.getVsp(), Cappy.getWidth(),
-							Cappy.getHeight()).colision(Walls[a])) {
-						Cappy.setVFlag(true);
-						Cappy.setLocation(Cappy.getX(), Cappy.getY()-Cappy.getHsp());
-					}else {Cappy.setVFlag(false);}
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-
-//					if (new Entidad(imgItemGalleta, itemGalleta.getX() + itemGalleta.getHsp(),
-//							itemGalleta.getY(), itemGalleta.getWidth(),
-//							itemGalleta.getHeight()).colision(Walls[a])) {
-//							itemGalleta.setHFlag(true);
-//					}
-//					if (new Entidad(imgItemGalleta, itemGalleta.getX(),
-//							itemGalleta.getY() + itemGalleta.getVsp(), itemGalleta.getWidth(),
-//							itemGalleta.getHeight()).colision(Walls[a])) {
-//							itemGalleta.setVFlag(true);
-//					}
-					for (int a1 = 0; a1 < items.length; a1++) {
-						if (new Entidad(items[a1].getIcon(), items[a1].getX() + items[a1].getHsp(), items[a1].getY(),
-								items[a1].getWidth(), items[a1].getHeight()).colision(Walls[a])) {
-							items[a1].setHFlag(true);
+				if(nivel==1)
+				{
+						for (int a = 0; a < Walls.length; a++) {
+							if (aireProyIzq.colision(Walls[a])) {
+								aireShootL = false;
+								aireProyIzq.setLocation(-200, -200);
+							}
+		
+							if (new Entidad(imgKirbyBase, EntKirby.getX() + EntKirby.getHsp(), EntKirby.getY(),
+									EntKirby.getWidth(), EntKirby.getHeight()).colision(Walls[a])
+									|| new Entidad(imgKirbyBase, EntKirby.getX() + EntKirby.getHsp(), EntKirby.getY(),
+											EntKirby.getWidth(), EntKirby.getHeight()).colision(bloqueEstrella)) {
+								kirbyColisionHFlag = true;
+							}
+							if (new Entidad(imgKirbyBase, EntKirby.getX(), EntKirby.getY() + EntKirby.getVsp(),
+									EntKirby.getWidth(), EntKirby.getHeight()).colision(Walls[a])
+									|| new Entidad(imgKirbyBase, EntKirby.getX(), EntKirby.getY() + EntKirby.getVsp(),
+											EntKirby.getWidth(), EntKirby.getHeight()).colision(bloqueEstrella)) {
+								kirbyColisionVFlag = true;
+							}
+							///////ENEMIGOS EN EL ROOM
+		
+							if (new Entidad(piso1, escoba.getX() + escoba.getHsp(),
+									escoba.getY(), escoba.getWidth(), escoba.getHeight())
+									.colision(Walls[a])) {
+								escoba.setHFlag(true);
+								escoba.cambiarLado();
+							}else {escoba.setVFlag(false);}
+							if (new Entidad(piso1, escoba.getX(),
+									escoba.getY() + escoba.getVsp(), escoba.getWidth(),
+									escoba.getHeight()).colision(Walls[a])) {
+								escoba.setVFlag(true);
+								escoba.setLocation(escoba.getX(), escoba.getY()-escoba.getHsp());
+							}else {escoba.setVFlag(false);}
+							
+							if (new Entidad(piso1, pajarito.getX() + pajarito.getHsp(),
+									pajarito.getY(), pajarito.getWidth(), pajarito.getHeight())
+									.colision(Walls[a])) {
+								pajarito.setHFlag(true);
+								pajarito.cambiarLado();
+							}else {pajarito.setVFlag(false);}
+							if (new Entidad(piso1, pajarito.getX(),
+									pajarito.getY() + pajarito.getVsp(), pajarito.getWidth(),
+									pajarito.getHeight()).colision(Walls[a])) {
+								pajarito.setVFlag(true);
+								pajarito.setLocation(pajarito.getX(), pajarito.getY()-pajarito.getHsp());
+							}else {pajarito.setVFlag(false);}
+							
+							
+							if (new Entidad(piso1, Brunto.getX() + Brunto.getHsp(),
+									Brunto.getY(), Brunto.getWidth(), Brunto.getHeight())
+									.colision(Walls[a])) {
+								Brunto.setHFlag(true);
+								Brunto.cambiarLado();
+							}else {Brunto.setVFlag(false);}
+							if (new Entidad(piso1, Brunto.getX(),
+									Brunto.getY() + Brunto.getVsp(), Brunto.getWidth(),
+									Brunto.getHeight()).colision(Walls[a])) {
+								Brunto.setVFlag(true);
+								Brunto.setLocation(Brunto.getX(), Brunto.getY()-Brunto.getHsp());
+							}else {Brunto.setVFlag(false);}
+							
+							
+							if (new Entidad(piso1, Cappy.getX() + Cappy.getHsp(),
+									Cappy.getY(), Cappy.getWidth(), Cappy.getHeight())
+									.colision(Walls[a])) {
+								Cappy.setHFlag(true);
+								Cappy.cambiarLado();
+							}else {Cappy.setVFlag(false);}
+							if (new Entidad(piso1, Cappy.getX(),
+									Cappy.getY() + Cappy.getVsp(), Cappy.getWidth(),
+									Cappy.getHeight()).colision(Walls[a])) {
+								Cappy.setVFlag(true);
+								Cappy.setLocation(Cappy.getX(), Cappy.getY()-Cappy.getHsp());
+							}else {Cappy.setVFlag(false);}
+		
+							for (int a1 = 0; a1 < items.length; a1++) {
+								if (new Entidad(items[a1].getIcon(), items[a1].getX() + items[a1].getHsp(), items[a1].getY(),
+										items[a1].getWidth(), items[a1].getHeight()).colision(Walls[a])) {
+									items[a1].setHFlag(true);
+								}
+								if (new Entidad(items[a1].getIcon(), items[a1].getX(), items[a1].getY() + items[a1].getVsp(),
+										items[a1].getWidth(), items[a1].getHeight()).colision(Walls[a])) {
+									items[a1].setVFlag(true);
+								}
+							}
+		
 						}
-						if (new Entidad(items[a1].getIcon(), items[a1].getX(), items[a1].getY() + items[a1].getVsp(),
-								items[a1].getWidth(), items[a1].getHeight()).colision(Walls[a])) {
-							items[a1].setVFlag(true);
-						}
-					}
-
 				}
-
+				
+				//nivel2
+				if(nivel==2)
+				{
+						for (int a = 0; a < Walls2.length; a++) {
+							if (aireProyIzq.colision(Walls2[a])) {
+								aireShootL = false;
+								aireProyIzq.setLocation(-200, -200);
+							}
+		
+							if (new Entidad(imgKirbyBase, EntKirby.getX() + EntKirby.getHsp(), EntKirby.getY(),
+									EntKirby.getWidth(), EntKirby.getHeight()).colision(Walls2[a])
+									|| new Entidad(imgKirbyBase, EntKirby.getX() + EntKirby.getHsp(), EntKirby.getY(),
+											EntKirby.getWidth(), EntKirby.getHeight()).colision(bloqueEstrella)) {
+								kirbyColisionHFlag = true;
+							}
+							if (new Entidad(imgKirbyBase, EntKirby.getX(), EntKirby.getY() + EntKirby.getVsp(),
+									EntKirby.getWidth(), EntKirby.getHeight()).colision(Walls2[a])
+									|| new Entidad(imgKirbyBase, EntKirby.getX(), EntKirby.getY() + EntKirby.getVsp(),
+											EntKirby.getWidth(), EntKirby.getHeight()).colision(bloqueEstrella)) {
+								kirbyColisionVFlag = true;
+							}
+							///////ENEMIGOS EN EL ROOM
+		
+//							if (new Entidad(piso1, escoba.getX() + escoba.getHsp(),
+//									escoba.getY(), escoba.getWidth(), escoba.getHeight())
+//									.colision(Walls2[a])) {
+//								escoba.setHFlag(true);
+//								escoba.cambiarLado();
+//							}else {escoba.setVFlag(false);}
+//							if (new Entidad(piso1, escoba.getX(),
+//									escoba.getY() + escoba.getVsp(), escoba.getWidth(),
+//									escoba.getHeight()).colision(Walls2[a])) {
+//								escoba.setVFlag(true);
+//								escoba.setLocation(escoba.getX(), escoba.getY()-escoba.getHsp());
+//							}else {escoba.setVFlag(false);}
+//							
+//							if (new Entidad(piso1, pajarito.getX() + pajarito.getHsp(),
+//									pajarito.getY(), pajarito.getWidth(), pajarito.getHeight())
+//									.colision(Walls2[a])) {
+//								pajarito.setHFlag(true);
+//								pajarito.cambiarLado();
+//							}else {pajarito.setVFlag(false);}
+//							if (new Entidad(piso1, pajarito.getX(),
+//									pajarito.getY() + pajarito.getVsp(), pajarito.getWidth(),
+//									pajarito.getHeight()).colision(Walls2[a])) {
+//								pajarito.setVFlag(true);
+//								pajarito.setLocation(pajarito.getX(), pajarito.getY()-pajarito.getHsp());
+//							}else {pajarito.setVFlag(false);}
+//							
+							
+//							if (new Entidad(piso1, Brunto.getX() + Brunto.getHsp(),
+//									Brunto.getY(), Brunto.getWidth(), Brunto.getHeight())
+//									.colision(Walls2[a])) {
+//								Brunto.setHFlag(true);
+//								Brunto.cambiarLado();
+//							}else {Brunto.setVFlag(false);}
+//							if (new Entidad(piso1, Brunto.getX(),
+//									Brunto.getY() + Brunto.getVsp(), Brunto.getWidth(),
+//									Brunto.getHeight()).colision(Walls2[a])) {
+//								Brunto.setVFlag(true);
+//								Brunto.setLocation(Brunto.getX(), Brunto.getY()-Brunto.getHsp());
+//							}else {Brunto.setVFlag(false);}
+//							
+//							
+//							if (new Entidad(piso1, Cappy.getX() + Cappy.getHsp(),
+//									Cappy.getY(), Cappy.getWidth(), Cappy.getHeight())
+//									.colision(Walls2[a])) {
+//								Cappy.setHFlag(true);
+//								Cappy.cambiarLado();
+//							}else {Cappy.setVFlag(false);}
+//							if (new Entidad(piso1, Cappy.getX(),
+//									Cappy.getY() + Cappy.getVsp(), Cappy.getWidth(),
+//									Cappy.getHeight()).colision(Walls2[a])) {
+//								Cappy.setVFlag(true);
+//								Cappy.setLocation(Cappy.getX(), Cappy.getY()-Cappy.getHsp());
+//							}else {Cappy.setVFlag(false);}
+//		
+//							for (int a1 = 0; a1 < items.length; a1++) {
+//								if (new Entidad(items[a1].getIcon(), items[a1].getX() + items[a1].getHsp(), items[a1].getY(),
+//										items[a1].getWidth(), items[a1].getHeight()).colision(Walls2[a])) {
+//									items[a1].setHFlag(true);
+//								}
+//								if (new Entidad(items[a1].getIcon(), items[a1].getX(), items[a1].getY() + items[a1].getVsp(),
+//										items[a1].getWidth(), items[a1].getHeight()).colision(Walls2[a])) {
+//									items[a1].setVFlag(true);
+//								}
+//							}
+		
+						}
+				}
+				
+				
+				
+				
+				
+				
+				
+				
 				if (kirbyColisionHFlag == true) {
 					kirbyColisionH = true;
 				} else {
@@ -801,16 +930,16 @@ public class Ventana extends JFrame {
 				
 				
 				///////////CAMARA
-				if(EntKirby.getX()-fondoContadorX>frame.getWidth()-EntKirby.getWidth()  && EntKirby.getHsp()>0)
-				{
-					Nivel1.setBounds(Nivel1.getX()-5, Nivel1.getY(), Nivel1.getWidth(), Nivel1.getHeight());
-					fondoContadorX+=5;
-				}if(EntKirby.getX()-fondoContadorX<0+EntKirby.getWidth()-40  && EntKirby.getHsp()<0)
-				{
-					Nivel1.setBounds(Nivel1.getX()+5, Nivel1.getY(), Nivel1.getWidth(), Nivel1.getHeight());
-					fondoContadorX-=5;
-				}
-				///////////CAMARA
+if(EntKirby.getX()-fondoContadorX>frame.getWidth()-EntKirby.getWidth()  && EntKirby.getHsp()>0)
+{
+	Nivel1.setBounds(Nivel1.getX()-12, Nivel1.getY(), Nivel1.getWidth(), Nivel1.getHeight());
+	fondoContadorX+=12;
+}if(EntKirby.getX()-fondoContadorX<0+EntKirby.getWidth()-40  && EntKirby.getHsp()<0)
+{
+	Nivel1.setBounds(Nivel1.getX()+12, Nivel1.getY(), Nivel1.getWidth(), Nivel1.getHeight());
+	fondoContadorX-=12;
+}
+///////////CAMARA
 				
 				
 				

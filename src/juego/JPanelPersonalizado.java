@@ -78,7 +78,7 @@ public class JPanelPersonalizado extends JPanel {
 			break;
 			
 		case "Hudkirby":
-			ImageIcon Kirby_hud =new ImageIcon("kirby_HUD1.jpg");
+			ImageIcon Kirby_hud =new ImageIcon("kirby_HUD1.png");
 			ImageIcon Hudkirby_Icon = new ImageIcon("kirby_icon_base.png");
 			JLabel Hud_estructura = new JLabel(Kirby_hud);
 			JLabel iconsKirby = new JLabel(Hudkirby_Icon);
