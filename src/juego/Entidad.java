@@ -124,7 +124,7 @@ public class Entidad extends JLabel {
 	public void setCanJump(int canJump) {
 		this.canJump = canJump;
 	}
-	
+
 	public void gravitar() 
 	{
 		Timer timer = new Timer();

@@ -37,6 +37,54 @@ public class EntidadEnemigo extends JLabel {
 
 	public int gravedad = 2, hsp = 0, vsp = 0, hspWalk = 7, vspJump = -22, canJump = 0;
 	public boolean HFlag = false, VFlag = false, HCol = false, VCol = false;
+	public int vida;
+	public String getLado() {
+		return lado;
+	}
+
+	public void setLado(String lado) {
+		this.lado = lado;
+	}
+
+	public String getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
+
+	public int getHspWalk() {
+		return hspWalk;
+	}
+
+	public void setHspWalk(int hspWalk) {
+		this.hspWalk = hspWalk;
+	}
+
+	public int getVspJump() {
+		return vspJump;
+	}
+
+	public void setVspJump(int vspJump) {
+		this.vspJump = vspJump;
+	}
+
+	public int getCanJump() {
+		return canJump;
+	}
+
+	public void setCanJump(int canJump) {
+		this.canJump = canJump;
+	}
+
+	public int getVida() {
+		return vida;
+	}
+
+	public void setVida(int vida) {
+		this.vida = vida;
+	}
 
 	public boolean isHFlag() {
 		return HFlag;
