@@ -358,7 +358,14 @@ public class Ventana extends JFrame {
 		Wadlee.tipo="Wadlee";
 		Wadlee.gravitar();
 		Nivel1.add(Wadlee);
-		
+		EntidadEnemigo enemigos[] = new EntidadEnemigo[7];
+		enemigos[0]=escoba;
+		enemigos[1]=pajarito;
+		enemigos[2]=Brunto;
+		enemigos[3]=Cappy;
+		enemigos[4]=pajarito1;
+		enemigos[5]=Grizzon;
+		enemigos[6]=Wadlee;
 		
 		
 		///// SON 3 BLOQUE PARA ESTE ROOM
@@ -1199,9 +1206,18 @@ public class Ventana extends JFrame {
 //									items[a1].setVFlag(true);
 //								}
 //							}
-		
+							
 						
-				
+				for (int a =0;a<enemigos.length;a++) 
+				{
+					if(aireProy.colisionEnm(enemigos[a])) 
+					{
+						enemigos[a].setSize(0,0);
+					}if(aireProyIzq.colisionEnm(enemigos[a])) 
+					{
+						enemigos[a].setSize(0,0);
+					}
+				}
 				
 				
 				

@@ -79,6 +79,23 @@ public class Entidad extends JLabel {
 	    return colisionX && colisionY;
 	}
 	
+	public boolean colisionEnm(EntidadEnemigo entidad) {
+	    int thisX = this.getX();
+	    int thisY = this.getY();
+	    int thisWidth = this.getWidth();
+	    int thisHeight = this.getHeight();
+
+	    int entidadX = entidad.getX();
+	    int entidadY = entidad.getY();
+	    int entidadWidth = entidad.getWidth();
+	    int entidadHeight = entidad.getHeight();
+
+	    boolean colisionX = thisX + thisWidth >= entidadX && entidadX + entidadWidth >= thisX;
+	    boolean colisionY = thisY + thisHeight >= entidadY && entidadY + entidadHeight >= thisY;
+
+	    return colisionX && colisionY;
+	}
+	
 	public void transformarWall() 
 	{
 		this.setOpaque(true);this.setBackground(Color.pink);this.setIcon(null);
