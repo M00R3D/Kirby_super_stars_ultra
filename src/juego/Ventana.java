@@ -661,7 +661,7 @@ public class Ventana extends JFrame {
 				frame.remove(Jugadores);
 				frame.repaint();
 				frame.add(Hudkirby);
-				frame.add(Nivel1);
+//				frame.add(Nivel1);
 				Hudkirby.setLocation(0,370);
 				frame.setBounds(100, 100, 563, 495);
 				ReproducirSonido("Gourmet-Race-Kirby.wav");
@@ -714,6 +714,10 @@ public class Ventana extends JFrame {
 					if (e.getKeyCode() == 10) {
 						frame.remove(Inicio);
 						frame.repaint();
+						frame.add(Hudkirby);
+//						frame.add(Nivel1);
+						Hudkirby.setLocation(0,370);
+						frame.setBounds(100, 100, 563, 495);
 						frame.add(Nivel1);
 						frame.repaint();
 					}
