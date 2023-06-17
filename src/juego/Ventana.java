@@ -381,7 +381,7 @@ public class Ventana extends JFrame {
 		for (int a = 0; a < Walls.length; a++) {
 			Nivel1.add(Walls[a]);
 			Walls[a].setLocation(Walls[a].getX()-50, Walls[a].getY());
-//			Walls[a].setOpaque(false);
+			Walls[a].setOpaque(false);
 		}
 		
 		/////////FONDO 4 Y 5
@@ -429,7 +429,7 @@ public class Ventana extends JFrame {
 		for (int a = 0; a < Walls2.length; a++) {
 //			Walls2[a].setLocation(Walls[a].getX()-50, Walls[a].getY());
 			Walls2[a].transformarWall();
-			Walls2[a].setOpaque(true);
+			Walls2[a].setOpaque(false);
 			
 		}	
 		
@@ -479,7 +479,7 @@ public class Ventana extends JFrame {
 			for (int a = 0; a < Walls3.length; a++) {
 //				Walls2[a].setLocation(Walls[a].getX()-50, Walls[a].getY());
 				Walls3[a].transformarWall();
-				Walls3[a].setOpaque(true);	
+				Walls3[a].setOpaque(false);	
 			}
 				//////FONDO 7
 					Entidad pruebaLV4_ = new Entidad(piso1,0,280,322,32);
@@ -524,7 +524,7 @@ public class Ventana extends JFrame {
 					for (int a = 0; a < Walls4.length; a++) {
 //						Walls2[a].setLocation(Walls[a].getX()-50, Walls[a].getY());
 						Walls4[a].transformarWall();
-						Walls4[a].setOpaque(true);	
+						Walls4[a].setOpaque(false);	
 					}
 	
 			  		Entidad pruebaLV5_ = new Entidad(piso1, 0, 900, 230, 22);
@@ -775,13 +775,15 @@ public class Ventana extends JFrame {
 				if(p==true) {System.out.println("kirbyX:  " + EntKirby.getX()+"kirbyY:  " + EntKirby.getY());}
 				if(puerta1.colision(EntKirby)==true && arriba==true) {Nivel1.removeAll();
 				nivel=2;
-//				EntKirby.setLocation(50, 50);
+				Nivel1.add(aireProy);
+				Nivel1.add(aireProyIzq);
 				kirbyX=50;
 				kirbyY=-150;
 				fondo5.setBounds(fondo4.getWidth(), 0,fondo5.getWidth(),fondo5.getHeight());
 				
-				for (int a = 0; a < Walls2.length; a++) {
-					Nivel1.add(Walls2[a]);}
+				
+				Nivel1.add(aireProy);
+				Nivel1.add(aireProyIzq);
 				Nivel1.add(EntKirby);
 				Nivel1.add(puerta2);
 				Nivel1.add(Brunto);
@@ -790,6 +792,9 @@ public class Ventana extends JFrame {
 				Nivel1.add(pajarito1);
 				Nivel1.add(fondo4);
 				Nivel1.add(fondo5);
+				
+				for (int a = 0; a < Walls2.length; a++) {
+					Nivel1.add(Walls2[a]);}
 				}
 				
 				
@@ -797,10 +802,11 @@ public class Ventana extends JFrame {
 				
 				if(puerta2.colision(EntKirby)==true && arriba==true) {Nivel1.removeAll();
 				nivel=3;
-				for (int a = 0; a < Walls3.length; a++) {
-					Nivel1.add(Walls3[a]);}
+				
 				kirbyX=80;
 				kirbyY=-250;
+				Nivel1.add(aireProy);
+				Nivel1.add(aireProyIzq);
 				Nivel1.add(puerta3);
 				Nivel1.add(EntKirby);
 				Nivel1.add(Brunto);
@@ -808,6 +814,8 @@ public class Ventana extends JFrame {
 				Nivel1.add(Wadlee);
 				Nivel1.add(pajarito1);
 				Nivel1.add(fondo6);
+				for (int a = 0; a < Walls3.length; a++) {
+					Nivel1.add(Walls3[a]);}
 				Nivel1.setSize(1000,2000);
 				}
 			
@@ -815,12 +823,15 @@ public class Ventana extends JFrame {
 				nivel=4;
 //				for (int a = 0; a < Walls3.length; a++) {
 //					Nivel1.add(Walls3[a]);}
-				for (int a = 0; a < Walls5.length; a++) {
-				Nivel1.add(Walls5[a]);}
+				
+				Nivel1.add(aireProy);
+				Nivel1.add(aireProyIzq);
 				kirbyX=50;
 				kirbyY=-150;
 				Nivel1.add(EntKirby);
 				Nivel1.add(fondo7);
+				for (int a = 0; a < Walls5.length; a++) {
+					Nivel1.add(Walls5[a]);}
 				Nivel1.setSize(1000,2000);
 				}	
 		
@@ -1035,7 +1046,10 @@ public class Ventana extends JFrame {
 								aireShootL = false;
 								aireProyIzq.setLocation(-200, -200);
 							}
-		
+							if (aireProy.colision(Walls3[a1])) {
+								aireShootR = false;
+								aireProy.setLocation(-200, -200);
+							}
 							if (new Entidad(imgKirbyBase, EntKirby.getX() + EntKirby.getHsp(), EntKirby.getY(),
 									EntKirby.getWidth(), EntKirby.getHeight()).colision(Walls3[a1])
 									|| new Entidad(imgKirbyBase, EntKirby.getX() + EntKirby.getHsp(), EntKirby.getY(),
@@ -1055,12 +1069,16 @@ public class Ventana extends JFrame {
 				//nivel2
 				if(nivel==2)
 				{
+					
 						for (int a = 0; a < Walls2.length; a++) {
 							if (aireProyIzq.colision(Walls2[a])) {
 								aireShootL = false;
 								aireProyIzq.setLocation(-200, -200);
 							}
-		
+							if (aireProy.colision(Walls2[a])) {
+								aireShootR = false;
+								aireProy.setLocation(-200, -200);
+							}
 							if (new Entidad(imgKirbyBase, EntKirby.getX() + EntKirby.getHsp(), EntKirby.getY(),
 									EntKirby.getWidth(), EntKirby.getHeight()).colision(Walls2[a])
 									|| new Entidad(imgKirbyBase, EntKirby.getX() + EntKirby.getHsp(), EntKirby.getY(),
@@ -1092,7 +1110,10 @@ public class Ventana extends JFrame {
 											aireShootL = false;
 											aireProyIzq.setLocation(-200, -200);
 										}
-					
+										if (aireProy.colision(Walls5[a2])) {
+											aireShootR = false;
+											aireProy.setLocation(-200, -200);
+										}
 										if (new Entidad(imgKirbyBase, EntKirby.getX() + EntKirby.getHsp(), EntKirby.getY(),
 												EntKirby.getWidth(), EntKirby.getHeight()).colision(Walls5[a2])
 												|| new Entidad(imgKirbyBase, EntKirby.getX() + EntKirby.getHsp(), EntKirby.getY(),
