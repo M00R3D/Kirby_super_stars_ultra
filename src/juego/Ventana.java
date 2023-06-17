@@ -287,10 +287,32 @@ public class Ventana extends JFrame {
 		puerta1.setVisible(false);
 		Nivel1.add(puerta1);
 		
+		
+		/////ENEMIGOS 
 		EntidadEnemigo escoba = new EntidadEnemigo(piso1, 279, 53, 50, 50);
 		escoba.tipo="Escoba";
 		escoba.gravitar();
 		Nivel1.add(escoba);
+		
+		EntidadEnemigo pajarito = new EntidadEnemigo(piso1, 100, 53, 350, 50);
+		pajarito.tipo="Twizzy";
+		pajarito.gravitar();
+		Nivel1.add(pajarito);
+		
+
+		EntidadEnemigo Brunto = new EntidadEnemigo(piso1, 0, 53, 50, 50);
+		Brunto.tipo="Brunto";
+		Brunto.gravitar();
+		Nivel1.add(Brunto);
+		
+	
+		EntidadEnemigo Cappy = new EntidadEnemigo(piso1, 100, 53, 50, 50);
+		Cappy.tipo="Cappy";
+		Cappy.gravitar();
+		Nivel1.add(Cappy);
+		
+		
+		
 		///// SON 3 BLOQUE PARA ESTE ROOM
 		Entidad Walls[] = new Entidad[10];
 		Walls[0] = prueba;
@@ -602,6 +624,9 @@ public class Ventana extends JFrame {
 									EntKirby.getWidth(), EntKirby.getHeight()).colision(bloqueEstrella)) {
 						kirbyColisionVFlag = true;
 					}
+					
+					
+					///////ENEMIGOS EN EL ROOM
 
 					if (new Entidad(piso1, escoba.getX() + escoba.getHsp(),
 							escoba.getY(), escoba.getWidth(), escoba.getHeight())
@@ -615,6 +640,59 @@ public class Ventana extends JFrame {
 						escoba.setVFlag(true);
 						escoba.setLocation(escoba.getX(), escoba.getY()-escoba.getHsp());
 					}else {escoba.setVFlag(false);}
+					
+					
+					
+					
+					if (new Entidad(piso1, pajarito.getX() + pajarito.getHsp(),
+							pajarito.getY(), pajarito.getWidth(), pajarito.getHeight())
+							.colision(Walls[a])) {
+						pajarito.setHFlag(true);
+						pajarito.cambiarLado();
+					}else {pajarito.setVFlag(false);}
+					if (new Entidad(piso1, pajarito.getX(),
+							pajarito.getY() + pajarito.getVsp(), pajarito.getWidth(),
+							pajarito.getHeight()).colision(Walls[a])) {
+						pajarito.setVFlag(true);
+						pajarito.setLocation(pajarito.getX(), pajarito.getY()-pajarito.getHsp());
+					}else {pajarito.setVFlag(false);}
+					
+					
+					if (new Entidad(piso1, Brunto.getX() + Brunto.getHsp(),
+							Brunto.getY(), Brunto.getWidth(), Brunto.getHeight())
+							.colision(Walls[a])) {
+						Brunto.setHFlag(true);
+						Brunto.cambiarLado();
+					}else {Brunto.setVFlag(false);}
+					if (new Entidad(piso1, Brunto.getX(),
+							Brunto.getY() + Brunto.getVsp(), Brunto.getWidth(),
+							Brunto.getHeight()).colision(Walls[a])) {
+						Brunto.setVFlag(true);
+						Brunto.setLocation(Brunto.getX(), Brunto.getY()-Brunto.getHsp());
+					}else {Brunto.setVFlag(false);}
+					
+					
+					if (new Entidad(piso1, Cappy.getX() + Cappy.getHsp(),
+							Cappy.getY(), Cappy.getWidth(), Cappy.getHeight())
+							.colision(Walls[a])) {
+						Cappy.setHFlag(true);
+						Cappy.cambiarLado();
+					}else {Cappy.setVFlag(false);}
+					if (new Entidad(piso1, Cappy.getX(),
+							Cappy.getY() + Cappy.getVsp(), Cappy.getWidth(),
+							Cappy.getHeight()).colision(Walls[a])) {
+						Cappy.setVFlag(true);
+						Cappy.setLocation(Cappy.getX(), Cappy.getY()-Cappy.getHsp());
+					}else {Cappy.setVFlag(false);}
+					
+					
+					
+					
+					
+					
+					
+					
+					
 					
 					
 
