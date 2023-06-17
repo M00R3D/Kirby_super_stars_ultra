@@ -613,12 +613,6 @@ public class Ventana extends JFrame {
 		Nivel1.add(aireProyIzq);
 		
 		Nivel1.add(bloqueEstrella);
-
-		Nivel1.add(estadosColisionH);
-		Nivel1.add(estadosColisionV);
-		Nivel1.add(estadosLado);
-		Nivel1.add(estadosNivelParte);
-		Nivel1.add(estadosEstomago);
 		Nivel1.add(EntKirby);
 //		Nivel1.add(itemGalleta);
 		///// ESTO PARA QUE AGARRE EL FONDO 2_1_9
@@ -720,7 +714,8 @@ public class Ventana extends JFrame {
 					if (e.getKeyCode() == 10) {
 						frame.remove(Inicio);
 						frame.repaint();
-						frame.add(Partidas);
+						frame.add(Nivel1);
+						frame.repaint();
 					}
 				}
 				if (e.getKeyCode() == 87 || e.getKeyCode() == 38) {// W
