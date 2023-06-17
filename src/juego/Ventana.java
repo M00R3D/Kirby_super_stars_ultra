@@ -598,8 +598,9 @@ public class Ventana extends JFrame {
 				if(p==true) {System.out.println("kirbyX:  " + EntKirby.getX()+"kirbyY:  " + EntKirby.getY());}
 				if(puerta1.colision(EntKirby)==true && arriba==true) {Nivel1.removeAll();
 				nivel=2;
-				EntKirby.setLocation(50, 50);
-				
+//				EntKirby.setLocation(50, 50);
+				kirbyX=50;
+				kirbyY=-150;
 				fondo5.setBounds(fondo4.getWidth(), 0,fondo5.getWidth(),fondo5.getHeight());
 				
 				for (int a = 0; a < Walls2.length; a++) {
@@ -930,11 +931,11 @@ public class Ventana extends JFrame {
 				
 				
 				///////////CAMARA
-if(EntKirby.getX()-fondoContadorX>frame.getWidth()-EntKirby.getWidth()  && EntKirby.getHsp()>0)
+if(EntKirby.getX()-fondoContadorX>frame.getWidth()-EntKirby.getWidth() )
 {
 	Nivel1.setBounds(Nivel1.getX()-12, Nivel1.getY(), Nivel1.getWidth(), Nivel1.getHeight());
 	fondoContadorX+=12;
-}if(EntKirby.getX()-fondoContadorX<0+EntKirby.getWidth()-40  && EntKirby.getHsp()<0)
+}if(EntKirby.getX()-fondoContadorX<0+EntKirby.getWidth()-40 )
 {
 	Nivel1.setBounds(Nivel1.getX()+12, Nivel1.getY(), Nivel1.getWidth(), Nivel1.getHeight());
 	fondoContadorX-=12;
