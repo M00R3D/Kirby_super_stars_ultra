@@ -779,6 +779,7 @@ public class Ventana extends JFrame {
 					Nivel1.add(Walls2[a]);}
 				Nivel1.add(EntKirby);
 				Nivel1.add(puerta2);
+				Nivel1.add(Brunto);
 				Nivel1.add(fondo4);
 				Nivel1.add(fondo5);
 				}
@@ -1097,7 +1098,7 @@ public class Ventana extends JFrame {
 //									.colision(Walls2[a])) {
 //								Brunto.setHFlag(true);
 //								Brunto.cambiarLado();
-//							}else {Brunto.setVFlag(false);}
+//							}elsfe {Brunto.setVFlag(false);}
 //							if (new Entidad(piso1, Brunto.getX(),
 //									Brunto.getY() + Brunto.getVsp(), Brunto.getWidth(),
 //									Brunto.getHeight()).colision(Walls2[a])) {
