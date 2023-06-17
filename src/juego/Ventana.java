@@ -283,13 +283,13 @@ public class Ventana extends JFrame {
 		Entidad prueba10 = new Entidad(piso1, 130 + 500 + 480 + 20, 210, 230, 324);
 		prueba10.transformarWall();
 
-		Entidad puerta1 = new Entidad(imgFinish, 1241, 148, 50, 70);
+		Entidad puerta1 = new Entidad(imgFinish, 1170, 128, 60, 70);
 //		puerta1.transformarWall();
 		puerta1.setVisible(true);
 		Nivel1.add(puerta1);
 		
 		
-		/////ENEMIGOS 
+		/////ENEMIGOS DEL ROOM 1 AL 3
 		EntidadEnemigo escoba = new EntidadEnemigo(piso1, 279, 53, 50, 50);
 		escoba.tipo="Escoba";
 		escoba.gravitar();
@@ -311,6 +311,16 @@ public class Ventana extends JFrame {
 		Cappy.tipo="Cappy";
 		Cappy.gravitar();
 		Nivel1.add(Cappy);
+		
+		
+		
+
+		
+		
+		
+		
+		
+		
 		
 		
 		
@@ -337,6 +347,7 @@ public class Ventana extends JFrame {
 //			Walls[a].setOpaque(false);
 		}
 		
+		/////////FONDO 4 Y 5
 		Entidad pruebaLV2_ = new Entidad(piso1,0,280,322,32);
 		pruebaLV2_. transformarWall();
 		Entidad pruebaLV2_2 = new Entidad(piso1,300,280,422,32);
@@ -374,12 +385,114 @@ public class Ventana extends JFrame {
 		Walls2[9]=pruebaLV2_10;
 		Walls2[10]=pruebaLV2_11;
 		Walls2[11]=pruebaLV2_12;
-
+		
+		
+		EntidadEnemigo pajarito1 = new EntidadEnemigo(piso1, 100, 53, 350, 50);
+		pajarito1.tipo="Twizzy";
+		pajarito1.gravitar();
+		Nivel1.add(pajarito1);
+		
+	
 		for (int a = 0; a < Walls2.length; a++) {
 //			Walls2[a].setLocation(Walls[a].getX()-50, Walls[a].getY());
 			Walls2[a].transformarWall();
 			Walls2[a].setOpaque(true);
-		}
+			
+		}	
+		
+		//////FONDO 6
+			Entidad pruebaLV3_ = new Entidad(piso1,0,280,322,32);
+			pruebaLV3_. transformarWall();
+			Entidad pruebaLV3_2 = new Entidad(piso1,300,280,422,32);
+			pruebaLV3_2. transformarWall();
+			 Entidad pruebaLV3_3 = new Entidad(piso1,720,200,122,32);
+			pruebaLV2_3. transformarWall();
+			 Entidad pruebaLV3_4 = new Entidad(piso1,720,220,24,152);
+			pruebaLV3_4. transformarWall();
+			Entidad pruebaLV3_5 = new Entidad(piso1, 50+862, 280, 152, 32);
+			pruebaLV2_5.transformarWall();
+			Entidad pruebaLV3_6 = new Entidad(piso1, 420+862, 210, 282, 22);
+			pruebaLV3_6.transformarWall();
+			Entidad pruebaLV3_7 = new Entidad(piso1, 180+862, 160, 50, 132);
+			pruebaLV3_7.transformarWall();
+			Entidad pruebaLV3_8 = new Entidad(piso1, 10+862, 160, 50, 132);
+			pruebaLV3_8.transformarWall();
+			Entidad pruebaLV3_9 = new Entidad(piso1, 200+862, 245, 150, 22);
+			pruebaLV3_9.transformarWall();
+			Entidad pruebaLV3_10 = new Entidad(piso1, 330+862, 243, 50, 22);
+			pruebaLV3_10.transformarWall();
+			Entidad pruebaLV3_11 = new Entidad(piso1, 380+862, 235, 80, 22);
+			pruebaLV3_11.transformarWall();
+			Entidad pruebaLV3_12 = new Entidad(piso2, 650+862, 110, 52, 122);
+			pruebaLV3_12.transformarWall();
+			Entidad Walls3[] = new Entidad[12];
+			Walls3[0]=pruebaLV3_;
+			Walls3[1]=pruebaLV3_2;
+			Walls3[2]=pruebaLV3_3;
+			Walls3[3]=pruebaLV3_4;
+			Walls3[4]=pruebaLV3_5;
+			Walls3[5]=pruebaLV3_6;
+			Walls3[6]=pruebaLV3_7;
+			Walls3[7]=pruebaLV3_8;
+			Walls3[8]=pruebaLV3_9;
+			Walls3[9]=pruebaLV3_10;
+			Walls3[10]=pruebaLV3_11;
+			Walls3[11]=pruebaLV3_12;
+			
+			
+			for (int a = 0; a < Walls3.length; a++) {
+//				Walls2[a].setLocation(Walls[a].getX()-50, Walls[a].getY());
+				Walls3[a].transformarWall();
+				Walls3[a].setOpaque(true);	
+			}
+				//////FONDO 7
+					Entidad pruebaLV4_ = new Entidad(piso1,0,280,322,32);
+					pruebaLV4_. transformarWall();
+					Entidad pruebaLV4_2 = new Entidad(piso1,300,280,422,32);
+					pruebaLV4_2. transformarWall();
+					 Entidad pruebaLV4_3 = new Entidad(piso1,720,200,122,32);
+					pruebaLV4_3. transformarWall();
+					 Entidad pruebaLV4_4 = new Entidad(piso1,720,220,24,152);
+					pruebaLV4_4. transformarWall();
+					Entidad pruebaLV4_5 = new Entidad(piso1, 50+862, 280, 152, 32);
+					pruebaLV4_5.transformarWall();
+					Entidad pruebaLV4_6 = new Entidad(piso1, 420+862, 210, 282, 22);
+					pruebaLV4_6.transformarWall();
+					Entidad pruebaLV4_7 = new Entidad(piso1, 180+862, 160, 50, 132);
+					pruebaLV4_7.transformarWall();
+					Entidad pruebaLV4_8 = new Entidad(piso1, 10+862, 160, 50, 132);
+					pruebaLV4_8.transformarWall();
+					Entidad pruebaLV4_9 = new Entidad(piso1, 200+862, 245, 150, 22);
+					pruebaLV4_9.transformarWall();
+					Entidad pruebaLV4_10 = new Entidad(piso1, 330+862, 243, 50, 22);
+					pruebaLV4_10.transformarWall();
+					Entidad pruebaLV4_11 = new Entidad(piso1, 380+862, 235, 80, 22);
+					pruebaLV4_11.transformarWall();
+					Entidad pruebaLV4_12 = new Entidad(piso2, 650+862, 110, 52, 122);
+					pruebaLV4_12.transformarWall();
+					Entidad Walls4[] = new Entidad[12];
+					Walls4[0]=pruebaLV4_;
+					Walls4[1]=pruebaLV4_2;
+					Walls4[2]=pruebaLV4_3;
+					Walls4[3]=pruebaLV4_4;
+					Walls4[4]=pruebaLV4_5;
+					Walls4[5]=pruebaLV4_6;
+					Walls4[6]=pruebaLV4_7;
+					Walls4[7]=pruebaLV4_8;
+					Walls4[8]=pruebaLV4_9;
+					Walls4[9]=pruebaLV4_10;
+					Walls4[10]=pruebaLV4_11;
+					Walls4[11]=pruebaLV4_12;
+					
+					
+					for (int a = 0; a < Walls4.length; a++) {
+//						Walls2[a].setLocation(Walls[a].getX()-50, Walls[a].getY());
+						Walls4[a].transformarWall();
+						Walls4[a].setOpaque(true);	
+					}
+	
+			
+		
 		Entidad bloqueEstrella = new Entidad(imgBloqueEstrella, 180, 180, 75, 65);
 
 		///// ESTO ES PARA QUE NO SE VEA LOS BLOQUES ROJOS Y VERDES
@@ -395,7 +508,6 @@ public class Ventana extends JFrame {
 
 		///// IMAGENES DEL NIVEL 1 Y 2
 		Entidad fondo = new Entidad(imgFondo1_1_1, 0, 0, 1563, 400);
-		
 		Entidad fondo2 = new Entidad(imgFondo1_1_2, 542, 0, 563, 371);
 		Entidad fondo3 = new Entidad(imgFondo1_1_3, 542 + 542, 0, 563, 371);
 		Entidad fondo4 = new Entidad(imgFondo1_1_4, 0, 0, 863, 371);
@@ -445,7 +557,7 @@ public class Ventana extends JFrame {
 		Nivel1.add(fondo);
 		Nivel1.add(fondo2);
 		Nivel1.add(fondo3);
-//		Nivel1.add(fondo4);
+//		Nivel1.add(fondo4);		
 //		Nivel1.add(fondo5);
 //		Nivel1.add(fondo6);
 //		Nivel1.add(fondo7);
@@ -609,6 +721,11 @@ public class Ventana extends JFrame {
 				Nivel1.add(fondo4);
 				Nivel1.add(fondo5);
 				}
+				
+			
+					
+		
+			
 //				escoba.setHFlag(false);escoba.setVFlag(false);
 
 				
@@ -737,6 +854,27 @@ public class Ventana extends JFrame {
 								Cappy.setLocation(Cappy.getX(), Cappy.getY()-Cappy.getHsp());
 							}else {Cappy.setVFlag(false);}
 		
+							
+							
+							
+							if (new Entidad(piso1, pajarito1.getX() + pajarito1.getHsp(),
+									pajarito1.getY(), pajarito1.getWidth(), pajarito1.getHeight())
+									.colision(Walls2[a])) {
+								pajarito1.setHFlag(true);
+								pajarito1.cambiarLado();
+							}else {pajarito1.setVFlag(false);}
+							if (new Entidad(piso1, pajarito1.getX(),
+									pajarito1.getY() + pajarito1.getVsp(), pajarito1.getWidth(),
+									pajarito1.getHeight()).colision(Walls2[a])) {
+								pajarito1.setVFlag(true);
+								pajarito1.setLocation(pajarito1.getX(), pajarito1.getY()-pajarito1.getHsp());
+							}else {pajarito1.setVFlag(false);}
+							
+						
+						
+					
+							
+							
 							for (int a1 = 0; a1 < items.length; a1++) {
 								if (new Entidad(items[a1].getIcon(), items[a1].getX() + items[a1].getHsp(), items[a1].getY(),
 										items[a1].getWidth(), items[a1].getHeight()).colision(Walls[a])) {
@@ -749,7 +887,7 @@ public class Ventana extends JFrame {
 							}
 		
 						}
-				}
+			}
 				
 				//nivel2
 				if(nivel==2)
@@ -772,6 +910,68 @@ public class Ventana extends JFrame {
 											EntKirby.getWidth(), EntKirby.getHeight()).colision(bloqueEstrella)) {
 								kirbyColisionVFlag = true;
 							}
+							
+							
+					
+						
+							
+							
+
+							//nivel3
+							if(nivel==3)
+							{
+									for (int a1 = 0; a1 < Walls3.length; a1++) {
+										if (aireProyIzq.colision(Walls3[a1])) {
+											aireShootL = false;
+											aireProyIzq.setLocation(-200, -200);
+										}
+					
+										if (new Entidad(imgKirbyBase, EntKirby.getX() + EntKirby.getHsp(), EntKirby.getY(),
+												EntKirby.getWidth(), EntKirby.getHeight()).colision(Walls3[a1])
+												|| new Entidad(imgKirbyBase, EntKirby.getX() + EntKirby.getHsp(), EntKirby.getY(),
+														EntKirby.getWidth(), EntKirby.getHeight()).colision(bloqueEstrella)) {
+											kirbyColisionHFlag = true;
+										}
+										if (new Entidad(imgKirbyBase, EntKirby.getX(), EntKirby.getY() + EntKirby.getVsp(),
+												EntKirby.getWidth(), EntKirby.getHeight()).colision(Walls3[a1])
+												|| new Entidad(imgKirbyBase, EntKirby.getX(), EntKirby.getY() + EntKirby.getVsp(),
+														EntKirby.getWidth(), EntKirby.getHeight()).colision(bloqueEstrella)) {
+											kirbyColisionVFlag = true;
+										}
+										
+									}
+									
+							}
+							
+							
+							//nivel4 Y CONTRA EL JEFE FINAL
+							if(nivel==4)
+							{
+									for (int a2 = 0; a2 < Walls4.length; a2++) {
+										if (aireProyIzq.colision(Walls3[a2])) {
+											aireShootL = false;
+											aireProyIzq.setLocation(-200, -200);
+										}
+					
+										if (new Entidad(imgKirbyBase, EntKirby.getX() + EntKirby.getHsp(), EntKirby.getY(),
+												EntKirby.getWidth(), EntKirby.getHeight()).colision(Walls3[a2])
+												|| new Entidad(imgKirbyBase, EntKirby.getX() + EntKirby.getHsp(), EntKirby.getY(),
+														EntKirby.getWidth(), EntKirby.getHeight()).colision(bloqueEstrella)) {
+											kirbyColisionHFlag = true;
+										}
+										if (new Entidad(imgKirbyBase, EntKirby.getX(), EntKirby.getY() + EntKirby.getVsp(),
+												EntKirby.getWidth(), EntKirby.getHeight()).colision(Walls3[a2])
+												|| new Entidad(imgKirbyBase, EntKirby.getX(), EntKirby.getY() + EntKirby.getVsp(),
+														EntKirby.getWidth(), EntKirby.getHeight()).colision(bloqueEstrella)) {
+											kirbyColisionVFlag = true;
+										}
+										
+									}
+									
+							}
+							
+							
+		
 							///////ENEMIGOS EN EL ROOM
 		
 //							if (new Entidad(piso1, escoba.getX() + escoba.getHsp(),
